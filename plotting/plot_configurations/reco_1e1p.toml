@@ -31,14 +31,14 @@ plot_kwargs = {histtype = 'barstacked'}
 [reco_energy_interaction_mode_1e1p]
 type = 'hist1d'
 vars = 'sVisibleEnergyPTT_InteractionMode_All1e1pCut'
-categories = {0 = '$\nu_e$ CC QE', 1 = '$\nu_e$ CC Res', 2 = '$\nu_e$ CC MEC', 3 = '$\nu_e$ CC DIS', 4 = '$\nu_e$ CC Coh', 5 = '$\nu_e$ CC', 6 = '$\nu$ NC', 7 = 'Cosmic'}
+categories = {0 = '$\nu_e$ CC QE', 1 = '$\nu_e$ CC Res', 2 = '$\nu_e$ CC MEC', 3 = '$\nu_e$ CC DIS', 4 = '$\nu_e$ CC Coh', 5 = '$\nu_\mu$ CC', 6 = '$\nu$ NC', 7 = 'Cosmic'}
 xlabel = 'Reconstructed Visible Energy [MeV]'
 ylabel = 'Entries / 2.5e20 POT'
 title = 'Selected 1$e$1p Candidates'
 show_percentage = true
 plot_kwargs = {histtype = 'barstacked'}
 
-[reco_flashtime_1mu1p]
+[reco_flashtime_1e1p]
 type = 'hist1d'
 vars = 'sFlashTimePTT_Topology_All1e1pCut'
 categories = {0 = '1$e$1p', 2 = '1$e$Np, N$>$1', 1 = '1$e$0h', 3 = '1$e$1$\pi$1p', 4 = 'Other $\nu_e$ CC', 5 = '$\nu$ NC', 6 = 'Cosmic', 7 = 'Other'}

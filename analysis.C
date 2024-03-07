@@ -126,30 +126,30 @@ void analysis()
     spectra.add_spectrum2d("sFlashTime_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -1000, 1000), kCategoryPTT_All1eNpCut, kFlashTimePTT_All1eNpCut);
     spectra.add_spectrum2d("sFlashTime_FVConTop1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -1000, 1000), kCategoryPTT_FVConTop1eXCut, kFlashTimePTT_FVConTop1eXCut);
     spectra.add_spectrum2d("sFlashTime_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -1000, 1000), kCategoryPTT_All1eXCut, kFlashTimePTT_All1eXCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_NoCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_NoCut, kFlashTimePTT_NoCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_FVCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_FVCut, kFlashTimePTT_FVCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_FVConCut, kFlashTimePTT_FVConCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConTop1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_FVConTop1e1pCut, kFlashTimePTT_FVConTop1e1pCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_All1e1pCut, kFlashTimePTT_All1e1pCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConTop1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_FVConTop1eNpCut, kFlashTimePTT_FVConTop1eNpCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_All1eNpCut, kFlashTimePTT_All1eNpCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConTop1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_FVConTop1eXCut, kFlashTimePTT_FVConTop1eXCut);
-    spectra.add_spectrum2d("sFlashTime_Zoomed_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -4, 4), kCategoryPTT_All1eXCut, kFlashTimePTT_All1eXCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_NoCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_NoCut, kFlashTimePTT_NoCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_FVCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_FVCut, kFlashTimePTT_FVCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_FVConCut, kFlashTimePTT_FVConCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConTop1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_FVConTop1e1pCut, kFlashTimePTT_FVConTop1e1pCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_All1e1pCut, kFlashTimePTT_All1e1pCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConTop1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_FVConTop1eNpCut, kFlashTimePTT_FVConTop1eNpCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_All1eNpCut, kFlashTimePTT_All1eNpCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_FVConTop1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_FVConTop1eXCut, kFlashTimePTT_FVConTop1eXCut);
+    spectra.add_spectrum2d("sFlashTime_Zoomed_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(50, -10, 10), kCategoryPTT_All1eXCut, kFlashTimePTT_All1eXCut);
 
     /**
      * Spectra (2D) for (stacked) reconstructed quantities.
     */
-    spectra.add_spectrum2d("sFlashTimePTT_NoCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -4, 5.6), kCategoryTopologyPTT_NoCut, kFlashTimePTT_NoCut);
+    spectra.add_spectrum2d("sFlashTimePTT_NoCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -10, 10), kCategoryTopologyPTT_NoCut, kFlashTimePTT_NoCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_Topology_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTopologyPTT_All1e1pCut, kVisibleEnergyPTT_All1e1pCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_InteractionMode_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryInteractionModePTT_All1e1pCut, kVisibleEnergyPTT_All1e1pCut);
     spectra.add_spectrum2d("sFlashTimePTT_Topology_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -4, 5.6), kCategoryTopologyPTT_All1e1pCut, kFlashTimePTT_All1e1pCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_Topology_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTopologyPTT_All1eNpCut, kVisibleEnergyPTT_All1eNpCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_InteractionMode_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryInteractionModePTT_All1eNpCut, kVisibleEnergyPTT_All1eNpCut);
-    spectra.add_spectrum2d("sFlashTimePTT_Topology_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -4, 5.6), kCategoryTopologyPTT_All1eNpCut, kFlashTimePTT_All1eNpCut);
+    spectra.add_spectrum2d("sFlashTimePTT_Topology_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -10, 10), kCategoryTopologyPTT_All1eNpCut, kFlashTimePTT_All1eNpCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryPTT_All1eXCut, kVisibleEnergyPTT_All1eXCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_Topology_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTopologyPTT_All1eXCut, kVisibleEnergyPTT_All1eXCut);
     spectra.add_spectrum2d("sVisibleEnergyPTT_InteractionMode_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryInteractionModePTT_All1eXCut, kVisibleEnergyPTT_All1eXCut);
-    spectra.add_spectrum2d("sFlashTimePTT_Topology_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -4, 5.6), kCategoryTopologyPTT_All1eXCut, kFlashTimePTT_All1eXCut);
+    spectra.add_spectrum2d("sFlashTimePTT_Topology_All1eXCut", Binning::Simple(10, 0, 10), Binning::Simple(60, -10, 10), kCategoryTopologyPTT_All1eXCut, kFlashTimePTT_All1eXCut);
 
     /**
      * Spectra (2D) for particles.
