@@ -65,16 +65,16 @@ void write_selected(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDL
             << CSV(vars::category_topology(i))
             << CSV(vars::category_interaction_mode(i))
             << CSV(vars::visible_energy(j))
-            << CSV(vars::leading_muon_ke(j))
+            << CSV(vars::leading_electron_ke(j))
             << CSV(vars::leading_proton_ke(j))
-            << CSV(vars::leading_muon_pt(j))
+            << CSV(vars::leading_electron_pt(j))
             << CSV(vars::leading_proton_pt(j))
             << CSV(vars::interaction_pt(j))
-            << CSV(vars::leading_muon_cosine_theta_xz(j))
+            << CSV(vars::leading_electron_cosine_theta_xz(j))
             << CSV(vars::leading_proton_cosine_theta_xz(j))
             << CSV(vars::cosine_opening_angle(j))
             << CSV(vars::cosine_opening_angle_transverse(j))
-            << CSV(vars::leading_muon_softmax(j))
+            << CSV(vars::leading_electron_softmax(j))
             << CSV(vars::leading_proton_softmax(j))
             << std::endl;
 }
@@ -136,51 +136,51 @@ const SpillMultiVar kSignal([](const caf::SRSpillProxy* sr)
             write_signal(sr, i);
         }
         /**
-         * Signal: 1mu1p
+         * Signal: 1e1p
         */
-        if(cuts::signal_1mu1p(i) && cuts::fiducial_containment_cut(i))
+        if(cuts::signal_1e1p(i) && cuts::fiducial_containment_cut(i))
         {
-            OUT(output, "SIGNAL_1MU1P");
+            OUT(output, "SIGNAL_1E1P");
             write_signal(sr, i);
         }
         /**
-         * Signal: 1muNp
+         * Signal: 1eNp
         */
-        if(cuts::signal_1muNp(i) && cuts::fiducial_containment_cut(i))
+        if(cuts::signal_1eNp(i) && cuts::fiducial_containment_cut(i))
         {
-            OUT(output, "SIGNAL_1MUNP");
+            OUT(output, "SIGNAL_1ENP");
             write_signal(sr, i);
         }
         /**
-         * Signal: 1muX
+         * Signal: 1eX
         */
-        if(cuts::signal_1muX(i) && cuts::fiducial_containment_cut(i))
+        if(cuts::signal_1eX(i) && cuts::fiducial_containment_cut(i))
         {
-            OUT(output, "SIGNAL_1MUX");
+            OUT(output, "SIGNAL_1EX");
             write_signal(sr, i);
         }
         /**
-         * Mistake: 1mu1p
+         * Mistake: 1e1p
         */
-        if(cuts::matched(i) && !cuts::signal_1mu1p(i) && cuts::all_1mu1p_cut(sr->dlp[i.match[0]]))
+        if(cuts::matched(i) && !cuts::signal_1e1p(i) && cuts::all_1e1p_cut(sr->dlp[i.match[0]]))
         {
-            OUT(output, "MISTAKE_1MU1P");
+            OUT(output, "MISTAKE_1e1P");
             write_mistake(sr, i);
         }
         /**
-         * Mistake: 1muNp
+         * Mistake: 1eNp
         */
-        if(cuts::matched(i) && !cuts::signal_1muNp(i) && cuts::all_1muNp_cut(sr->dlp[i.match[0]]))
+        if(cuts::matched(i) && !cuts::signal_1eNp(i) && cuts::all_1eNp_cut(sr->dlp[i.match[0]]))
         {
-            OUT(output, "MISTAKE_1MUNP");
+            OUT(output, "MISTAKE_1eNP");
             write_mistake(sr, i);
         }
         /**
-         * Mistake: 1muX
+         * Mistake: 1eX
         */
-        if(cuts::matched(i) && !cuts::signal_1muX(i) && cuts::all_1muX_cut(sr->dlp[i.match[0]]))
+        if(cuts::matched(i) && !cuts::signal_1eX(i) && cuts::all_1eX_cut(sr->dlp[i.match[0]]))
         {
-            OUT(output, "MISTAKE_1MUX");
+            OUT(output, "MISTAKE_1eX");
             write_mistake(sr, i);
         }
     }
@@ -201,14 +201,14 @@ const SpillMultiVar kSelected([](const caf::SRSpillProxy* sr)
     for(auto const & i : sr->dlp)
     {
         /**
-         * Selected: 1mu1p
+         * Selected: 1e1p
         */
-        if(cuts::all_1mu1p_cut(i))
+        if(cuts::all_1e1p_cut(i))
         {
             if(cuts::matched(i))
             {
                 const auto & t = sr->dlp_true[i.match[0]];
-                OUT(output,"SELECTED_1MU1P");
+                OUT(output,"SELECTED_1e1P");
                 write_selected(sr, t, i);
             }
             else
@@ -218,14 +218,14 @@ const SpillMultiVar kSelected([](const caf::SRSpillProxy* sr)
             }
         }
         /**
-         * Selected: 1muNp
+         * Selected: 1eNp
         */
-        if(cuts::all_1muNp_cut(i))
+        if(cuts::all_1eNp_cut(i))
         {
             if(cuts::matched(i))
             {
                 const auto & t = sr->dlp_true[i.match[0]];
-                OUT(output,"SELECTED_1MUNP");
+                OUT(output,"SELECTED_1eNP");
                 write_selected(sr, t, i);
             }
             else
@@ -235,14 +235,14 @@ const SpillMultiVar kSelected([](const caf::SRSpillProxy* sr)
             }
         }
         /**
-         * Selected: 1muX
+         * Selected: 1eX
         */
-        if(cuts::all_1muX_cut(i))
+        if(cuts::all_1eX_cut(i))
         {
             if(cuts::matched(i))
             {
                 const auto & t = sr->dlp_true[i.match[0]];
-                OUT(output,"SELECTED_1MUX");
+                OUT(output,"SELECTED_1eX");
                 write_selected(sr, t, i);
             }
             else
@@ -263,16 +263,16 @@ const SpillMultiVar kDataLogger([](const caf::SRSpillProxy* sr)
     */
     for(auto const & i : sr->dlp)
     {
-        if(cuts::topological_1muNp_cut(i))
+        if(cuts::topological_1eNp_cut(i))
         {
-            size_t leading_muon(0), leading_proton(0), index(0);
-            double leading_muon_ke(0), leading_proton_ke(0);
+            size_t leading_electron(0), leading_proton(0), index(0);
+            double leading_electron_ke(0), leading_proton_ke(0);
             for(auto & p : i.particles)
             {
-                if(p.pid == 2 && p.csda_ke > leading_muon_ke)
+                if(p.pid == 1 && p.calo_ke > leading_electron_ke)
                 {
-                    leading_muon = index;
-                    leading_muon_ke = p.csda_ke;
+                    leading_electron = index;
+                    leading_electron_ke = p.calo_ke;
                 }
                 else if(p.pid == 4 && p.csda_ke > leading_proton_ke)
                 {
@@ -287,17 +287,17 @@ const SpillMultiVar kDataLogger([](const caf::SRSpillProxy* sr)
                                         << CSV(i.is_contained) << CSV(cuts::topology(i))
                                         << CSV(cuts::flash_cut_data(i))
                                         << CSV(i.vertex[0]) << CSV(i.vertex[1]) << CSV(i.vertex[2])
-                                        << CSV(i.particles[leading_muon].length)
-                                        << CSV(vars::leading_muon_ke(i))
+                                        << CSV(i.particles[leading_electron].length)
+                                        << CSV(vars::leading_electron_ke(i))
                                         << CSV(i.particles[leading_proton].length)
                                         << CSV(vars::leading_proton_ke(i))
                                         << CSV(vars::flash_time(i))
-                                        << CSV(i.particles[leading_muon].end_point[0])
-                                        << CSV(i.particles[leading_muon].end_point[1])
-                                        << CSV(i.particles[leading_muon].end_point[2])
-                                        << CSV(i.particles[leading_muon].start_dir[0])
-                                        << CSV(i.particles[leading_muon].start_dir[1])
-                                        << CSV(i.particles[leading_muon].start_dir[2])
+                                        << CSV(i.particles[leading_electron].end_point[0])
+                                        << CSV(i.particles[leading_electron].end_point[1])
+                                        << CSV(i.particles[leading_electron].end_point[2])
+                                        << CSV(i.particles[leading_electron].start_dir[0])
+                                        << CSV(i.particles[leading_electron].start_dir[1])
+                                        << CSV(i.particles[leading_electron].start_dir[2])
                                         << CSV(i.particles[leading_proton].end_point[0])
                                         << CSV(i.particles[leading_proton].end_point[1])
                                         << CSV(i.particles[leading_proton].end_point[2])
