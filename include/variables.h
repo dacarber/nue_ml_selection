@@ -541,7 +541,7 @@ namespace vars
         {
             auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
-            double num(m.start_dir[0] * p.start_dir[0] + m.start_dir[1] * p.start_dir[1]);
+            double num(e.start_dir[0] * p.start_dir[0] + e.start_dir[1] * p.start_dir[1]);
             num /= std::sqrt((1-e.start_dir[2]*e.start_dir[2])*(1-p.start_dir[2]*p.start_dir[2]));
             return num;
         }
