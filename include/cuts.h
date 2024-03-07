@@ -62,7 +62,7 @@ namespace cuts
                         energy = p.energy_deposit;
                     if(p.pid == 2 && energy > 143.425) // Muon greater than 50 cm.
                         ++counts[p.pid];
-                    else if((p.pid != 2 && p.pid < 4 && energy > 25) || (p.pid == 4 && energy > 50))
+                    else if((p.pid != 2 && p.pid < 4 && energy > 10) || (p.pid == 4 && energy > 40))
                         ++counts[p.pid];
                 }
             }
@@ -126,7 +126,7 @@ namespace cuts
      * @return true if the interaction has a 1mu1p topology.
      */
     template<class T>
-        bool topological_1mu1p_cut(const T & interaction) { return topology<T>(interaction) == "0ph0e1mu0pi1p"; }
+        bool topological_1e1p_cut(const T & interaction) { return topology<T>(interaction) == "0ph1e0mu0pi1p"; }
     
     /**
      * Apply a 1muNp topological cut. The interaction must have a topology
@@ -137,10 +137,10 @@ namespace cuts
      * @return true if the interaction has a 1muNp topology.
      */
     template<class T>
-        bool topological_1muNp_cut(const T & interaction)
+        bool topological_1eNp_cut(const T & interaction)
         {
             std::vector<uint32_t> c(count_primaries(interaction));
-            return c[0] == 0 && c[1] == 0 && c[2] == 1 && c[3] == 0 && c[4] >= 1;
+            return c[0] == 0 && c[1] == 1 && c[2] == 0 && c[3] == 0 && c[4] >= 1;
         }
 
     /**
@@ -152,10 +152,10 @@ namespace cuts
      * @return true if the interaction has a 1muX topology.
      */
     template<class T>
-        bool topological_1muX_cut(const T & interaction)
+        bool topological_1eX_cut(const T & interaction)
         {
             std::vector<uint32_t> c(count_primaries(interaction));
-            return c[2] == 1;
+            return c[1] == 1;
         }
     
     /**
@@ -171,7 +171,7 @@ namespace cuts
             if(!valid_flashmatch(interaction))
                 return false;
             else
-                return (interaction.flash_time >= 0) && (interaction.flash_time <= 1.6);
+                return (interaction.flash_time >= 0) && (interaction.flash_time <= 10.0);
         }
 
     /**
@@ -187,7 +187,7 @@ namespace cuts
             if(!valid_flashmatch(interaction))
                 return false;
             else
-                return (interaction.flash_time >= -0.5) && (interaction.flash_time <= 1.4);
+                return (interaction.flash_time >= -0.5) && (interaction.flash_time <= 10.0);
         }
 
     /**
@@ -208,7 +208,7 @@ namespace cuts
      * topological cut.
      */
     template<class T>
-        bool fiducial_containment_topological_1mu1p_cut(const T & interaction) { return fiducial_cut<T>(interaction) && containment_cut<T>(interaction) && topological_1mu1p_cut<T>(interaction); }
+        bool fiducial_containment_topological_1e1p_cut(const T & interaction) { return fiducial_cut<T>(interaction) && containment_cut<T>(interaction) && topological_1e1p_cut<T>(interaction); }
 
     /**
      * Apply a fiducial, containment, and topological (1muNp) cut (logical
@@ -219,7 +219,7 @@ namespace cuts
      * topological cut.
      */
     template<class T>
-        bool fiducial_containment_topological_1muNp_cut(const T & interaction) { return fiducial_cut<T>(interaction) && containment_cut<T>(interaction) && topological_1muNp_cut<T>(interaction); }
+        bool fiducial_containment_topological_1eNp_cut(const T & interaction) { return fiducial_cut<T>(interaction) && containment_cut<T>(interaction) && topological_1eNp_cut<T>(interaction); }
 
     /**
      * Apply a fiducial, containment, and topological (1muX) cut (logical
@@ -230,7 +230,7 @@ namespace cuts
      * topological cut.
      */
     template<class T>
-        bool fiducial_containment_topological_1muX_cut(const T & interaction) { return fiducial_cut<T>(interaction) && containment_cut<T>(interaction) && topological_1muX_cut<T>(interaction); }
+        bool fiducial_containment_topological_1eX_cut(const T & interaction) { return fiducial_cut<T>(interaction) && containment_cut<T>(interaction) && topological_1eX_cut<T>(interaction); }
 
     /**
      * Apply a fiducial, containment, topological (1mu1p), and flash time cut
@@ -241,7 +241,7 @@ namespace cuts
      * topological, and flash time cut.
      */
     template<class T>
-        bool all_1mu1p_cut(const T & interaction) { return topological_1mu1p_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
+        bool all_1e1p_cut(const T & interaction) { return topological_1e1p_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
 
     /**
      * Apply a fiducial, containment, topological (1muNp), and flash time cut
@@ -252,7 +252,7 @@ namespace cuts
      * topological, and flash time cut.
      */
     template<class T>
-        bool all_1muNp_cut(const T & interaction) { return topological_1muNp_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
+        bool all_1eNp_cut(const T & interaction) { return topological_1eNp_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
     
     /**
      * Apply a fiducial, containment, topological (1muX), and flash time cut
@@ -263,7 +263,7 @@ namespace cuts
      * topological, and flash time cut.
      */
     template<class T>
-        bool all_1muX_cut(const T & interaction) { return topological_1muX_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
+        bool all_1eX_cut(const T & interaction) { return topological_1eX_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
 
     /**
      * Defined the true neutrino interaction classification.
@@ -317,7 +317,7 @@ namespace cuts
      * @return true if the interaction is a 1mu1p neutrino interaction.
      */
     template<class T>
-        bool signal_1mu1p(const T & interaction) { return topological_1mu1p_cut<T>(interaction) && neutrino(interaction); }
+        bool signal_1e1p(const T & interaction) { return topological_1e1p_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define the true 1muNp interaction classification.
@@ -326,7 +326,7 @@ namespace cuts
      * @return true if the interaction is a 1muNp neutrino interaction.
      */
     template<class T>
-        bool signal_1muNp(const T & interaction) { return topological_1muNp_cut<T>(interaction) && neutrino(interaction); }
+        bool signal_1eNp(const T & interaction) { return topological_1eNp_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define the true 1muNp interaction classification (N > 1 strictly).
@@ -335,7 +335,7 @@ namespace cuts
      * @return true if the interaction is a 1muNp (N > 1) neutrino interaction.
      */
     template<class T>
-        bool signal_1muNp_Nnot1(const T & interaction) { return !topological_1mu1p_cut(interaction) && topological_1muNp_cut<T>(interaction) && neutrino(interaction); }
+        bool signal_1eNp_Nnot1(const T & interaction) { return !topological_1e1p_cut(interaction) && topological_1eNp_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define the true 1muX interaction classification.
@@ -344,7 +344,7 @@ namespace cuts
      * @return true if the interaction is a 1muX neutrino interaction.
      */
     template<class T>
-        bool signal_1muX(const T & interaction) { return topological_1muX_cut<T>(interaction) && neutrino(interaction); }
+        bool signal_1eX(const T & interaction) { return topological_1eX_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define the true 1muX interaction classification (not 1muNp).
@@ -353,7 +353,7 @@ namespace cuts
      * @return true if the interaction is a 1muX (not 1muNp) neutrino interaction.
      */
     template<class T>
-        bool signal_1muX_not_1muNp(const T & interaction) { return !topological_1muX_cut(interaction) && !topological_1muNp_cut<T>(interaction) && neutrino(interaction); }
+        bool signal_1eX_not_1eNp(const T & interaction) { return !topological_1eX_cut(interaction) && !topological_1eNp_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define the true "other neutrino" interaction classification (1mu1p).
@@ -362,7 +362,7 @@ namespace cuts
      * @return true if the interaction is an "other neutrino" interaction.
      */
     template<class T>
-        bool other_nu_1mu1p(const T & interaction) { return !topological_1mu1p_cut<T>(interaction) && neutrino(interaction); }
+        bool other_nu_1e1p(const T & interaction) { return !topological_1e1p_cut<T>(interaction) && neutrino(interaction); }
     
     /**
      * Define the true "other neutrino" interaction classification (1muNp).
@@ -371,7 +371,7 @@ namespace cuts
      * @return true if the interaction is an "other neutrino" interaction.
      */
     template<class T>
-        bool other_nu_1muNp(const T & interaction) { return !topological_1muNp_cut<T>(interaction) && neutrino(interaction); }
+        bool other_nu_1eNp(const T & interaction) { return !topological_1eNp_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define the true "other neutrino" interaction classification (1muX).
@@ -380,7 +380,7 @@ namespace cuts
      * @return true if the interaction is an "other neutrino" interaction.
      */
     template<class T>
-        bool other_nu_1muX(const T & interaction) { return !topological_1muX_cut<T>(interaction) && neutrino(interaction); }
+        bool other_nu_1eX(const T & interaction) { return !topological_1eX_cut<T>(interaction) && neutrino(interaction); }
 
     /**
      * Define true muon particle classification.
@@ -389,7 +389,7 @@ namespace cuts
      * @return true if the particle is a muon.
     */
     template<class T>
-        bool muon(const T & particle) { return particle.pid == 2 && particle.is_contained; }
+        bool electron(const T & particle) { return particle.pid == 1 && particle.is_contained; }
 
     /**
      * Define true muon particle classification (matched).
@@ -398,7 +398,7 @@ namespace cuts
      * @return true if the particle is a muon (matched).
     */
     template<class T>
-        bool matched_muon(const T & particle) { return muon(particle) && matched(particle); }
+        bool matched_electron(const T & particle) { return electron(particle) && matched(particle); }
 
     /**
      * Define true proton particle classification.
@@ -450,7 +450,7 @@ namespace cuts
      * @return true if the particle is a muon that crosses the cathode.
     */
     template<class T>
-        bool cathode_crossing_muon(const T & particle) { return particle.pid == 2 && cathode_crossing(particle); }
+        bool cathode_crossing_electron(const T & particle) { return particle.pid == 1 && cathode_crossing(particle); }
         
     /**
      * Define cut for muons not crossing the cathode.
@@ -459,7 +459,7 @@ namespace cuts
      * @return true if the particle is a muon that does not cross the cathode.
     */
     template<class T>
-        bool non_cathode_crossing_muon(const T & particle) { return particle.pid == 2 && !cathode_crossing(particle); }
+        bool non_cathode_crossing_electron(const T & particle) { return particle.pid == 1 && !cathode_crossing(particle); }
     
     /**
      * Define muons contained to a single TPC.
@@ -468,7 +468,7 @@ namespace cuts
      * @return true if the particle is a muon contained to a single TPC.
     */
     template<class T>
-        bool contained_tpc_muon(const T & particle) { return muon(particle) && !cathode_crossing(particle); }
+        bool contained_tpc_electron(const T & particle) { return electron(particle) && !cathode_crossing(particle); }
 
     /**
      * Define muons contained that are well-reconstructed.
@@ -478,6 +478,6 @@ namespace cuts
      * well-reconstructed.
     */
     template<class T>
-        bool wellreco_muon(const T & particle) { return muon(particle) && wellreco(particle); }
+        bool wellreco_electron(const T & particle) { return electron(particle) && wellreco(particle); }
 }
 #endif

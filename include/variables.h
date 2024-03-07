@@ -72,22 +72,22 @@ namespace vars
         double category(const T & interaction)
         {
             double cat(7);
-            if(cuts::signal_1mu1p(interaction))
+            if(cuts::signal_1e1p(interaction))
             {
                 if(cuts::fiducial_containment_cut(interaction)) cat = 0;
                 else cat = 1;
             }
-            else if(cuts::signal_1muNp(interaction))
+            else if(cuts::signal_1eNp(interaction))
             {
                 if(cuts::fiducial_containment_cut(interaction)) cat = 2;
                 else cat = 3;
             }
-            else if(cuts::signal_1muX(interaction))
+            else if(cuts::signal_1eX(interaction))
             {
                 if(cuts::fiducial_containment_cut(interaction)) cat = 4;
                 else cat = 5;
             }
-            else if(cuts::other_nu_1muX(interaction)) cat = 6;
+            else if(cuts::other_nu_1eX(interaction)) cat = 6;
             return cat;
         }
 
@@ -106,7 +106,7 @@ namespace vars
             if(interaction.is_neutrino)
             {
                 std::vector<uint32_t> counts(cuts::count_primaries(interaction));
-                if(counts[0] == 0 && counts[1] == 0 && counts[2] == 1)
+                if(counts[0] == 0 && counts[1] == 1 && counts[2] == 0)
                 {
                     if(counts[3] == 0 && counts[4] == 1 && interaction.is_contained && interaction.is_fiducial) cat = 0;
                     else if(counts[3] == 0 && counts[4] == 1) cat = 7;
@@ -197,7 +197,7 @@ namespace vars
                         if(p.pid < 2) energy += p.calo_ke;
                         else energy += p.csda_ke;
                     }
-                    if(p.pid == 2) energy += MUON_MASS;
+                    if(p.pid == 1) energy += ELECTRON_MASS;
                     else if(p.pid == 3) energy += PION_MASS;
                 }
             }
@@ -278,8 +278,17 @@ namespace vars
      * @param particle to apply the variable on.
      * @return the csda_ke of the particle (if a muon).
     */
+    //template<class T>
+    //    double csda_ke_muon(const T & particle) { return (cuts::muon(particle)) ? csda_ke(particle) : -1; }
+
+    /**
+     * Variable for particle calo_ke (electrons only).
+     * @tparam T the type of particle (true or reco).
+     * @param particle to apply the variable on.
+     * @return the calo_ke of the particle (if a electron).
+    */
     template<class T>
-        double csda_ke_muon(const T & particle) { return (cuts::muon(particle)) ? csda_ke(particle) : -1; }
+        double calo_ke_electron(const T & particle) { return (cuts::electron(particle)) ? calo_ke(particle) : -1; }
 
     /**
      * Variable for true particle energy deposited.

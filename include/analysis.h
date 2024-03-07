@@ -70,36 +70,36 @@ namespace ana
     PVAR_TTP(kPrimaryPID_Cosmic,vars::primary_pid,cuts::cosmic,cuts::no_cut,cuts::no_cut);
 
     // Variables for 2D "true vs. reco" style plots.
-    PVARDLP_TRUE(kCSDATruth_muon,vars::ke_init,cuts::neutrino,cuts::matched_muon);
-    PVAR_TTP(kCSDA_muon,vars::csda_ke,cuts::neutrino,cuts::muon,cuts::no_cut);
-    PVAR_TTP(kCSDA_muon2muon,vars::csda_ke_muon,cuts::neutrino,cuts::muon,cuts::no_cut);
+    PVARDLP_TRUE(kCalTruth_electron,vars::ke_init,cuts::neutrino,cuts::matched_electron);
+    PVAR_TTP(kCal_electron,vars::calo_ke,cuts::neutrino,cuts::muon,cuts::no_cut);
+    PVAR_TTP(kCal_electron2electron,vars::calo_ke_electron,cuts::neutrino,cuts::electron,cuts::no_cut);
 
-    PVARDLP_BIAS(kCSDA_muon_bias,vars::ke_init,vars::csda_ke_muon,cuts::neutrino,cuts::muon,cuts::no_cut);
-    PVARDLP_BIAS(kCSDA_noncc_muon_bias,vars::ke_init,vars::csda_ke_muon,cuts::neutrino,cuts::contained_tpc_muon,cuts::no_cut);
-    PVARDLP_BIAS(kCSDA_wellreco_muon_bias,vars::ke_init,vars::csda_ke_muon,cuts::neutrino,cuts::wellreco_muon,cuts::no_cut);
+    PVARDLP_BIAS(kCal_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::electron,cuts::no_cut);
+    PVARDLP_BIAS(kCal_noncc_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::contained_tpc_electron,cuts::no_cut);
+    PVARDLP_BIAS(kCal_wellreco_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::wellreco_electron,cuts::no_cut);
 
     // Variables for 2D bias plots.
-    VARDLP_BIAS(kEnergy_1mu1p_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1mu1p,cuts::all_1mu1p_cut);
-    VARDLP_BIAS(kEnergy_1mu1p_othernu_bias,vars::visible_energy,vars::visible_energy,cuts::other_nu_1mu1p,cuts::all_1mu1p_cut);
-    VARDLP_BIAS(kEnergy_1mu1p_cosmic_bias,vars::visible_energy,vars::visible_energy,cuts::cosmic,cuts::all_1mu1p_cut);
-    VARDLP_BIAS(kEnergy_1muNp_1p_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1mu1p,cuts::all_1muNp_cut);
-    VARDLP_BIAS(kEnergy_1muNp_Np_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1muNp_Nnot1,cuts::all_1muNp_cut);
-    VARDLP_BIAS(kEnergy_1muNp_othernu_bias,vars::visible_energy,vars::visible_energy,cuts::other_nu_1muNp,cuts::all_1muNp_cut);
-    VARDLP_BIAS(kEnergy_1muNp_cosmic_bias,vars::visible_energy,vars::visible_energy,cuts::cosmic,cuts::all_1muNp_cut);
+    VARDLP_BIAS(kEnergy_1e1p_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1e1p,cuts::all_1e1p_cut);
+    VARDLP_BIAS(kEnergy_1e1p_othernu_bias,vars::visible_energy,vars::visible_energy,cuts::other_nu_1e1p,cuts::all_1e1p_cut);
+    VARDLP_BIAS(kEnergy_1e1p_cosmic_bias,vars::visible_energy,vars::visible_energy,cuts::cosmic,cuts::all_1e1p_cut);
+    VARDLP_BIAS(kEnergy_1eNp_1p_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1e1p,cuts::all_1eNp_cut);
+    VARDLP_BIAS(kEnergy_1eNp_Np_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1eNp_Nnot1,cuts::all_1eNp_cut);
+    VARDLP_BIAS(kEnergy_1eNp_othernu_bias,vars::visible_energy,vars::visible_energy,cuts::other_nu_1eNp,cuts::all_1eNp_cut);
+    VARDLP_BIAS(kEnergy_1eNp_cosmic_bias,vars::visible_energy,vars::visible_energy,cuts::cosmic,cuts::all_1eNp_cut);
 
-    VARDLP_BIAS(kNuEnergy_1mu1p_signal_bias,vars::neutrino_energy,vars::visible_energy,cuts::signal_1mu1p,cuts::all_1mu1p_cut);
-    VARDLP_BIAS(kNuEnergy_1mu1p_othernu_bias,vars::neutrino_energy,vars::visible_energy,cuts::other_nu_1mu1p,cuts::all_1mu1p_cut);
-    VARDLP_BIAS(kNuEnergy_1muNp_1p_signal_bias,vars::neutrino_energy,vars::visible_energy,cuts::signal_1mu1p,cuts::all_1muNp_cut);
-    VARDLP_BIAS(kNuEnergy_1muNp_Np_signal_bias,vars::neutrino_energy,vars::visible_energy,cuts::signal_1muNp_Nnot1,cuts::all_1muNp_cut);
-    VARDLP_BIAS(kNuEnergy_1muNp_othernu_bias,vars::neutrino_energy,vars::visible_energy,cuts::other_nu_1muNp,cuts::all_1muNp_cut);
+    VARDLP_BIAS(kNuEnergy_1e1p_signal_bias,vars::neutrino_energy,vars::visible_energy,cuts::signal_1e1p,cuts::all_1e1p_cut);
+    VARDLP_BIAS(kNuEnergy_1e1p_othernu_bias,vars::neutrino_energy,vars::visible_energy,cuts::other_nu_1e1p,cuts::all_1e1p_cut);
+    VARDLP_BIAS(kNuEnergy_1eNp_1p_signal_bias,vars::neutrino_energy,vars::visible_energy,cuts::signal_1e1p,cuts::all_1eNp_cut);
+    VARDLP_BIAS(kNuEnergy_1eNp_Np_signal_bias,vars::neutrino_energy,vars::visible_energy,cuts::signal_1eNp_Nnot1,cuts::all_1eNp_cut);
+    VARDLP_BIAS(kNuEnergy_1eNp_othernu_bias,vars::neutrino_energy,vars::visible_energy,cuts::other_nu_1eNp,cuts::all_1eNp_cut);
 
     // Variables for match validation.
     PVARDLP_TRUE(kLowXTruth,vars::lowx,cuts::no_cut,cuts::matched);
     PVAR_TTP(kLowX,vars::lowx,cuts::no_cut,cuts::no_cut,cuts::no_cut);
 
     // Simple particle variables.
-    PVARDLP_TRUE(kCCOverlap,vars::overlap,cuts::no_cut,cuts::cathode_crossing_muon);
-    PVARDLP_TRUE(kNonCCOverlap,vars::overlap,cuts::no_cut,cuts::non_cathode_crossing_muon);
+    PVARDLP_TRUE(kCCOverlap,vars::overlap,cuts::no_cut,cuts::cathode_crossing_electron);
+    PVARDLP_TRUE(kNonCCOverlap,vars::overlap,cuts::no_cut,cuts::non_cathode_crossing_electron);
     VARDLP_TRUE(kProtonScattering,vars::proton_scattering_cosine,cuts::no_cut);
     VARDLP_TRUE(kLeadingProtonOverlap,vars::leading_proton_overlap,cuts::no_cut);
 }
