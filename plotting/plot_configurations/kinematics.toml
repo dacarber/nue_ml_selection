@@ -1,47 +1,47 @@
-[csda_muon]
+[calo_electron]
 type = 'hist2d'
-vars = 'sCSDA_muon'
+vars = 'sCal_electron'
 xlabel = 'True Deposited Energy [MeV]'
-ylabel = 'Reco CSDA Energy [MeV]'
-title = 'Muon CSDA Energy Estimation'
+ylabel = 'Reco Calo Energy [MeV]'
+title = 'Electron Calo Energy Estimation'
 
-[csda_muon2muon]
+[calo_electron2electron]
 type = 'hist2d'
-vars = 'sCSDA_muon2muon'
+vars = 'sCal_electron2electron'
 xlabel = 'True Kinetic Energy [MeV]'
-ylabel = 'Reco CSDA Energy [MeV]'
-title = 'Muon CSDA Energy Estimation'
+ylabel = 'Reco Calo Energy [MeV]'
+title = 'Electron Calo Energy Estimation'
 
-[csda_muon_bias2d]
+[calo_electron_bias2d]
 type = 'hist2d'
-vars = 'sCSDA_muon_bias2d'
+vars = 'sCalo_electron_bias2d'
 xlabel = 'True Kinetic Energy [MeV]'
-ylabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
-title = 'Muon CSDA Energy Estimation'
+ylabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
+title = 'Electron Calo Energy Estimation'
 
-[csda_muon_bias]
+[calo_electron_bias]
 type = 'hist1d'
-vars = ['sCSDA_muon_bias',]
-labels = ['muons',]
-xlabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
+vars = ['sCal_electron_bias',]
+labels = ['electrons',]
+xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
 ylabel = 'Entries / 2.5e20 POT'
-title = 'Energy Reconstruction for Contained Muons'
+title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
 
-[csda_nonccmuon_bias]
+[calo_nonccelectron_bias]
 type = 'hist1d'
-vars = ['sCSDA_noncc_muon_bias',]
-labels = ['muons',]
-xlabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
+vars = ['sCal_noncc_electron_bias',]
+labels = ['electron',]
+xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
 ylabel = 'Entries / 2.5e20 POT'
-title = 'Energy Reconstruction for Contained Muons'
+title = 'Energy Reconstruction for Contained Electron'
 plot_kwargs = {histtype = 'barstacked'}
 
-[csda_wellrecomuon_bias]
+[calo_wellrecoelectron_bias]
 type = 'hist1d'
-vars = ['sCSDA_wellreco_muon_bias',]
+vars = ['sCal_wellreco_electron_bias',]
 labels = ['muons',]
-xlabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
+xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
 ylabel = 'Entries / 2.5e20 POT'
-title = 'Energy Reconstruction for Contained Muons'
+title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
