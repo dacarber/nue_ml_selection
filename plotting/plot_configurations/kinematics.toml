@@ -14,7 +14,7 @@ title = 'Electron Calo Energy Estimation'
 
 [calo_electron_bias2d]
 type = 'hist2d'
-vars = 'sCalo_electron_bias2d'
+vars = 'sCal_electron_bias2d'
 xlabel = 'True Kinetic Energy [MeV]'
 ylabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
 title = 'Electron Calo Energy Estimation'
