@@ -71,7 +71,7 @@ namespace ana
 
     // Variables for 2D "true vs. reco" style plots.
     PVARDLP_TRUE(kCalTruth_electron,vars::ke_init,cuts::neutrino,cuts::matched_electron);
-    PVAR_TTP(kCal_electron,vars::calo_ke,cuts::neutrino,cuts::muon,cuts::no_cut);
+    PVAR_TTP(kCal_electron,vars::calo_ke,cuts::neutrino,cuts::electron,cuts::no_cut);
     PVAR_TTP(kCal_electron2electron,vars::calo_ke_electron,cuts::neutrino,cuts::electron,cuts::no_cut);
 
     PVARDLP_BIAS(kCal_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::electron,cuts::no_cut);

@@ -369,7 +369,7 @@ namespace vars
             for(size_t i(0); i < interaction.particles.size(); ++i)
             {
                 const auto & p = interaction.particles[i];
-                double energy(csda_ke(p));
+                double energy(calo_ke(p));
                 if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                     energy = ke_init(p);
                 if(p.pid == pid && energy > leading_ke)
@@ -388,10 +388,10 @@ namespace vars
      * @return the kinetic energy of the leading muon.
     */
     template<class T>
-        double leading_muon_ke(const T & interaction)
+        double leading_electron_ke(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
-            double energy(csda_ke(interaction.particles[i]));
+            size_t i(leading_particle_index(interaction, 1));
+            double energy(calo_ke(interaction.particles[i]));
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
             return energy;
@@ -435,9 +435,9 @@ namespace vars
      * @return the transverse momentum of the leading muon.
     */
     template<class T>
-        double leading_muon_pt(const T & interaction)
+        double leading_electron_pt(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
+            size_t i(leading_particle_index(interaction, 1));
             return transverse_momentum(interaction.particles[i]);
         }
 
@@ -492,9 +492,9 @@ namespace vars
      * @return the cosine theta_xz of the leading muon.
     */
     template<class T>
-        double leading_muon_cosine_theta_xz(const T & interaction)
+        double leading_electron_cosine_theta_xz(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
+            size_t i(leading_particle_index(interaction, 1));
             return cosine_theta_xz(interaction.particles[i]);
         }
 
@@ -522,9 +522,9 @@ namespace vars
     template<class T>
         double cosine_opening_angle(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
-            double num(m.start_dir[0] * p.start_dir[0] + m.start_dir[1] * p.start_dir[1] + m.start_dir[2] * p.start_dir[2]);
+            double num(e.start_dir[0] * p.start_dir[0] + e.start_dir[1] * p.start_dir[1] + e.start_dir[2] * p.start_dir[2]);
             return num;
         }
 
@@ -539,10 +539,10 @@ namespace vars
     template<class T>
         double cosine_opening_angle_transverse(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
             double num(m.start_dir[0] * p.start_dir[0] + m.start_dir[1] * p.start_dir[1]);
-            num /= std::sqrt((1-m.start_dir[2]*m.start_dir[2])*(1-p.start_dir[2]*p.start_dir[2]));
+            num /= std::sqrt((1-e.start_dir[2]*e.start_dir[2])*(1-p.start_dir[2]*p.start_dir[2]));
             return num;
         }
 
@@ -553,10 +553,10 @@ namespace vars
      * @return the softmax score of the leading muon.
     */
     template<class T>
-        double leading_muon_softmax(const T & interaction)
+        double leading_electron_softmax(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
-            return m.pid_scores[2];
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
+            return e.pid_scores[2];
         }
     
     /**
