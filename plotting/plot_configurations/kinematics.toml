@@ -45,3 +45,4 @@ xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
 ylabel = 'Entries / 2.5e20 POT'
 title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
+
