@@ -194,7 +194,7 @@ namespace vars
                     }
                     else
                     {
-                        if(p.pid < 2) energy += p.calo_ke * (1/0.87);
+                        if(p.pid < 2) energy += p.calo_ke;
                         else energy += p.csda_ke;
                     }
                     if(p.pid == 1) energy += ELECTRON_MASS;
