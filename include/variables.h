@@ -108,10 +108,10 @@ namespace vars
                 std::vector<uint32_t> counts(cuts::count_primaries(interaction));
                 if(counts[0] == 0 && counts[1] == 1 && counts[2] == 0)
                 {
-                    if(counts[3] == 0 && counts[4] == 1 && interaction.is_contained && interaction.is_fiducial) cat = 0;
+                    if(counts[3] == 0 && counts[4] == 1 && interaction.is_contained) cat = 0; //&& interaction.is_fiducial
                     else if(counts[3] == 0 && counts[4] == 1) cat = 7;
                     else if(counts[3] == 0 && counts[4] == 0) cat = 1;
-                    else if(counts[3] == 0 && counts[4] > 1 && interaction.is_contained && interaction.is_fiducial) cat = 2;
+                    else if(counts[3] == 0 && counts[4] > 1 && interaction.is_contained) cat = 2; //&& interaction.is_fiducial
                     else if(counts[3] == 0 && counts[4] > 1) cat = 7;
                     else if(counts[3] == 1 && counts[4] == 1) cat = 3;
                     else if(interaction.nu_current_type == 0) cat = 4;
