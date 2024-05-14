@@ -61,7 +61,7 @@ void analysis()
     spectra.add_spectrum1d("sCountPrimaries", Binning::Simple(20, 0, 20), kCountPrimaries);
     spectra.add_spectrum1d("sCountParticlesTruth", Binning::Simple(20, 0, 20), kCountParticlesTruth);
     spectra.add_spectrum1d("sCountPrimariesTruth", Binning::Simple(20, 0, 20), kCountPrimariesTruth);
-    spectra.add_spectrum1d("sEnergy_1e1p_signal_bias", Binning::Simple(50,-1,2.4e20), kEnergy_1e1p_signal_bias);
+    spectra.add_spectrum1d("sEnergy_1e1p_signal_bias", Binning::Simple(50,2.4e20,1), kEnergy_1e1p_signal_bias);
     spectra.add_spectrum1d("sEnergy_1e1p_othernu_bias", Binning::Simple(50,-1,2.4e20), kEnergy_1e1p_othernu_bias);
     spectra.add_spectrum1d("sEnergy_1e1p_cosmic_bias", Binning::Simple(50,-1,2.4e20), kEnergy_1e1p_cosmic_bias);
     spectra.add_spectrum1d("sEnergy_1eNp_1p_signal_bias", Binning::Simple(50,-1,2.4e20), kEnergy_1eNp_1p_signal_bias);
