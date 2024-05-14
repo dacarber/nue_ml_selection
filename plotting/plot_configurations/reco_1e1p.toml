@@ -4,7 +4,7 @@ vars = ['sEnergy_1e1p_signal_bias', 'sEnergy_1e1p_othernu_bias']
 labels = ['1$e$1p', 'Other $\nu$']
 xlabel = '($E_{reco}$ -  $E_{visible}$) / $E_{visible}$'
 ylabel = 'Entries'
-title = 'Energy Reconstruction for Selected 1$\e$1p Candidates'
+title = 'Energy Reconstruction for Selected 1$e$1p Candidates'
 plot_kwargs = {histtype = 'barstacked'}
 
 [nuenergy_1e1p_bias]
