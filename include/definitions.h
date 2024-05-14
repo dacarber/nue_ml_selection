@@ -334,7 +334,8 @@
     VARDLP_RCAT(kCategoryTopologyPTT_All1eXCut,vars::category_topology,cuts::all_1eX_cut);                    \
     VARDLP_RCAT(kCategoryInteractionModePTT_All1e1pCut,vars::category_interaction_mode,cuts::all_1e1p_cut);   \
     VARDLP_RCAT(kCategoryInteractionModePTT_All1eNpCut,vars::category_interaction_mode,cuts::all_1eNp_cut);   \
-    VARDLP_RCAT(kCategoryInteractionModePTT_All1eXCut,vars::category_interaction_mode,cuts::all_1eX_cut);
+    VARDLP_RCAT(kCategoryInteractionModePTT_All1eXCut,vars::category_interaction_mode,cuts::all_1eX_cut);      \
+    //VARDLP_RCAT(kCategoryTopologyPTT_All1e1pCut,vars::category_topology,cuts::all_1e1p_cut); 
 
 
 /**

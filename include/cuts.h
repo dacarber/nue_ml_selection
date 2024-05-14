@@ -241,7 +241,7 @@ namespace cuts
      * topological, and flash time cut.
      */
     template<class T>
-        bool all_1e1p_cut(const T & interaction) { return topological_1e1p_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
+        bool all_1e1p_cut(const T & interaction) { return topological_1e1p_cut<T>(interaction)  && flash_cut<T>(interaction) && containment_cut<T>(interaction); } //&& fiducial_cut<T>(interaction)
 
     /**
      * Apply a fiducial, containment, topological (1muNp), and flash time cut

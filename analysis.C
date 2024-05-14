@@ -25,7 +25,7 @@ void analysis()
     */
     //SpecContainer spectra("/pnfs/icarus/scratch/users/mueller/bnb_nucosmics_v6.flat.root", "spectra_nucosmics.root", 1.253e19, 2.5e20);
     //SpecContainer spectra("/exp/icarus/data/users/mueller/mlcafs/bnb_intime.flat.root", "spectra_intime.root", 9070*2.05e14, 2.5e20);
-    SpecContainer spectra("/exp/icarus/data/users/dcarber/numi_nue/sample_numi_nue.flat.root", "spectra_nucosmics.root", 8.7e19, 8.7e19);
+    SpecContainer spectra("/exp/icarus/data/users/dcarber/numi_nue/sample_numi_nue.flat.root", "spectra_nucosmics.root", 8.7e19, -1);
     /**
      * 3. BNB neutrino (full flux) + out-of-time cosmics *     Central Value    * (v09_82_02_01).
      * 4. BNB neutrino (full flux) + out-of-time cosmics * Coherent Noise +4.5% * (v09_82_02_01).
