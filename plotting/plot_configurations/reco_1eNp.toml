@@ -13,7 +13,7 @@ vars = ['sNuEnergy_1eNp_1p_signal_bias', 'sNuEnergy_1eNp_Np_signal_bias', 'sNuEn
 labels = ['1$e$1p', '1$e$2+p', 'Other $\nu$']
 xlabel = '($E_{reco}$ -  $E_{\nu}$) / $E_{\nu}$'
 ylabel = 'Entries / 2.5e20 POT'
-title = 'Energy Reconstruction for Selected 1$\e$Np Candidates'
+title = 'Energy Reconstruction for Selected 1$e$Np Candidates'
 plot_kwargs = {histtype = 'barstacked'}
 
 [reco_energy_1eNp]
