@@ -20,7 +20,7 @@ namespace ana
     VARDLP_TRUE(kCountParticlesTruth,vars::count_particles,cuts::no_cut);
     VARDLP_TRUE(kCountPrimariesTruth,vars::count_primaries,cuts::no_cut);
     VARDLP_RECO(kOpeningAngle_1e1p, vars::opening_angle, cuts::all_1e1p_cut);
-    
+
     
     // Define "variables" for binning interactions by some categorical class.
     DEFINECAT();
