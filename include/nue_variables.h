@@ -212,9 +212,9 @@ namespace vars
             auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
-                return std::acos(m.truth_start_dir[0] * p.truth_start_dir[0] + m.truth_start_dir[1] * p.truth_start_dir[1] + m.truth_start_dir[2] * p.truth_start_dir[2]);
+                return std::acos(e.truth_start_dir[0] * p.truth_start_dir[0] + e.truth_start_dir[1] * p.truth_start_dir[1] + e.truth_start_dir[2] * p.truth_start_dir[2]);
             else
-                return std::acos(m.start_dir[0] * p.start_dir[0] + m.start_dir[1] * p.start_dir[1] + m.start_dir[2] * p.start_dir[2]);
+                return std::acos(e.start_dir[0] * p.start_dir[0] + e.start_dir[1] * p.start_dir[1] + e.start_dir[2] * p.start_dir[2]);
         }
     
     /**
