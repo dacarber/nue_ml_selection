@@ -23,7 +23,7 @@ namespace ana
     VARDLP_RECO(kElectronPolar_1e1p, vars::electron_polar_angle, cuts::all_1e1p_cut);
     VARDLP_RECO(kElectronAz_1e1p, vars::electron_azimuthal_angle, cuts::all_1e1p_cut);
     VARDLP_RECO(kProtonPolar_1e1p, vars::proton_polar_angle, cuts::all_1e1p_cut);
-    VARDLP_RECO(kProtonAz_1e1p, vars::electron_azimuthal_angle, cuts::all_1e1p_cut);
+    VARDLP_RECO(kProtonAz_1e1p, vars::proton_azimuthal_angle, cuts::all_1e1p_cut);
   
     
     // Define "variables" for binning interactions by some categorical class.
