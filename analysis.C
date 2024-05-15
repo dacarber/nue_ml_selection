@@ -109,7 +109,7 @@ void analysis()
     spectra.add_spectrum2d("sVisibleEnergyTTP_FVCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_FVCut, kVisibleEnergyTTP_FVCut);
     spectra.add_spectrum2d("sVisibleEnergyTTP_FVConCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_FVConCut, kVisibleEnergyTTP_FVConCut);
     spectra.add_spectrum2d("sVisibleEnergyTTP_FVConTop1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_FVConTop1e1pCut, kVisibleEnergyTTP_FVConTop1e1pCut);
-    spectra.add_spectrum2d("sVisibleEnergyTTP_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_All1e1pCut, kVisibleEnergyTTP_All1eNpCut);
+    spectra.add_spectrum2d("sVisibleEnergyTTP_All1e1pCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_All1eNpCut, kVisibleEnergyTTP_All1eNpCut);
     spectra.add_spectrum2d("sVisibleEnergyTTP_FVConTop1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_FVConTop1eNpCut, kVisibleEnergyTTP_FVConTop1eNpCut);
     spectra.add_spectrum2d("sVisibleEnergyTTP_All1eNpCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_All1eNpCut, kVisibleEnergyTTP_All1eNpCut);
     spectra.add_spectrum2d("sVisibleEnergyTTP_FVConTop1meXCut", Binning::Simple(10, 0, 10), Binning::Simple(25, 0, 3000), kCategoryTTP_FVConTop1eXCut, kVisibleEnergyTTP_FVConTop1eXCut);
