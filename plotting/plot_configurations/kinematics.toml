@@ -55,3 +55,11 @@ ylabel = 'Entries / 2.6e20 POT'
 title = 'Energy Reconstruction for Contained Protons'
 plot_kwargs = {histtype = 'barstacked'}
 
+[cos_open_angle]
+type = 'hist1d'
+vars = ['sCos_open_angle',]
+labels = ['1$e$1p',]
+xlabel = 'Cos($/theta$)
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Cosine of Opening Angle'
+plot_kwargs = {histtype = 'barstacked'}
