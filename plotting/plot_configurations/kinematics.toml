@@ -49,7 +49,7 @@ plot_kwargs = {histtype = 'barstacked'}
 [calo_wellrecoproton_bias]
 type = 'hist1d'
 vars = ['sCal_wellreco_proton_bias',]
-labels = ['electrons',]
+labels = ['protons',]
 xlabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Energy Reconstruction for Contained Protons'
