@@ -24,16 +24,16 @@ namespace vars
      * @param particle to apply the variable on.
      * @return the transverse momentum of the particle
     */
-    /*
+    
     template<class T>
-        double transverse_momentum(const T & particle)
+        double momentum(const T & particle)
         {
             if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
-                return std::sqrt(std::pow(particle.truth_momentum[0], 2) + std::pow(particle.truth_momentum[1], 2));
+                return std::sqrt(std::pow(particle.truth_momentum[0], 2) + std::pow(particle.truth_momentum[1], 2) + std::pow(particle.truth_momentum[2], 2));
             else
-                return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2));
+                return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2) + std::pow(particle.momentum[2], 2));
         }
-    */
+    
     /**
      * Variable for the polar angle (w.r.t the z-axis) of the particle.
      * @tparam T the type of particle (true or reco).
@@ -151,14 +151,14 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the transverse momentum of the leading proton.
     */
-    /*
+    
     template<class T>
-        double leading_proton_pt(const T & interaction)
+        double leading_proton_p(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
-            return transverse_momentum(interaction.particles[i]);
+            return momentum(interaction.particles[i]);
         }
-    */
+    
     /**
      * Variable for the muon polar angle.
      * @tparam T the type of interaction (true or reco).

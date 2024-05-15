@@ -61,5 +61,14 @@ vars = ['sCos_open_angle',]
 labels = ['1$e$1p',]
 xlabel = '$\theta$'
 ylabel = 'Entries / 2.6e20 POT'
-title = 'Cosine of Opening Angle'
+title = 'Opening Angle of selected 1e1p'
+plot_kwargs = {histtype = 'barstacked'}
+
+[proton_momentum]
+type = 'hist1d'
+vars = ['sP_momentum_bias',]
+labels = ['proton',]
+xlabel = '$Momentum$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Momentum of contained protons'
 plot_kwargs = {histtype = 'barstacked'}
