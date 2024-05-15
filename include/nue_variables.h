@@ -136,26 +136,28 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the transverse momentum of the leading muon.
     */
+    /*
     template<class T>
-        double leading_electrion_pt(const T & interaction)
+        double leading_electron_pt(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
             return transverse_momentum(interaction.particles[i]);
         }
-
+    */
     /**
      * Variable for the transverse momentum of the leading proton.
      * @tparam T the type of interaction (true or reco).
      * @param interaction to apply the variable on.
      * @return the transverse momentum of the leading proton.
     */
+    /*
     template<class T>
         double leading_proton_pt(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
             return transverse_momentum(interaction.particles[i]);
         }
-
+    */
     /**
      * Variable for the muon polar angle.
      * @tparam T the type of interaction (true or reco).
@@ -318,13 +320,14 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the muon softmax score of the leading muon.
     */
+    /*
     template<class T>
         double electron_softmax(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
             return interaction.particles[i].pid_scores[1];
         }
-
+    */
     /**
      * Variable for the proton softmax score for the leading proton of the
      * interaction.
@@ -332,11 +335,13 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the proton softmax score of the leading proton.
     */
+    /*
     template<class T>
         double proton_softmax(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
             return interaction.particles[i].pid_scores[4];
         }
+    */
 }
 #endif
