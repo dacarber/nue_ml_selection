@@ -59,7 +59,7 @@ plot_kwargs = {histtype = 'barstacked'}
 type = 'hist1d'
 vars = ['sCos_open_angle',]
 labels = ['1$e$1p',]
-xlabel = 'Cos($/theta$)'
+xlabel = '$\theta$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Cosine of Opening Angle'
 plot_kwargs = {histtype = 'barstacked'}
