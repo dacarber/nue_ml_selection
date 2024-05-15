@@ -76,6 +76,15 @@ void analysis()
     spectra.add_spectrum1d("sNuEnergy_1eNp_othernu_bias", Binning::Simple(50,-1,1), kNuEnergy_1eNp_othernu_bias);
     spectra.add_spectrum1d("sCos_open_angle", Binning::Simple(50,0,5), kOpeningAngle_1e1p);
     spectra.add_spectrum1d("sP_momentum_bias", Binning::Simple(50,-1,1), kP_momentum_bias);
+    spectra.add_spectrum1d("sAz_proton_angle_bias", Binning::Simple(50,-1,1), kAz_proton_angle_bias);
+    spectra.add_spectrum1d("sPol_proton_angle_bias", Binning::Simple(50,-1,1), kPol_proton_angle_bias);
+    spectra.add_spectrum1d("sAz_electron_angle_bias", Binning::Simple(50,-1,1), kAz_electron_angle_bias);
+    spectra.add_spectrum1d("sPol_electron_angle_bias", Binning::Simple(50,-1,1), kPol_electron_angle_bias);
+
+    spectra.add_spectrum1d("sAz_proton_angle", Binning::Simple(50,0,90), kProtonAz_angle);
+    spectra.add_spectrum1d("sPol_proton_angle", Binning::Simple(50,0,90), kProtonPolar_angle);
+    spectra.add_spectrum1d("sAz_electron_angle", Binning::Simple(50,0,90), kElectronAz_angle);
+    spectra.add_spectrum1d("sPol_electron_angle", Binning::Simple(50,0,90), kElectronPolar_angle);
     /**
      * Spectra (2D) for counting selection statistics by interaction categorization (efficiency).
     */

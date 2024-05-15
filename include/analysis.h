@@ -20,7 +20,11 @@ namespace ana
     VARDLP_TRUE(kCountParticlesTruth,vars::count_particles,cuts::no_cut);
     VARDLP_TRUE(kCountPrimariesTruth,vars::count_primaries,cuts::no_cut);
     VARDLP_RECO(kOpeningAngle_1e1p, vars::opening_angle, cuts::all_1e1p_cut);
-
+    VARDLP_RECO(kElectronPolar_1e1p, vars::electron_polar_angle, cuts::all_1e1p_cut);
+    VARDLP_RECO(kElectronAz_1e1p, vars::electron_azimuthal_angle, cuts::all_1e1p_cut);
+    VARDLP_RECO(kProtonPolar_1e1p, vars::proton_polar_angle, cuts::all_1e1p_cut);
+    VARDLP_RECO(kProtonAz_1e1p, vars::electron_azimuthal_angle, cuts::all_1e1p_cut);
+  
     
     // Define "variables" for binning interactions by some categorical class.
     DEFINECAT();
@@ -82,6 +86,10 @@ namespace ana
     PVARDLP_BIAS(kCal_wellreco_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::wellreco_electron,cuts::no_cut);
     PVARDLP_BIAS(kCal_wellreco_proton_bias,vars::ke_init,vars::csda_ke_proton,cuts::neutrino,cuts::wellreco_proton,cuts::no_cut);
     PVARDLP_BIAS(kP_momentum_bias,vars::momentum,vars::momentum,cuts::neutrino,cuts::wellreco_proton,cuts::no_cut);
+    PVARDLP_BIAS(kAz_proton_angle_bias,vars::azimuthal_angle,vars::azimuthal_angle,cuts::neutrino,cuts::wellreco_proton,cuts::no_cut);
+    PVARDLP_BIAS(kPol_proton_angle_bias,vars::polar_angle,vars::polar_angle,cuts::neutrino,cuts::wellreco_proton,cuts::no_cut);
+    PVARDLP_BIAS(kAz_electron_angle_bias,vars::azimuthal_angle,vars::azimuthal_angle,cuts::neutrino,cuts::wellreco_electron,cuts::no_cut);
+    PVARDLP_BIAS(kPol_electron_angle_bias,vars::polar_angle,vars::polar_angle,cuts::neutrino,cuts::wellreco_electron,cuts::no_cut);
 
     //VARDLP_TTP(kCos_open_angle,vars::cosine_opening_angle,cuts::all_1e1p_cut,cuts::no_cut);
     //PVARDLP_TRUE(kCalTruth_electron,vars::ke_init,cuts::neutrino,cuts::matched_electron);

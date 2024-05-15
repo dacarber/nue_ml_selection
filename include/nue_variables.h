@@ -197,7 +197,25 @@ namespace vars
             size_t i(leading_particle_index(interaction, 1));
             return azimuthal_angle(interaction.particles[i]);
         }
+    template<class T>
+        double proton_polar_angle(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 4));
+            return polar_angle(interaction.particles[i]);
+        }
 
+    /**
+     * Variable for the muon azimuthal angle.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the azimuthal angle of the leading muon.
+     */
+    template<class T>
+        double proton_azimuthal_angle(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 4));
+            return azimuthal_angle(interaction.particles[i]);
+        }
     /**
      * Variable for the opening angle between leading muon and
      * proton.

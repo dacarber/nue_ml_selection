@@ -72,3 +72,75 @@ xlabel = '$Momentum$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Momentum of contained protons'
 plot_kwargs = {histtype = 'barstacked'}
+
+[electron_polar_angle]
+type = 'hist1d'
+vars = ['sPol_electron_angle',]
+labels = ['1$e$1p',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Electron Polar Angle of selected 1e1p'
+plot_kwargs = {histtype = 'barstacked'}
+
+[electron_azimuthal_angle]
+type = 'hist1d'
+vars = ['sAz_electron_angle',]
+labels = ['1$e$1p',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Electron Azimuthal Angle of selected 1e1p'
+plot_kwargs = {histtype = 'barstacked'}
+
+[proton_azimuthal_angle]
+type = 'hist1d'
+vars = ['sAz_proton_angle',]
+labels = ['1$e$1p',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Proton Azimuthal Angle of selected 1e1p'
+plot_kwargs = {histtype = 'barstacked'}
+
+[proton_polar_angle]
+type = 'hist1d'
+vars = ['sPol_proton_angle',]
+labels = ['1$e$1p',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Proton Polar Angle of selected 1e1p'
+plot_kwargs = {histtype = 'barstacked'}
+
+[proton_az_bias]
+type = 'hist1d'
+vars = ['sAz_proton_angle_bias',]
+labels = ['proton',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Azimuthal angle bias of selected proton'
+plot_kwargs = {histtype = 'barstacked'}
+
+[proton_pol_bias]
+type = 'hist1d'
+vars = ['sPol_proton_angle_bias',]
+labels = ['proton',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Polar angle bias of selected proton'
+plot_kwargs = {histtype = 'barstacked'}
+
+[electron_az_bias]
+type = 'hist1d'
+vars = ['sAz_electron_angle_bias',]
+labels = ['electron',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Azimuthal angle bias of selected electron'
+plot_kwargs = {histtype = 'barstacked'}
+
+[electron_pol_bias]
+type = 'hist1d'
+vars = ['sPol_electron_angle_bias',]
+labels = ['electron',]
+xlabel = '$\theta$'
+ylabel = 'Entries / 2.6e20 POT'
+title = 'Polar angle bias of selected electron'
+plot_kwargs = {histtype = 'barstacked'}
