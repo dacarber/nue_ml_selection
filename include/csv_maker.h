@@ -13,6 +13,7 @@
 
 #include "cuts.h"
 #include "variables.h"
+#include "numu_variables.h"
 
 #include "sbnana/CAFAna/Core/MultiVar.h"
 #include "sbnanaobj/StandardRecord/Proxy/SRProxy.h"
@@ -24,287 +25,85 @@ std::ofstream output("output.log");
 #define CSV(VAL) VAL << ","
 
 /**
- * Writes information about the event to an output file.
+ * Writes reconstructed variables (truth and reco) for selected/signal
+ * interactions.
  * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
  * current spill.
+ * @param i the truth interaction (signal)
+ * @param j the reco interaction (selected).
  * @return None.
 */
-void write_event(const caf::SRSpillProxy* sr)
+void write_pair(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDLPProxy& i, const caf::SRInteractionDLPProxy& j)
 {
-    output  << CSV(sr->hdr.run) << CSV(sr->hdr.subrun)
-            << CSV(sr->hdr.evt) << std::endl;
-}
-
-/**
- * Writes information about signal interactions to an output file.
- * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
- * current spill.
- * @param i the signal interaction.
- * @return None.
-*/
-void write_signal(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDLPProxy& i)
-{
-    output  << CSV(sr->hdr.run) << CSV(sr->hdr.subrun)
-            << CSV(sr->hdr.evt) << CSV(i.nu_id) << std::endl;
-}
-
-/**
- * Writes information about selected interactions to an output file.
- * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
- * current spill.
- * @param i the truth interaction matched to by the selected interaction.
- * @param j the selected interaction.
- * @return None.
-*/
-void write_selected(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDLPProxy& i, const caf::SRInteractionDLPProxy& j)
-{
-    output  << CSV(sr->hdr.run) << CSV(sr->hdr.subrun)
-            << CSV(sr->hdr.evt) << CSV(i.nu_id)
-            << CSV(vars::image_id(i)) << CSV(vars::id(i))
+    output  << CSV(sr->hdr.run) << CSV(sr->hdr.evt) << CSV(sr->hdr.subrun)
+            << CSV(i.nu_id) << CSV(vars::image_id(i)) << CSV(vars::id(i))
             << CSV(vars::category(i))
             << CSV(vars::category_topology(i))
             << CSV(vars::category_interaction_mode(i))
-            << CSV(vars::visible_energy(j))
-            << CSV(vars::leading_electron_ke(j))
+            << CSV(vars::leading_muon_ke(i))
+            << CSV(vars::leading_muon_ke(j))
+            << CSV(vars::leading_proton_ke(i))
             << CSV(vars::leading_proton_ke(j))
-            << CSV(vars::leading_electron_pt(j))
+            << CSV(vars::visible_energy(i))
+            << CSV(vars::visible_energy(j))
+            << CSV(vars::leading_muon_pt(i))
+            << CSV(vars::leading_muon_pt(j))
+            << CSV(vars::leading_proton_pt(i))
             << CSV(vars::leading_proton_pt(j))
+            << CSV(vars::muon_polar_angle(i))
+            << CSV(vars::muon_polar_angle(j))
+            << CSV(vars::muon_azimuthal_angle(i))
+            << CSV(vars::muon_azimuthal_angle(j))
+            << CSV(vars::opening_angle(i))
+            << CSV(vars::opening_angle(j))
+            << CSV(vars::interaction_pt(i))
             << CSV(vars::interaction_pt(j))
-            << CSV(vars::leading_electron_cosine_theta_xz(j))
-            << CSV(vars::leading_proton_cosine_theta_xz(j))
-            << CSV(vars::cosine_opening_angle(j))
-            << CSV(vars::cosine_opening_angle_transverse(j))
-            << CSV(vars::leading_electron_softmax(j))
-            << CSV(vars::leading_proton_softmax(j))
+            << CSV(vars::phiT(i)) << CSV(vars::phiT(j))
+            << CSV(vars::alphaT(i)) << CSV(vars::alphaT(j))
+            << CSV(vars::muon_softmax(j)) << CSV(vars::proton_softmax(j))
+            << CSV(cuts::all_1mu1p_cut(j))
+            << CSV(cuts::all_1muNp_cut(j))
+            << CSV(cuts::all_1muX_cut(j))
             << std::endl;
 }
 
-/**
- * Writes empty output for each selected interaction with no truth match.
- * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
- * current spill.
- * @return None.
-*/
-void write_none(const caf::SRSpillProxy* sr)
-{
-    output  << CSV(sr->hdr.run) << CSV(sr->hdr.subrun)
-            << CSV(sr->hdr.evt) << CSV(-1) << CSV(-1)
-            << CSV(-1) << CSV(-1) << CSV(-1)
-            << CSV(-1) << CSV(-1) << CSV(-1)
-            << CSV(-1) << CSV(-1) << CSV(-1)
-            << CSV(-1) << CSV(-1) << CSV(-1)
-            << CSV(-1) << CSV(-1) << std::endl;
-}
-
-/**
- * Writes information about selected non-signal interactions to an output file.
- * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
- * current spill.
- * @param i the selected interaction.
- * @return None.
-*/
-void write_mistake(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDLPProxy& i)
-{
-    const auto & p = i.particle_counts;
-    const auto & pr = cuts::count_primaries(i);
-    output  << CSV(sr->hdr.run) << CSV(sr->hdr.subrun)
-            << CSV(sr->hdr.evt) << CSV(i.nu_id)
-            << CSV(vars::image_id(i)) << CSV(vars::id(i))
-            << CSV(p[0]) << CSV(p[1]) << CSV(p[2])
-            << CSV(p[3]) << CSV(p[4]) << CSV(pr[0])
-            << CSV(pr[1]) << CSV(pr[2]) << CSV(pr[3])
-            << CSV(pr[4]) << std::endl;
-}
-
-/**
- * "Dummy" SpillMultiVar for  writing information about each signal (using
- * truth information) into a CSV log file.
- * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
- * current spill.
- * @return a vector with a single dummy entry.
-*/
-const SpillMultiVar kSignal([](const caf::SRSpillProxy* sr)
-{
-    for(auto const & i : sr->dlp_true)
-    {
-        /**
-         * General neutrinos
-        */
-        if(cuts::neutrino(i))
-        {
-            OUT(output, "NEUTRINO");
-            write_signal(sr, i);
-        }
-        /**
-         * Signal: 1e1p
-        */
-        if(cuts::signal_1e1p(i) && cuts::fiducial_containment_cut(i))
-        {
-            OUT(output, "SIGNAL_1E1P");
-            write_signal(sr, i);
-        }
-        /**
-         * Signal: 1eNp
-        */
-        if(cuts::signal_1eNp(i) && cuts::fiducial_containment_cut(i))
-        {
-            OUT(output, "SIGNAL_1ENP");
-            write_signal(sr, i);
-        }
-        /**
-         * Signal: 1eX
-        */
-        if(cuts::signal_1eX(i) && cuts::fiducial_containment_cut(i))
-        {
-            OUT(output, "SIGNAL_1EX");
-            write_signal(sr, i);
-        }
-        /**
-         * Mistake: 1e1p
-        */
-        if(cuts::matched(i) && !cuts::signal_1e1p(i) && cuts::all_1e1p_cut(sr->dlp[i.match[0]]))
-        {
-            OUT(output, "MISTAKE_1e1P");
-            write_mistake(sr, i);
-        }
-        /**
-         * Mistake: 1eNp
-        */
-        if(cuts::matched(i) && !cuts::signal_1eNp(i) && cuts::all_1eNp_cut(sr->dlp[i.match[0]]))
-        {
-            OUT(output, "MISTAKE_1eNP");
-            write_mistake(sr, i);
-        }
-        /**
-         * Mistake: 1eX
-        */
-        if(cuts::matched(i) && !cuts::signal_1eX(i) && cuts::all_1eX_cut(sr->dlp[i.match[0]]))
-        {
-            OUT(output, "MISTAKE_1eX");
-            write_mistake(sr, i);
-        }
-    }
-    return std::vector<double>{1};
-});
-
-/**
- * "Dummy" SpillMultiVar for writing information about each selected signal
- * candidate into a CSV log file. 
- * @param sr is an SRSpillProxy that attaches to the StandardRecord of the
- * current spill.
- * @return a vector with a single dummy entry.
-*/
-const SpillMultiVar kSelected([](const caf::SRSpillProxy* sr)
-{
-    OUT(output,"EVENT");
-    write_event(sr);
-    for(auto const & i : sr->dlp)
-    {
-        /**
-         * Selected: 1e1p
-        */
-        if(cuts::all_1e1p_cut(i))
-        {
-            if(cuts::matched(i))
-            {
-                const auto & t = sr->dlp_true[i.match[0]];
-                OUT(output,"SELECTED_1e1P");
-                write_selected(sr, t, i);
-            }
-            else
-            {
-                OUT(output,"SELECTED_NONE");
-                write_none(sr);
-            }
-        }
-        /**
-         * Selected: 1eNp
-        */
-        if(cuts::all_1eNp_cut(i))
-        {
-            if(cuts::matched(i))
-            {
-                const auto & t = sr->dlp_true[i.match[0]];
-                OUT(output,"SELECTED_1eNP");
-                write_selected(sr, t, i);
-            }
-            else
-            {
-                OUT(output,"SELECTED_NONE");
-                write_none(sr);
-            }
-        }
-        /**
-         * Selected: 1eX
-        */
-        if(cuts::all_1eX_cut(i))
-        {
-            if(cuts::matched(i))
-            {
-                const auto & t = sr->dlp_true[i.match[0]];
-                OUT(output,"SELECTED_1eX");
-                write_selected(sr, t, i);
-            }
-            else
-            {
-                OUT(output,"SELECTED_NONE");
-                write_none(sr);
-            }
-        }
-    }
-    return std::vector<double>{1};
-});
-
-const SpillMultiVar kDataLogger([](const caf::SRSpillProxy* sr)
+const SpillMultiVar kInfoVar([](const caf::SRSpillProxy* sr)
 {
     /**
-     * Loop over reconstructed interactions and log interaction-level
-     * information. No truth information can be used.
+     * Loop over truth interactions for efficiency metrics and for signal-level
+     * variables of interest.
+    */
+    for(auto const & i : sr->dlp_true)
+    {
+        if(cuts::neutrino(i))
+        {
+            int category(vars::category(i));
+            if(category % 2 == 0 && category < 5)
+            {
+                if(cuts::matched(i))
+                {
+                    OUT(output, "SIGNAL");
+                    const auto & r = sr->dlp[i.match[0]];
+                    write_pair(sr, i, r);
+                }
+            }
+        }
+    }
+
+    /**
+     * Loop over reconstructed interactions for purity metrics and for
+     * reconstructed variables of interest.
     */
     for(auto const & i : sr->dlp)
     {
-        if(cuts::topological_1eNp_cut(i))
+        if(cuts::all_1muX_cut(i) || cuts::all_1muNp_cut(i) || cuts::all_1mu1p_cut(i))
         {
-            size_t leading_electron(0), leading_proton(0), index(0);
-            double leading_electron_ke(0), leading_proton_ke(0);
-            for(auto & p : i.particles)
+            if(cuts::matched(i))
             {
-                if(p.pid == 1 && p.calo_ke > leading_electron_ke)
-                {
-                    leading_electron = index;
-                    leading_electron_ke = p.calo_ke;
-                }
-                else if(p.pid == 4 && p.csda_ke > leading_proton_ke)
-                {
-                    leading_proton = index;
-                    leading_proton_ke = p.csda_ke;
-                }
-                ++index;
+                const auto & t = sr->dlp_true[i.match[0]];
+                OUT(output, "SELECTED");
+                write_pair(sr, t, i);
             }
-            OUT(output,"INTERACTION")   << CSV(sr->hdr.run) << CSV(sr->hdr.evt)
-                                        << CSV(vars::image_id(i)) << CSV(vars::id(i))
-                                        << CSV(vars::cryostat(i)) << CSV(i.is_fiducial)
-                                        << CSV(i.is_contained) << CSV(cuts::topology(i))
-                                        << CSV(cuts::flash_cut_data(i))
-                                        << CSV(i.vertex[0]) << CSV(i.vertex[1]) << CSV(i.vertex[2])
-                                        << CSV(i.particles[leading_electron].length)
-                                        << CSV(vars::leading_electron_ke(i))
-                                        << CSV(i.particles[leading_proton].length)
-                                        << CSV(vars::leading_proton_ke(i))
-                                        << CSV(vars::flash_time(i))
-                                        << CSV(i.particles[leading_electron].end_point[0])
-                                        << CSV(i.particles[leading_electron].end_point[1])
-                                        << CSV(i.particles[leading_electron].end_point[2])
-                                        << CSV(i.particles[leading_electron].start_dir[0])
-                                        << CSV(i.particles[leading_electron].start_dir[1])
-                                        << CSV(i.particles[leading_electron].start_dir[2])
-                                        << CSV(i.particles[leading_proton].end_point[0])
-                                        << CSV(i.particles[leading_proton].end_point[1])
-                                        << CSV(i.particles[leading_proton].end_point[2])
-                                        << CSV(i.particles[leading_proton].start_dir[0])
-                                        << CSV(i.particles[leading_proton].start_dir[1])
-                                        << CSV(i.particles[leading_proton].start_dir[2])
-                                        << std::endl;
         }
     }
 
