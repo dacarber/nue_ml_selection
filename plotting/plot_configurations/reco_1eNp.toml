@@ -21,7 +21,7 @@ type = 'hist1d'
 vars = 'sVisibleEnergyPTT_Topology_All1eNpCut'
 categories = {0 = '1$e$1p', 1 = '1$e$0h', 2 = '1$e$Np, N$\geq$1', 3 = '1$e$1$\pi$1p', 4 = 'Other $\nu_e$ CC', 5 = '$\nu$ NC', 6 = 'Cosmic', 7 = 'Uncontained'}
 merge = [[2,0], [1,], [3,], [4], [5,], [6,],[7,]]
-colors = [0, 2, 3, 4, 5, 6]
+colors = [0, 2, 3, 4, 5, 6,7]
 xlabel = 'Reconstructed Visible Energy [MeV]'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Selected 1$e$Np Candidates'
