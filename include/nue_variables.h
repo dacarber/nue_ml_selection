@@ -158,6 +158,19 @@ namespace vars
             size_t i(leading_particle_index(interaction, 4));
             return momentum(interaction.particles[i]);
         }
+    /**
+     * Variable for the transverse momentum of the leading proton.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the transverse momentum of the leading proton.
+    */
+    
+    template<class T>
+        double true_leading_proton_p(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 4));
+            return momentum(interaction.truth_particles[i]);
+        }
     
     /**
      * Variable for the muon polar angle.
