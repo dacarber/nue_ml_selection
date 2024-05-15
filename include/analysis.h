@@ -7,6 +7,7 @@
 #include "definitions.h"
 #include "cuts.h"
 #include "variables.h"
+#include "nue_variables.h"
 
 using namespace ana;
 
@@ -18,6 +19,7 @@ namespace ana
 
     VARDLP_TRUE(kCountParticlesTruth,vars::count_particles,cuts::no_cut);
     VARDLP_TRUE(kCountPrimariesTruth,vars::count_primaries,cuts::no_cut);
+    VARDLP_RECO(kOpeningAngle_1e1p, vars::opening_angle, cuts::all_1e1p_cut);
 
     // Define "variables" for binning interactions by some categorical class.
     DEFINECAT();
@@ -79,7 +81,7 @@ namespace ana
     PVARDLP_BIAS(kCal_wellreco_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::wellreco_electron,cuts::no_cut);
     PVARDLP_BIAS(kCal_wellreco_proton_bias,vars::ke_init,vars::csda_ke_proton,cuts::neutrino,cuts::wellreco_proton,cuts::no_cut);
 
-    VARDLP_TTP(kCos_open_angle,vars::cosine_opening_angle,cuts::all_1e1p_cut,cuts::no_cut);
+    //VARDLP_TTP(kCos_open_angle,vars::cosine_opening_angle,cuts::all_1e1p_cut,cuts::no_cut);
     //PVARDLP_TRUE(kCalTruth_electron,vars::ke_init,cuts::neutrino,cuts::matched_electron);
 
     // Variables for 2D bias plots.
