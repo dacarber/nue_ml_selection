@@ -74,7 +74,7 @@ void analysis()
     spectra.add_spectrum1d("sNuEnergy_1eNp_1p_signal_bias", Binning::Simple(50,-1,1), kNuEnergy_1eNp_1p_signal_bias);
     spectra.add_spectrum1d("sNuEnergy_1eNp_Np_signal_bias", Binning::Simple(50,-1,1), kNuEnergy_1eNp_Np_signal_bias);
     spectra.add_spectrum1d("sNuEnergy_1eNp_othernu_bias", Binning::Simple(50,-1,1), kNuEnergy_1eNp_othernu_bias);
-    spectra.add_spectrum1d("sCos_open_angle", Binning::Simple(75,-1,1), kOpeningAngle_1e1p);
+    spectra.add_spectrum1d("sCos_open_angle", Binning::Simple(50,0,90), kOpeningAngle_1e1p);
 
     /**
      * Spectra (2D) for counting selection statistics by interaction categorization (efficiency).
