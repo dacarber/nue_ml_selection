@@ -31,7 +31,7 @@ namespace cuts
      * @return true if the object is well reconstructed.
     */
     template<class T>
-        bool wellreco(const T & obj) { return matched(obj) && obj.match[0] > 0.9; }
+        bool wellreco(const T & obj) { return matched(obj) && obj.match[0] > 0.95; }
 
     /**
      * Apply a cut on the validity of the flash match.

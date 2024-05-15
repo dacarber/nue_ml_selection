@@ -24,7 +24,7 @@ type = 'hist1d'
 vars = ['sCal_electron_bias',]
 labels = ['electrons',]
 xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.5e20 POT'
+ylabel = 'Entries / 2.6e20 POT'
 title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
 
@@ -33,16 +33,17 @@ type = 'hist1d'
 vars = ['sCal_noncc_electron_bias',]
 labels = ['electron',]
 xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.5e20 POT'
+ylabel = 'Entries / 2.6e20 POT'
 title = 'Energy Reconstruction for Contained Electron'
 plot_kwargs = {histtype = 'barstacked'}
 
 [calo_wellrecoelectron_bias]
 type = 'hist1d'
 vars = ['sCal_wellreco_electron_bias',]
-labels = ['muons',]
+labels = ['electrons',]
 xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.5e20 POT'
+ylabel = 'Entries / 2.6e20 POT'
 title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
+
 
