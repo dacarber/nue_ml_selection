@@ -46,12 +46,12 @@ ylabel = 'Entries / 2.6e20 POT'
 title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
 
-[calo_wellrecoelectron_bias]
+[calo_wellrecoproton_bias]
 type = 'hist1d'
-vars = ['sCal_wellreco_electron_bias',]
+vars = ['sCal_wellreco_proton_bias',]
 labels = ['electrons',]
-xlabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
+xlabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
-title = 'Energy Reconstruction for Contained Electrons'
+title = 'Energy Reconstruction for Contained Protons'
 plot_kwargs = {histtype = 'barstacked'}
 
