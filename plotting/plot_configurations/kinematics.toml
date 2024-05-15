@@ -68,7 +68,7 @@ plot_kwargs = {histtype = 'barstacked'}
 type = 'hist1d'
 vars = ['sP_momentum_bias',]
 labels = ['proton',]
-xlabel = '$Momentum$'
+xlabel = '$p_{reco} - p_{true} / p_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Momentum of contained protons'
 plot_kwargs = {histtype = 'barstacked'}
@@ -113,7 +113,7 @@ plot_kwargs = {histtype = 'barstacked'}
 type = 'hist1d'
 vars = ['sAz_proton_angle_bias',]
 labels = ['proton',]
-xlabel = '$\theta$'
+xlabel = '$(\phi_{reco} - \phi_{true})/ \phi_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Azimuthal angle bias of selected proton'
 plot_kwargs = {histtype = 'barstacked'}
@@ -122,7 +122,7 @@ plot_kwargs = {histtype = 'barstacked'}
 type = 'hist1d'
 vars = ['sPol_proton_angle_bias',]
 labels = ['proton',]
-xlabel = '$\theta$'
+xlabel = '$(\theta_{reco} - \theta_{true})/ \theta_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Polar angle bias of selected proton'
 plot_kwargs = {histtype = 'barstacked'}
@@ -131,7 +131,7 @@ plot_kwargs = {histtype = 'barstacked'}
 type = 'hist1d'
 vars = ['sAz_electron_angle_bias',]
 labels = ['electron',]
-xlabel = '$\theta$'
+xlabel = '$(\phi_{reco} - \phi_{true})/ \phi_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Azimuthal angle bias of selected electron'
 plot_kwargs = {histtype = 'barstacked'}
@@ -140,7 +140,7 @@ plot_kwargs = {histtype = 'barstacked'}
 type = 'hist1d'
 vars = ['sPol_electron_angle_bias',]
 labels = ['electron',]
-xlabel = '$\theta$'
+xlabel = '$(\theta_{reco} - \theta_{true})/ \theta_{true}$'
 ylabel = 'Entries / 2.6e20 POT'
 title = 'Polar angle bias of selected electron'
 plot_kwargs = {histtype = 'barstacked'}
