@@ -278,8 +278,8 @@ namespace vars
      * @param particle to apply the variable on.
      * @return the csda_ke of the particle (if a muon).
     */
-    //template<class T>
-    //    double csda_ke_muon(const T & particle) { return (cuts::muon(particle)) ? csda_ke(particle) : -1; }
+    template<class T>
+        double csda_ke_proton(const T & particle) { return (cuts::proton(particle)) ? csda_ke(particle) : -1; }
 
     /**
      * Variable for particle calo_ke (electrons only).

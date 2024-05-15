@@ -160,6 +160,7 @@ void analysis()
     spectra.add_spectrum1d("sCal_electron_bias", Binning::Simple(75,-1,1), kCal_electron_bias);
     spectra.add_spectrum1d("sCal_noncc_electron_bias", Binning::Simple(75,-1,1), kCal_noncc_electron_bias);
     spectra.add_spectrum1d("sCal_wellreco_electron_bias", Binning::Simple(75,-1,1), kCal_wellreco_electron_bias);
+    spectra.add_spectrum1d("sCal_wellreco_proton_bias", Binning::Simple(75,-1,1), kCal_wellreco_proton_bias);
     spectra.add_spectrum1d("sCCOverlap", Binning::Simple(50, 0, 1), kCCOverlap);
     spectra.add_spectrum1d("sNonCCOverlap", Binning::Simple(50, 0, 1), kNonCCOverlap);
 

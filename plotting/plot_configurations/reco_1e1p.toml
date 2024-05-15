@@ -60,7 +60,3 @@ ylabel = 'Entries / 2.6e20 POT'
 title = 'Interaction Flash Time'
 plot_kwargs = {histtype = 'barstacked'}
 
-
-ylabel = 'Entries'
-title = 'Selected 1$e$Np Candidates'
-plot_kwargs = {histtype = 'barstacked'}

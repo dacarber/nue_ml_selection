@@ -77,6 +77,8 @@ namespace ana
     PVARDLP_BIAS(kCal_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::electron,cuts::no_cut);
     PVARDLP_BIAS(kCal_noncc_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::contained_tpc_electron,cuts::no_cut);
     PVARDLP_BIAS(kCal_wellreco_electron_bias,vars::ke_init,vars::calo_ke_electron,cuts::neutrino,cuts::wellreco_electron,cuts::no_cut);
+    PVARDLP_BIAS(kCal_wellreco_proton_bias,vars::ke_init,vars::csda_ke_proton,cuts::neutrino,cuts::wellreco_proton,cuts::no_cut);
+
 
     // Variables for 2D bias plots.
     VARDLP_BIAS(kEnergy_1e1p_signal_bias,vars::visible_energy,vars::visible_energy,cuts::signal_1e1p,cuts::all_1e1p_cut);
