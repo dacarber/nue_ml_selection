@@ -73,7 +73,7 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the total visible energy of the interaction.
     */
-    template<class T>
+    /*template<class T>
         double visible_energy(const T & interaction)
         {
             double energy(0);
@@ -96,7 +96,7 @@ namespace vars
             }
             return energy;
         }
-
+    */
     /**
      * Variable for finding the leading muon kinetic energy.
      * @tparam T the type of interaction (true or reco).
@@ -119,6 +119,7 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the kinetic energy of the leading muon.
     */
+    /*
     template<class T>
         double leading_proton_ke(const T & interaction)
         {
@@ -128,7 +129,7 @@ namespace vars
                 energy = ke_init(interaction.particles[i]);
             return energy;
         }
-
+    */
     /**
      * Variable for the transverse momentum of the leading muon.
      * @tparam T the type of interaction (true or reco).
