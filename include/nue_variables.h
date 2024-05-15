@@ -209,7 +209,7 @@ namespace vars
     template<class T>
         double opening_angle(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 return std::acos(m.truth_start_dir[0] * p.truth_start_dir[0] + m.truth_start_dir[1] * p.truth_start_dir[1] + m.truth_start_dir[2] * p.truth_start_dir[2]);
