@@ -24,6 +24,7 @@ namespace vars
      * @param particle to apply the variable on.
      * @return the transverse momentum of the particle
     */
+    /*
     template<class T>
         double transverse_momentum(const T & particle)
         {
@@ -32,7 +33,7 @@ namespace vars
             else
                 return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2));
         }
-
+    */
     /**
      * Variable for the polar angle (w.r.t the z-axis) of the particle.
      * @tparam T the type of particle (true or reco).
@@ -209,6 +210,7 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the transverse momentum of the primary particles.
     */
+    /*
     template<class T>
         double interaction_pt(const T & interaction)
         {
@@ -229,7 +231,7 @@ namespace vars
                 }
             return std::sqrt(std::pow(px, 2) + std::pow(py, 2));
         }
-
+    */
     /**
      * Variable for phi_T of the interaction.
      * @tparam T the type of interaction (true or reco).
