@@ -13,7 +13,7 @@
 
 #include "cuts.h"
 #include "variables.h"
-#include "numu_variables.h"
+#include "nue_variables.h"
 
 #include "sbnana/CAFAna/Core/MultiVar.h"
 #include "sbnanaobj/StandardRecord/Proxy/SRProxy.h"
