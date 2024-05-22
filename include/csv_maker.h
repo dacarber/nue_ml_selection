@@ -60,7 +60,7 @@ void write_pair(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDLPPro
             << CSV(vars::interaction_pt(j))
             << CSV(vars::phiT(i)) << CSV(vars::phiT(j))
             << CSV(vars::alphaT(i)) << CSV(vars::alphaT(j))
-            << CSV(vars::electron_softmax(j)) << CSV(vars::proton_softmax(j))
+            //<< CSV(vars::electron_softmax(j)) << CSV(vars::proton_softmax(j))
             << CSV(cuts::all_1e1p_cut(j))
             << CSV(cuts::all_1eNp_cut(j))
             << CSV(cuts::all_1eX_cut(j))
