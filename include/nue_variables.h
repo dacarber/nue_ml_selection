@@ -64,6 +64,35 @@ namespace vars
                 return std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
         }
 
+
+    /**
+     * Variable for the azimuthal angle (w.r.t the z-axis) of the particle.
+     * @tparam T the type of particle (true or reco).
+     * @param particle to apply the variable on.
+     * @return the azimuthal angle of the particle.
+    */
+    template<class T>
+        double NuMI_angle(const T & particle)
+        {
+            if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
+                double x = particle.start_point[0] - (31512.0380);
+                double y = particle.start_point[1] - (3364.4912);
+                double z = particle.start_point[2] - (73363.2532);
+                double r = std::sqrt(std::pow(x, 2)+std::pow(y, 2)+std::pow(z, 2));
+                x = x/r;
+                y = y/r;
+                z = z/r;
+                return std::acos(x *particle.truth_start_dir[0] + y *particle.truth_start_dir[1]+z *particle.truth_start_dir[2]);
+            else
+                double x = particle.start_point[0] - (31512.0380);
+                double y = particle.start_point[1] - (3364.4912);
+                double z = particle.start_point[2] - (73363.2532);
+                double r = std::sqrt(std::pow(x, 2)+std::pow(y, 2)+std::pow(z, 2));
+                x = x/r;
+                y = y/r;
+                z = z/r;
+                return std::acos(x *particle.start_dir[0] + y *particle.start_dir[1]+z *particle.start_dir[2]);
+        }
     /**
      * Methods for calculating the reconstructed variables for the numu analyses.
     */
@@ -196,6 +225,18 @@ namespace vars
         {
             size_t i(leading_particle_index(interaction, 1));
             return azimuthal_angle(interaction.particles[i]);
+        }
+    /**
+     * Variable for the muon azimuthal angle.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the azimuthal angle of the leading muon.
+     */
+    template<class T>
+        double electron_NuMI_angle(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 1));
+            return NuMI_angle(interaction.particles[i]);
         }
     template<class T>
         double proton_polar_angle(const T & interaction)

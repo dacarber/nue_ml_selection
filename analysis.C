@@ -79,6 +79,9 @@ void analysis()
     spectra.add_spectrum1d("sAz_proton_angle_bias", Binning::Simple(50,-1,1), kAz_proton_angle_bias);
     spectra.add_spectrum1d("sPol_proton_angle_bias", Binning::Simple(50,-1,1), kPol_proton_angle_bias);
     spectra.add_spectrum1d("sAz_electron_angle_bias", Binning::Simple(50,-1,1), kAz_electron_angle_bias);
+
+    spectra.add_spectrum1d("sNuMI_electron_angle_bias", Binning::Simple(50,0,3.2), kNuMI_electron_angle_bias);
+
     spectra.add_spectrum1d("sPol_electron_angle_bias", Binning::Simple(50,-1,1), kPol_electron_angle_bias);
 
     spectra.add_spectrum1d("sAz_proton_angle", Binning::Simple(50,0,3.2), kProtonAz_1e1p);
