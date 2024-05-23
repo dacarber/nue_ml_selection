@@ -146,7 +146,7 @@ ylabel = 'Entries / 2.6e20 POT'
 title = 'Polar angle bias of selected electron'
 plot_kwargs = {histtype = 'barstacked'}
 
-[cos_open_angle]
+[cos_NuMI_angle]
 type = 'hist1d'
 vars = ['sNuMI_electron_angle_bias',]
 labels = ['1$e$1p',]
