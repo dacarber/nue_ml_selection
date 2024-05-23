@@ -78,7 +78,7 @@ namespace vars
             double y;
             double z;
             double r;
-            if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
+            if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>){
                 x = particle.start_point[0] - (31512.0380);
                 y = particle.start_point[1] - (3364.4912);
                 z = particle.start_point[2] - (73363.2532);
@@ -87,7 +87,8 @@ namespace vars
                 y = y/r;
                 z = z/r;
                 return std::acos(x *particle.truth_start_dir[0] + y *particle.truth_start_dir[1]+z *particle.truth_start_dir[2]);
-            else
+            }
+            else{
                 x = particle.start_point[0] - (31512.0380);
                 y = particle.start_point[1] - (3364.4912);
                 z = particle.start_point[2] - (73363.2532);
@@ -96,6 +97,7 @@ namespace vars
                 y = y/r;
                 z = z/r;
                 return std::acos(x *particle.start_dir[0] + y *particle.start_dir[1]+z *particle.start_dir[2]);
+            }
         }
     /**
      * Methods for calculating the reconstructed variables for the numu analyses.
