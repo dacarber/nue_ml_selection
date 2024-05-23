@@ -152,5 +152,5 @@ vars = ['sNuMI_electron_angle_bias',]
 labels = ['1$e$1p',]
 xlabel = '$\theta$'
 ylabel = 'Entries / 2.6e20 POT'
-title = 'Opening Angle of selected 1e1p'
+title = 'Electron angle w.r.t NuMI beam selected 1e1p'
 plot_kwargs = {histtype = 'barstacked'}
