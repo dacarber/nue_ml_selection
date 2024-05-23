@@ -177,7 +177,7 @@ void analysis()
      * Spectra (2D) for particles.
     */
     spectra.add_spectrum2d("sCal_electron", Binning::Simple(50, 50, 1000), Binning::Simple(50, 50, 1000), kCalTruth_electron, kCal_electron);
-    spectra.add_spectrum2d("sCal_electron2electron", Binning::Simple(50, 0, 1000), Binning::Simple(50, 0, 1000), kCalTruth_electron, kCal_electron2electron);
+    spectra.add_spectrum2d("sCal_electron2electron", Binning::Simple(50, 50, 1000), Binning::Simple(50, 50, 1000), kCalTruth_electron, kCal_electron2electron);
     spectra.add_spectrum2d("sCal_electron_bias2d", Binning::Simple(10, 0, 1000), Binning::Simple(250,-0.25,0.25), kCalTruth_electron, kCal_electron_bias);
     spectra.add_spectrum1d("sCal_electron_bias", Binning::Simple(75,-1,1), kCal_electron_bias);
     spectra.add_spectrum1d("sCal_noncc_electron_bias", Binning::Simple(75,-1,1), kCal_noncc_electron_bias);
