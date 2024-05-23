@@ -73,21 +73,25 @@ namespace vars
     */
     template<class T>
         double NuMI_angle(const T & particle)
-        {
+        {   
+            double x;
+            double y;
+            double z;
+            double r;
             if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
-                double x = particle.start_point[0] - (31512.0380);
-                double y = particle.start_point[1] - (3364.4912);
-                double z = particle.start_point[2] - (73363.2532);
-                double r = std::sqrt(std::pow(x, 2)+std::pow(y, 2)+std::pow(z, 2));
+                x = particle.start_point[0] - (31512.0380);
+                y = particle.start_point[1] - (3364.4912);
+                z = particle.start_point[2] - (73363.2532);
+                r = std::sqrt(std::pow(x, 2)+std::pow(y, 2)+std::pow(z, 2));
                 x = x/r;
                 y = y/r;
                 z = z/r;
                 return std::acos(x *particle.truth_start_dir[0] + y *particle.truth_start_dir[1]+z *particle.truth_start_dir[2]);
             else
-                double x = particle.start_point[0] - (31512.0380);
-                double y = particle.start_point[1] - (3364.4912);
-                double z = particle.start_point[2] - (73363.2532);
-                double r = std::sqrt(std::pow(x, 2)+std::pow(y, 2)+std::pow(z, 2));
+                x = particle.start_point[0] - (31512.0380);
+                y = particle.start_point[1] - (3364.4912);
+                z = particle.start_point[2] - (73363.2532);
+                r = std::sqrt(std::pow(x, 2)+std::pow(y, 2)+std::pow(z, 2));
                 x = x/r;
                 y = y/r;
                 z = z/r;
