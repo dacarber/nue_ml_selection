@@ -37,7 +37,8 @@ struct SpecContainer
     : loader(in_name),
       output_file(out_name, "recreate"),
       override_pot(opot),
-      target_pot(tpot) { }
+      target_pot(tpot) { 
+        std::cout<<in_name<<std:endl;}
     
     /**
      * Adds a new CAFAna Spectrum (1D) object to the container.
