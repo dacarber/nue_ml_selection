@@ -74,17 +74,17 @@ namespace vars
             double cat(7);
             if(cuts::signal_1e1p(interaction))
             {
-                if(cuts::fiducial_containment_cut(interaction)) cat = 0;
+                if(cuts::containment_cut(interaction)) cat = 0;
                 else cat = 1;
             }
             else if(cuts::signal_1eNp(interaction))
             {
-                if(cuts::fiducial_containment_cut(interaction)) cat = 2;
+                if(cuts::containment_cut(interaction)) cat = 2;
                 else cat = 3;
             }
             else if(cuts::signal_1eX(interaction))
             {
-                if(cuts::fiducial_containment_cut(interaction)) cat = 4;
+                if(cuts::containment_cut(interaction)) cat = 4;
                 else cat = 5;
             }
             else if(cuts::other_nu_1eX(interaction)) cat = 6;
