@@ -223,7 +223,7 @@ void analysis()
      * Dummy spectra for dumping particle-level information to a CSV log file.
     */
     spectra.add_spectrum1d("sSelected", Binning::Simple(1, 0, 2), kInfoVar);
-    spectra.add_spectrum1d("sSignal", Binning::Simple(1, 0, 2), kSignal);
+    //spectra.add_spectrum1d("sSignal", Binning::Simple(1, 0, 2), kSignal);
 
     spectra.run();
 }
