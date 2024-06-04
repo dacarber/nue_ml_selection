@@ -380,7 +380,21 @@ namespace vars
             }
             return index;
         }
-    
+    /**
+     * Variable for finding the leading muon kinetic energy.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the kinetic energy of the leading muon.
+    */
+    template<class T>
+        double leading_electron_deposit(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 1));
+            double energy(energy_deposit(interaction.particles[i]));
+            if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
+                energy = energy_deposit(interaction.particles[i]);
+            return energy;
+        }
     /**
      * Variable for finding the leading muon kinetic energy.
      * @tparam T the type of interaction (true or reco).
