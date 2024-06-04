@@ -270,7 +270,7 @@ namespace vars
      * @return the calo_ke of the particle.
     */
     template<class T>
-        double calo_ke(const T & particle) { return particle.calo_ke*.87*1.46; }
+        double calo_ke(const T & particle) { return particle.calo_ke*.87*1.48; }
 
     /**
      * Variable for particle csda_ke (muons only).
