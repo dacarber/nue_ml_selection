@@ -22,7 +22,7 @@ xtick.direction: in
 xtick.minor.visible: True
 xtick.major.size: 10
 xtick.minor.size: 5
-xtick.labelsize: x-large
+xtick.labelsize: xx-large
 
 ytick.left: True
 ytick.right: True
@@ -30,7 +30,7 @@ ytick.direction: in
 ytick.minor.visible: True
 ytick.major.size: 10
 ytick.minor.size: 5
-ytick.labelsize: x-large
+ytick.labelsize: xx-large
 
 # Grid
 grid.color: b2b2b2
