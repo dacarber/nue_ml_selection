@@ -227,7 +227,7 @@ def plot_histogram_2d(rf, desc):
     contents, xedges, yedges = load_histograms(rf, desc.vars)
     x, y = np.meshgrid(xedges, yedges)
     pc = ax.pcolormesh(x, y, contents.transpose(), cmap='Blues')
-    ax.plot([0,1000],[0,1000], marker = 'o',ls = '-')
+    ax.plot([50,1000],[50,1000], marker = 'o',ls = '-')
     figure.colorbar(pc, ax=ax)
     ax.set_xlabel(desc.xlabel)
     ax.set_ylabel(desc.ylabel)

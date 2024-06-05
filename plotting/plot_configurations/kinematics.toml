@@ -9,8 +9,8 @@ title = 'Electron Calo Energy Estimation'
 [calo_electron2electron]
 type = 'hist2d'
 vars = 'sCal_electron2electron'
-xlabel = '$E_true$ [MeV]'
-ylabel = '$E_reco$ [MeV]'
+xlabel = '$E_{true}$ [MeV]'
+ylabel = '$E_{reco}$ [MeV]'
 title = 'Electron Energy Reconstruction Performance'
 
 [calo_electron_bias2d]
