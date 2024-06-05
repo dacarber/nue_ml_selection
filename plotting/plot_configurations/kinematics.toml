@@ -9,16 +9,16 @@ title = 'Electron Calo Energy Estimation'
 [calo_electron2electron]
 type = 'hist2d'
 vars = 'sCal_electron2electron'
-xlabel = 'True Kinetic Energy [MeV]'
-ylabel = 'Reco Calo Energy [MeV]'
-title = 'Electron Calo Energy Estimation'
+xlabel = '$E_true$ [MeV]'
+ylabel = '$E_reco$ [MeV]'
+title = 'Electron Energy Reconstruction Performance'
 
 [calo_electron_bias2d]
 type = 'hist2d'
 vars = 'sCal_electron_bias2d'
 xlabel = 'True Kinetic Energy [MeV]'
 ylabel = '($E_{calo}$ -  $E_{true}$) / $E_{true}$'
-title = 'Electron Calo Energy Estimation'
+title = 'Electron Energy Reconstruction Performance'
 
 [calo_electron_bias]
 type = 'hist1d'
