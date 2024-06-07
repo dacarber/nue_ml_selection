@@ -117,7 +117,7 @@ namespace vars
                     else if(interaction.nu_current_type == 0) cat = 4;
                 }
                 else if(interaction.nu_current_type == 0) cat = 4;
-                else if(interaction.nu_current_type == 1 && counts[2] == 1) cat = 8;
+                else if(interaction.nu_current_type == 0 && counts[2] == 1) cat = 8;
                 else if(interaction.nu_current_type == 1) cat = 5;
                 
             }
