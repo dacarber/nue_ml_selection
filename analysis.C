@@ -27,7 +27,7 @@ void analysis()
     //SpecContainer spectra("/exp/icarus/data/users/mueller/mlcafs/bnb_intime.flat.root", "spectra_intime.root", 9070*2.05e14, 2.5e20);
     //SpecContainer spectra("/exp/icarus/data/users/dcarber/numi_nue/sample_numi_nue.flat.root", "spectra_nuecosmics.root", 8.7e19, 8.7e19 );
     //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/numi_nu_corsika_230918/larcv_*.0_mlreco_ana.flat.root", "spectra_nucosmics.root", 1.83e19, 1.83e19 );
-    SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/numi_intime_cosmics_230918/lite_files/flat_cafs/*.flat.root", "spectra_intimecosmics.root", 1.83e19, 1.83e19 );
+    SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/numi_intime_cosmics_230918/lite_files/cafs/*.flat.root", "spectra_intimecosmics.root", 1.83e19, 1.83e19 );
     //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/numi_nu_corsika_230918/larcv_296372.0_mlreco_ana.flat.root", "spectra_intimecosmics.root", 1.83e19, 1.83e19 );
     /**
      * 
