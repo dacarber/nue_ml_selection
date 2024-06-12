@@ -212,7 +212,7 @@ const SpillMultiVar kHandscanInfo([](const caf::SRSpillProxy* sr)
  * the selection.
  * @return none.
 */
-void numi_ddata()
+void numi_data()
 {
     //RECO_SIGNAL_VAR(kVisibleEnergy, vars::visible_energy);
     //RECO_SIGNAL_VAR(kLeadingElectronKE, vars::leading_electron_ke);
