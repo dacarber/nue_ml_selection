@@ -214,20 +214,20 @@ const SpillMultiVar kHandscanInfo([](const caf::SRSpillProxy* sr)
 */
 void data()
 {
-    RECO_SIGNAL_VAR(kVisibleEnergy, vars::visible_energy);
-    RECO_SIGNAL_VAR(kLeadingElectronKE, vars::leading_electron_ke);
-    RECO_SIGNAL_VAR(kLeadingProtonKE, vars::leading_proton_ke);
-    RECO_SIGNAL_VAR(kLeadingElectronPT, vars::leading_electron_pt);
-    RECO_SIGNAL_VAR(kLeadingProtonPT, vars::leading_proton_pt);
-    RECO_SIGNAL_VAR(kInteractionPT, vars::interaction_pt);
-    RECO_SIGNAL_VAR(kLeadingElectronCosineThetaXZ, vars::leading_electron_cosine_theta_xz);
-    RECO_SIGNAL_VAR(kLeadingProtonCosineThetaXZ, vars::leading_proton_cosine_theta_xz);
-    RECO_SIGNAL_VAR(kCosineOpeningAngle, vars::cosine_opening_angle);
-    RECO_SIGNAL_VAR(kCosineOpeningAngleTransverse, vars::cosine_opening_angle_transverse);
+    //RECO_SIGNAL_VAR(kVisibleEnergy, vars::visible_energy);
+    //RECO_SIGNAL_VAR(kLeadingElectronKE, vars::leading_electron_ke);
+    //RECO_SIGNAL_VAR(kLeadingProtonKE, vars::leading_proton_ke);
+    //RECO_SIGNAL_VAR(kLeadingElectronPT, vars::leading_electron_pt);
+    //RECO_SIGNAL_VAR(kLeadingProtonPT, vars::leading_proton_pt);
+    //RECO_SIGNAL_VAR(kInteractionPT, vars::interaction_pt);
+    //RECO_SIGNAL_VAR(kLeadingElectronCosineThetaXZ, vars::leading_electron_cosine_theta_xz);
+    //RECO_SIGNAL_VAR(kLeadingProtonCosineThetaXZ, vars::leading_proton_cosine_theta_xz);
+    //RECO_SIGNAL_VAR(kCosineOpeningAngle, vars::cosine_opening_angle);
+    //RECO_SIGNAL_VAR(kCosineOpeningAngleTransverse, vars::cosine_opening_angle_transverse);
     //RECO_SIGNAL_VAR(kLeadingElectronSoftmax, vars::leading_electron_softmax);
-    RECO_SIGNAL_VAR(kLeadingProtonSoftmax, vars::leading_proton_softmax);
+    //RECO_SIGNAL_VAR(kLeadingProtonSoftmax, vars::leading_proton_softmax);
 
-    VARDLP_RECO(kFlashTime, vars::flash_time, cuts::fiducial_containment_topological_1eNp_cut);
+    //VARDLP_RECO(kFlashTime, vars::flash_time, cuts::fiducial_containment_topological_1eNp_cut);
 
     //SpecContainer spectra("/pnfs/icarus/persistent/users/mueller/run9435_new_weights/*.flat.root", "spectra_run9435.root", -1, -1);
     //SpecContainer spectra("/pnfs/icarus/scratch/users/mueller/physics_run2_actual_new_weights/offbeam/hdf5/*.flat.root", "spectra_data_offbeam.root", -1, 266267);
