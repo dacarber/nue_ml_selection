@@ -49,9 +49,9 @@ void write_reco(const caf::SRSpillProxy* sr, const caf::SRInteractionDLPProxy& j
             << CSV(vars::alphaT(j))
             //<< CSV(vars::electron_softmax(j))
             //<< CSV(vars::proton_softmax(j))
-            << CSV(cuts::all_1e1p_data_cut(j))
-            << CSV(cuts::all_1eNp_data_cut(j))
-            << CSV(cuts::all_1eX_data_cut(j))
+            << CSV(cuts::all_1e1p_cut(j))
+            << CSV(cuts::all_1eNp_cut(j))
+            << CSV(cuts::all_1eX_cut(j))
             //<< CSV(cuts::crtpmt_veto_data(sr))
             << CSV(j.volume_id)
             << std::endl;
@@ -71,7 +71,7 @@ const SpillMultiVar kDataInfo([](const caf::SRSpillProxy* sr)
     */
     for(auto const & i : sr->dlp)
     {
-        if(cuts::all_1eX_data_cut(i) || cuts::all_1eNp_data_cut(i) || cuts::all_1e1p_data_cut(i))
+        if(cuts::all_1eX_cut(i) || cuts::all_1eNp_cut(i) || cuts::all_1e1p_cut(i))
         {
             OUT(output,"DATA");
             write_reco(sr, i);
@@ -103,7 +103,7 @@ const SpillMultiVar kOffbeam1mu1pCut([](const caf::SRSpillProxy* sr)
             cut = 2;
         if(cuts::fiducial_containment_topological_1e1p_cut(i))
             cut = 3;
-        if(cuts::all_1e1p_data_cut(i))
+        if(cuts::all_1e1p_cut(i))
             cut = 4;
         cut_vector.push_back(cut);
     }
@@ -130,7 +130,7 @@ const SpillMultiVar kOffbeam1muNpCut([](const caf::SRSpillProxy* sr)
             cut = 2;
         if(cuts::fiducial_containment_topological_1eNp_cut(i))
             cut = 3;
-        if(cuts::all_1eNp_data_cut(i))
+        if(cuts::all_1eNp_cut(i))
             cut = 4;
         cut_vector.push_back(cut);
     }
@@ -157,7 +157,7 @@ const SpillMultiVar kOffbeam1muXCut([](const caf::SRSpillProxy* sr)
             cut = 2;
         if(cuts::fiducial_containment_topological_1eX_cut(i))
             cut = 3;
-        if(cuts::all_1eX_data_cut(i))
+        if(cuts::all_1eX_cut(i))
             cut = 4;
         cut_vector.push_back(cut);
     }
@@ -190,15 +190,15 @@ const SpillMultiVar kHandscanInfo([](const caf::SRSpillProxy* sr)
                                         //<< CSV(i.particles[leading_electron].end_point[0])
                                         //<< CSV(i.particles[leading_electron].end_point[1])
                                         //<< CSV(i.particles[leading_electron].end_point[2])
-                                        << CSV(i.particles[leading_electron].start_dir[0])
-                                        << CSV(i.particles[leading_electron].start_dir[1])
-                                        << CSV(i.particles[leading_electron].start_dir[2])
-                                        << CSV(i.particles[leading_proton].end_point[0])
-                                        << CSV(i.particles[leading_proton].end_point[1])
-                                        << CSV(i.particles[leading_proton].end_point[2])
-                                        << CSV(i.particles[leading_proton].start_dir[0])
-                                        << CSV(i.particles[leading_proton].start_dir[1])
-                                        << CSV(i.particles[leading_proton].start_dir[2])
+                                        //<< CSV(i.particles[leading_electron].start_dir[0])
+                                        //<< CSV(i.particles[leading_electron].start_dir[1])
+                                        //<< CSV(i.particles[leading_electron].start_dir[2])
+                                        //<< CSV(i.particles[leading_proton].end_point[0])
+                                        //<< CSV(i.particles[leading_proton].end_point[1])
+                                        //<< CSV(i.particles[leading_proton].end_point[2])
+                                        //<< CSV(i.particles[leading_proton].start_dir[0])
+                                        //<< CSV(i.particles[leading_proton].start_dir[1])
+                                        //<< CSV(i.particles[leading_proton].start_dir[2])
                                         << std::endl;
         }
     }
@@ -215,19 +215,19 @@ const SpillMultiVar kHandscanInfo([](const caf::SRSpillProxy* sr)
 void data()
 {
     RECO_SIGNAL_VAR(kVisibleEnergy, vars::visible_energy);
-    RECO_SIGNAL_VAR(kLeadingElectronKE, vars::leading_muon_ke);
+    RECO_SIGNAL_VAR(kLeadingElectronKE, vars::leading_electron_ke);
     RECO_SIGNAL_VAR(kLeadingProtonKE, vars::leading_proton_ke);
-    RECO_SIGNAL_VAR(kLeadingElectronPT, vars::leading_muon_pt);
+    RECO_SIGNAL_VAR(kLeadingElectronPT, vars::leading_electron_pt);
     RECO_SIGNAL_VAR(kLeadingProtonPT, vars::leading_proton_pt);
     RECO_SIGNAL_VAR(kInteractionPT, vars::interaction_pt);
-    RECO_SIGNAL_VAR(kLeadingElectronCosineThetaXZ, vars::leading_muon_cosine_theta_xz);
+    RECO_SIGNAL_VAR(kLeadingElectronCosineThetaXZ, vars::leading_electron_cosine_theta_xz);
     RECO_SIGNAL_VAR(kLeadingProtonCosineThetaXZ, vars::leading_proton_cosine_theta_xz);
     RECO_SIGNAL_VAR(kCosineOpeningAngle, vars::cosine_opening_angle);
     RECO_SIGNAL_VAR(kCosineOpeningAngleTransverse, vars::cosine_opening_angle_transverse);
-    RECO_SIGNAL_VAR(kLeadingElectronSoftmax, vars::leading_muon_softmax);
+    //RECO_SIGNAL_VAR(kLeadingElectronSoftmax, vars::leading_electron_softmax);
     RECO_SIGNAL_VAR(kLeadingProtonSoftmax, vars::leading_proton_softmax);
 
-    VARDLP_RECO(kFlashTime, vars::flash_time, cuts::fiducial_containment_topological_1muNp_cut);
+    VARDLP_RECO(kFlashTime, vars::flash_time, cuts::fiducial_containment_topological_1eNp_cut);
 
     //SpecContainer spectra("/pnfs/icarus/persistent/users/mueller/run9435_new_weights/*.flat.root", "spectra_run9435.root", -1, -1);
     //SpecContainer spectra("/pnfs/icarus/scratch/users/mueller/physics_run2_actual_new_weights/offbeam/hdf5/*.flat.root", "spectra_data_offbeam.root", -1, 266267);
