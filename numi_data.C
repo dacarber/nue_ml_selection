@@ -47,12 +47,12 @@ void write_reco(const caf::SRSpillProxy* sr, const caf::SRInteractionDLPProxy& j
             << CSV(vars::interaction_pt(j))
             << CSV(vars::phiT(j))
             << CSV(vars::alphaT(j))
-            << CSV(vars::electron_softmax(j))
-            << CSV(vars::proton_softmax(j))
+            //<< CSV(vars::electron_softmax(j))
+            //<< CSV(vars::proton_softmax(j))
             << CSV(cuts::all_1e1p_data_cut(j))
             << CSV(cuts::all_1eNp_data_cut(j))
             << CSV(cuts::all_1eX_data_cut(j))
-            << CSV(cuts::crtpmt_veto_data(sr))
+            //<< CSV(cuts::crtpmt_veto_data(sr))
             << CSV(j.volume_id)
             << std::endl;
 }
@@ -101,7 +101,7 @@ const SpillMultiVar kOffbeam1mu1pCut([](const caf::SRSpillProxy* sr)
             cut = 1;
         if(cuts::containment_cut(i))
             cut = 2;
-        if(cuts::containment_topological_1e1p_cut(i))
+        if(cuts::fiducial_containment_topological_1e1p_cut(i))
             cut = 3;
         if(cuts::all_1e1p_data_cut(i))
             cut = 4;
@@ -128,7 +128,7 @@ const SpillMultiVar kOffbeam1muNpCut([](const caf::SRSpillProxy* sr)
             cut = 1;
         if(cuts::containment_cut(i))
             cut = 2;
-        if(cuts::containment_topological_1eNp_cut(i))
+        if(cuts::fiducial_containment_topological_1eNp_cut(i))
             cut = 3;
         if(cuts::all_1eNp_data_cut(i))
             cut = 4;
@@ -155,7 +155,7 @@ const SpillMultiVar kOffbeam1muXCut([](const caf::SRSpillProxy* sr)
             cut = 1;
         if(cuts::containment_cut(i))
             cut = 2;
-        if(cuts::containment_topological_1eX_cut(i))
+        if(cuts::fiducial_containment_topological_1eX_cut(i))
             cut = 3;
         if(cuts::all_1eX_data_cut(i))
             cut = 4;
@@ -187,9 +187,9 @@ const SpillMultiVar kHandscanInfo([](const caf::SRSpillProxy* sr)
                                         << CSV(i.particles[leading_proton].length)
                                         << CSV(vars::leading_proton_ke(i))
                                         << CSV(vars::flash_time(i))
-                                        << CSV(i.particles[leading_electron].end_point[0])
-                                        << CSV(i.particles[leading_electron].end_point[1])
-                                        << CSV(i.particles[leading_electron].end_point[2])
+                                        //<< CSV(i.particles[leading_electron].end_point[0])
+                                        //<< CSV(i.particles[leading_electron].end_point[1])
+                                        //<< CSV(i.particles[leading_electron].end_point[2])
                                         << CSV(i.particles[leading_electron].start_dir[0])
                                         << CSV(i.particles[leading_electron].start_dir[1])
                                         << CSV(i.particles[leading_electron].start_dir[2])
