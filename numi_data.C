@@ -182,8 +182,8 @@ const SpillMultiVar kHandscanInfo([](const caf::SRSpillProxy* sr)
                                         << CSV(i.is_contained) << CSV(cuts::topology(i))
                                         << CSV(cuts::flash_cut_data(i))
                                         << CSV(i.vertex[0]) << CSV(i.vertex[1]) << CSV(i.vertex[2])
-                                        << CSV(i.particles[leading_eon].length)
-                                        << CSV(vars::leading_eon_ke(i))
+                                        //<< CSV(i.particles[leading_eon].length)
+                                        << CSV(vars::leading_electron_ke(i))
                                         << CSV(i.particles[leading_proton].length)
                                         << CSV(vars::leading_proton_ke(i))
                                         << CSV(vars::flash_time(i))
@@ -236,9 +236,9 @@ void data()
 
 
     spectra.add_spectrum1d("sDataInfo", Binning::Simple(1, 0, 2), kDataInfo);
-    spectra.add_spectrum1d("sOffbeam1mu1pCut", Binning::Simple(5, 0, 5), kOffbeam1e1pCut);
-    spectra.add_spectrum1d("sOffbeam1muNpCut", Binning::Simple(5, 0, 5), kOffbeam1eNpCut);
-    spectra.add_spectrum1d("sOffbeam1muXCut", Binning::Simple(5, 0, 5), kOffbeam1eXCut);
+    //spectra.add_spectrum1d("sOffbeam1mu1pCut", Binning::Simple(5, 0, 5), kOffbeam1e1pCut);
+    //spectra.add_spectrum1d("sOffbeam1muNpCut", Binning::Simple(5, 0, 5), kOffbeam1eNpCut);
+    //spectra.add_spectrum1d("sOffbeam1muXCut", Binning::Simple(5, 0, 5), kOffbeam1eXCut);
     //spectra.add_spectrum1d("sHandscanInfo", Binning::Simple(1, 0, 2), kHandscanInfo);
 
     spectra.run();
