@@ -25,7 +25,7 @@ type = 'hist1d'
 vars = ['sCal_electron_bias',]
 labels = ['electrons',]
 xlabel = '($E_{reco}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.4e20 POT'
+ylabel = 'Entries '
 title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
 
@@ -34,7 +34,7 @@ type = 'hist1d'
 vars = ['sCal_noncc_electron_bias',]
 labels = ['electron',]
 xlabel = '($E_{reco}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.4e20 POT'
+ylabel = 'Entries '
 title = 'Energy Reconstruction for Contained Electron'
 plot_kwargs = {histtype = 'barstacked'}
 
@@ -43,7 +43,7 @@ type = 'hist1d'
 vars = ['sCal_wellreco_electron_bias',]
 labels = ['electrons',]
 xlabel = '($E_{reco}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.4e20 POT'
+ylabel = 'Entries '
 title = 'Energy Reconstruction for Contained Electrons'
 plot_kwargs = {histtype = 'barstacked'}
 
@@ -52,7 +52,7 @@ type = 'hist1d'
 vars = ['sCal_wellreco_proton_bias',]
 labels = ['protons',]
 xlabel = '($E_{csda}$ -  $E_{true}$) / $E_{true}$'
-ylabel = 'Entries / 2.4e20 POT'
+ylabel = 'Entries '
 title = 'Energy Reconstruction for Contained Protons'
 plot_kwargs = {histtype = 'barstacked'}
 
@@ -61,7 +61,7 @@ type = 'hist1d'
 vars = ['sCos_open_angle',]
 labels = ['1$e$1p',]
 xlabel = '$\theta$'
-ylabel = 'Entries / 2.4e20 POT'
+ylabel = 'Entries '
 title = 'Opening Angle of selected 1e1p'
 plot_kwargs = {histtype = 'barstacked'}
 
