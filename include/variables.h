@@ -405,7 +405,7 @@ namespace vars
      * @return the kinetic energy of the leading muon.
     */
     template<class T>
-        double leading_electron_pid(const T & interaction)
+        int leading_electron_pid(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
             int pid;
@@ -439,7 +439,7 @@ namespace vars
      * @return the kinetic energy of the leading muon.
     */
     template<class T>
-        double leading_electron_pid(const T & interaction)
+        int leading_electron_pid(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
             int pid;
