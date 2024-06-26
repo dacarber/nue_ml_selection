@@ -415,7 +415,7 @@ namespace vars
                 pid = interaction.particles[i].pid;
             else
                 pid = interaction.particles[i].pid;
-            return energy;
+            return pid;
         }
     /**
      * Variable for finding the leading proton kinetic energy.
@@ -449,7 +449,7 @@ namespace vars
                 pid = interaction.particles[i].pid;
             else
                 pid = interaction.particles[i].pid;
-            return energy;
+            return pid;
         }
     /**
      * Variable for the transverse momentum of a particle.
