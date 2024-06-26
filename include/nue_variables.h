@@ -400,14 +400,14 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the muon softmax score of the leading muon.
     */
-    /*
+    
     template<class T>
         double electron_softmax(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
             return interaction.particles[i].pid_scores[1];
         }
-    */
+    
     /**
      * Variable for the proton softmax score for the leading proton of the
      * interaction.
@@ -415,13 +415,13 @@ namespace vars
      * @param interaction to apply the variable on.
      * @return the proton softmax score of the leading proton.
     */
-    /*
+    
     template<class T>
         double proton_softmax(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
             return interaction.particles[i].pid_scores[4];
         }
-    */
+    
 }
 #endif

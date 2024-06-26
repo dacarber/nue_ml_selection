@@ -398,7 +398,25 @@ namespace vars
                 energy = ke_init(interaction.particles[i]);
             return energy;
         }
-    
+    /**
+     * Variable for finding the leading muon kinetic energy.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the kinetic energy of the leading muon.
+    */
+    template<class T>
+        double leading_electron_pid(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 1));
+            int pid;
+            
+            
+            if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
+                pid = interaction.particles[i].pid;
+            else
+                pid = interaction.particles[i].pid;
+            return energy;
+        }
     /**
      * Variable for finding the leading proton kinetic energy.
      * @tparam T the type of interaction (true or reco).
@@ -414,7 +432,25 @@ namespace vars
                 energy = ke_init(interaction.particles[i]);
             return energy;
         }
-
+    /**
+     * Variable for finding the leading muon kinetic energy.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the kinetic energy of the leading muon.
+    */
+    template<class T>
+        double leading_electron_pid(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 4));
+            int pid;
+            
+            
+            if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
+                pid = interaction.particles[i].pid;
+            else
+                pid = interaction.particles[i].pid;
+            return energy;
+        }
     /**
      * Variable for the transverse momentum of a particle.
      * @tparam T the type of particle (true or reco).
