@@ -408,7 +408,7 @@ namespace vars
         int leading_electron_pid(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
-            int pid;
+            int pid = -1;
             
             
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
@@ -439,10 +439,10 @@ namespace vars
      * @return the kinetic energy of the leading muon.
     */
     template<class T>
-        int leading_electron_pid(const T & interaction)
+        int leading_proton_pid(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
-            int pid;
+            int pid = -1;
             
             
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
