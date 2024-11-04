@@ -15,10 +15,10 @@ namespace ana
 {
     // "Simple" variables that attach to a single interaction attribute.
     VARDLP_RECO(kCountParticles,vars::count_particles,cuts::no_cut);
-    VARDLP_RECO(kCountPrimaries,vars::count_primaries,cuts::no_cut);
+    //VARDLP_RECO(kCountPrimaries,vars::count_primaries,cuts::no_cut);
 
     VARDLP_TRUE(kCountParticlesTruth,vars::count_particles,cuts::no_cut);
-    VARDLP_TRUE(kCountPrimariesTruth,vars::count_primaries,cuts::no_cut);
+    //VARDLP_TRUE(kCountPrimariesTruth,vars::count_primaries,cuts::no_cut);
     VARDLP_RECO(kOpeningAngle_1e1p, vars::opening_angle, cuts::all_1e1p_cut);
     VARDLP_RECO(kElectronPolar_1e1p, vars::electron_polar_angle, cuts::all_1e1p_cut);
     VARDLP_RECO(kElectronAz_1e1p, vars::electron_azimuthal_angle, cuts::all_1e1p_cut);
