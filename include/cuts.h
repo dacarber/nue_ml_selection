@@ -469,20 +469,7 @@ namespace cuts
     template<class T>
         bool cathode_crossing(const T & particle)
         {
-            bool cc(!std::isnan(particle.start_point[0]) && !std::isnan(particle.end_point[0]));
-            if(cc && particle.volume_id == 0)
-            {
-                int p0(std::copysign(1, particle.start_point[0] + 210.215));
-                int p1(std::copysign(1, particle.end_point[0] + 210.215));
-                cc = p0 != p1;
-            }
-            else if(cc && particle.volume_id == 1)
-            {
-                int p0(std::copysign(1, particle.start_point[0] - 210.215));
-                int p1(std::copysign(1, particle.end_point[0] - 210.215));
-                cc = p0 != p1;
-            }
-            return cc;
+            return particle.is_cathode_crosser;
         }
 
     /**
