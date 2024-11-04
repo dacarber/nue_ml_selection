@@ -32,7 +32,7 @@ namespace vars
      * @return the image_id of the interaction/particle.
     */
     template<class T>
-        double image_id(const T & obj) { return obj.image_id; }
+        double image_id(const T & obj) { return 1; }
 
     /**
      * Variable for id (unique identifier for the object).
@@ -212,7 +212,7 @@ namespace vars
      * @return the neutrino energy.
     */
     template<class T>
-        double neutrino_energy(const T & interaction) { return 1000*interaction.nu_energy_init; }
+        double neutrino_energy(const T & interaction) { return 1000*interaction.energy_init; }
 
     /**
      * Variable for matched interaction flash time.
@@ -338,7 +338,7 @@ namespace vars
      * @return the particle overlap of the best match (IoU).
     */
     template<class T>
-        double overlap(const T & particle) { return particle.match.size() > 0 ? (double)particle.match_overlap[0] : 0.0; }
+        double overlap(const T & particle) { return particle.match_ids.size() > 0 ? (double)particle.match_overlap[0] : 0.0; }
 
     /**
      * Variable for the particles lowest x-coordinate.
@@ -637,9 +637,9 @@ namespace vars
                 {
                     if(part.pid == 4 && !part.is_primary && part.start_point[0] == p.end_point[0] && part.start_point[1] == p.end_point[1] && part.start_point[2] == p.end_point[2])
                     {
-                        double dot(p.truth_momentum[0] * part.truth_momentum[0] + p.truth_momentum[1] * part.truth_momentum[1] + p.truth_momentum[2] * part.truth_momentum[2]);
-                        double mag1(std::sqrt(std::pow(p.truth_momentum[0], 2) + std::pow(p.truth_momentum[1], 2) + std::pow(p.truth_momentum[2], 2)));
-                        double mag2(std::sqrt(std::pow(part.truth_momentum[0], 2) + std::pow(part.truth_momentum[1], 2) + std::pow(part.truth_momentum[2], 2)));
+                        double dot(p.truth_momentum[0] * part.momentum[0] + p.momentum[1] * part.momentum[1] + p.momentum[2] * part.momentum[2]);
+                        double mag1(std::sqrt(std::pow(p.momentum[0], 2) + std::pow(p.momentum[1], 2) + std::pow(p.momentum[2], 2)));
+                        double mag2(std::sqrt(std::pow(part.momentum[0], 2) + std::pow(part.momentum[1], 2) + std::pow(part.momentum[2], 2)));
                         cos = dot / (mag1 * mag2);
                     }
                 }
