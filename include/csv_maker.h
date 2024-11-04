@@ -87,7 +87,7 @@ const SpillMultiVar kInfoVar([](const caf::SRSpillProxy* sr)
                 if(cuts::matched(i))
                 {
                     OUT(output, "SIGNAL");
-                    const auto & r = sr->dlp[i.match[0]];
+                    const auto & r = sr->dlp[i.match_ids[0]];
                     write_pair(sr, i, r);
                 }
             }
@@ -104,7 +104,7 @@ const SpillMultiVar kInfoVar([](const caf::SRSpillProxy* sr)
         {
             if(cuts::matched(i))
             {
-                const auto & t = sr->dlp_true[i.match[0]];
+                const auto & t = sr->dlp_true[i.match_ids[0]];
                 OUT(output, "SELECTED");
                 write_pair(sr, t, i);
             }
