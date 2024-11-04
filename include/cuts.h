@@ -21,7 +21,7 @@ namespace cuts
      * @return true if the object is matched.
     */
     template<class T>
-        bool matched(const T & obj) { return obj.match.size() > 0; }
+        bool matched(const T & obj) { return obj.match_id.size() > 0; }
 
     /**
      * Apply a cut on the quality of the reconstruction using the overlap
@@ -31,7 +31,7 @@ namespace cuts
      * @return true if the object is well reconstructed.
     */
     template<class T>
-        bool wellreco(const T & obj) { return matched(obj) && obj.match[0] > 0.95; }
+        bool wellreco(const T & obj) { return matched(obj) && obj.match_id[0] > 0.95; }
 
     /**
      * Apply a cut on the validity of the flash match.
@@ -298,7 +298,15 @@ namespace cuts
      * @return true if the interaction is a neutrino interaction.
     */
     template<class T>
-        bool neutrino(const T & interaction) { return interaction.is_neutrino; }
+        bool neutrino(const T & interaction) { 
+            if(interaction.nu_id >= 0){
+                return true; 
+            }
+            else{
+                return false;
+            }
+
+        }
 
     /**
      * Define the true cosmic interaction classification.
@@ -307,7 +315,15 @@ namespace cuts
      * @return true if the interaction is a cosmic.
      */
     template<class T>
-        bool cosmic(const T & interaction) { return !interaction.is_neutrino; }
+        bool cosmic(const T & interaction) { 
+                if(interaction.nu_id < 0){
+                return true; 
+            }
+            else{
+                return false;
+            }
+
+        }
 
     /**
      * Define the true neutrino interaction classification.
