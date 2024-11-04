@@ -77,8 +77,8 @@
         std::vector<double> var;                                         \
         for(auto const& i : sr->dlp_true)                                \
         {                                                                \
-            if(CAT(i) && i.match.size() > 0 && SEL(sr->dlp[i.match[0]])) \
-                var.push_back(VAR(sr->dlp[i.match[0]]));                 \
+            if(CAT(i) && i.match_ids.size() > 0 && SEL(sr->dlp[i.match_ids[0]])) \
+                var.push_back(VAR(sr->dlp[i.match_ids[0]]));                 \
         }                                                                \
         return var;                                                      \
     })
@@ -102,7 +102,7 @@
         std::vector<double> var;                                              \
         for(auto const& i : sr->dlp)                                          \
         {                                                                     \
-            if(SEL(i) && i.match.size() > 0 && CAT(sr->dlp_true[i.match[0]])) \
+            if(SEL(i) && i.match_ids.size() > 0 && CAT(sr->dlp_true[i.match_ids[0]])) \
                 var.push_back(VAR(i));                                        \
         }                                                                     \
         return var;                                                           \
@@ -129,8 +129,8 @@
         std::vector<double> var;                                                \
         for(auto const& i : sr->dlp_true)                                       \
         {                                                                       \
-            if(CAT(i) && i.match.size() > 0 && SEL(sr->dlp[i.match[0]]))        \
-                var.push_back((RVAR(sr->dlp[i.match[0]]) - TVAR(i)) / TVAR(i)); \
+            if(CAT(i) && i.match_ids.size() > 0 && SEL(sr->dlp[i.match_ids[0]]))        \
+                var.push_back((RVAR(sr->dlp[i.match_ids[0]]) - TVAR(i)) / TVAR(i)); \
         }                                                                       \
         return var;                                                             \
     })
@@ -165,8 +165,8 @@
         {                                                                                        \
             for(auto const& p : i.particles)                                                     \
             {                                                                                    \
-                if(ICAT(i) && PCAT(p) && p.match.size() > 0 && SEL(*reco_particles[p.match[0]])) \
-                    var.push_back((RVAR(*reco_particles[p.match[0]]) - TVAR(p)) / TVAR(p));      \
+                if(ICAT(i) && PCAT(p) && p.match_ids.size() > 0 && SEL(*reco_particles[p.match_ids[0]])) \
+                    var.push_back((RVAR(*reco_particles[p.match_ids[0]]) - TVAR(p)) / TVAR(p));      \
             }                                                                                    \
         }                                                                                        \
         return var;                                                                              \
@@ -253,8 +253,8 @@
         {                                                                                        \
             for(auto const& p : i.particles)                                                     \
             {                                                                                    \
-                if(ICAT(i) && PCAT(p) && p.match.size() > 0 && SEL(*reco_particles[p.match[0]])) \
-                    var.push_back(VAR(*reco_particles[p.match[0]]));                             \
+                if(ICAT(i) && PCAT(p) && p.match_ids.size() > 0 && SEL(*reco_particles[p.match_ids[0]])) \
+                    var.push_back(VAR(*reco_particles[p.match_ids[0]]));                             \
             }                                                                                    \
         }                                                                                        \
         return var;                                                                              \
@@ -277,7 +277,7 @@
         std::vector<double> var;                               \
         for(auto const& i : sr->dlp_true)                      \
         {                                                      \
-            if(i.match.size() > 0 && SEL(sr->dlp[i.match[0]])) \
+            if(i.match_ids.size() > 0 && SEL(sr->dlp[i.match_ids[0]])) \
                 var.push_back(VAR(i));                         \
         }                                                      \
         return var;                                            \
@@ -300,8 +300,8 @@
         std::vector<double> var;                                                   \
         for(auto const& i : sr->dlp)                                               \
         {                                                                          \
-            if(SEL(i) && i.match.size() > 0)                                       \
-                var.push_back(VAR(sr->dlp_true[i.match[0]]));                      \
+            if(SEL(i) && i.match_ids.size() > 0)                                       \
+                var.push_back(VAR(sr->dlp_true[i.match_ids[0]]));                      \
         }                                                                          \
         return var;                                                                \
     })
