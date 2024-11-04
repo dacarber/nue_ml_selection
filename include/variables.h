@@ -141,13 +141,13 @@ namespace vars
             {
                 if(interaction.current_type == 0)
                 {
-                    if(abs(interaction.nu_pdg_code) == 12 )
+                    if(abs(interaction.pdg_code) == 12 )
                     {
                         if(interaction.nu_interaction_mode == 0) cat = 0;
-                        else if(interaction.nu_interaction_mode == 1) cat = 1;
-                        else if(interaction.nu_interaction_mode == 10) cat = 2;
-                        else if(interaction.nu_interaction_mode == 2) cat = 3;
-                        else if(interaction.nu_interaction_mode == 3) cat = 4;
+                        else if(interaction.interaction_mode == 1) cat = 1;
+                        else if(interaction.interaction_mode == 10) cat = 2;
+                        else if(interaction.interaction_mode == 2) cat = 3;
+                        else if(interaction.interaction_mode == 3) cat = 4;
                         else cat = 8;
                     }
                     else cat = 5;
