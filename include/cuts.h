@@ -21,7 +21,7 @@ namespace cuts
      * @return true if the object is matched.
     */
     template<class T>
-        bool matched(const T & obj) { return obj.match_id.size() > 0; }
+        bool matched(const T & obj) { return obj.is_matched.size() > 0; }
 
     /**
      * Apply a cut on the quality of the reconstruction using the overlap

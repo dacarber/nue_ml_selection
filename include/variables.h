@@ -139,7 +139,7 @@ namespace vars
 
             if(interaction.nu_id >= 0)
             {
-                if(interaction.nu_current_type == 0)
+                if(interaction.current_type == 0)
                 {
                     if(abs(interaction.nu_pdg_code) == 12 )
                     {
