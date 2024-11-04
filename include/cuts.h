@@ -40,7 +40,7 @@ namespace cuts
      * @return true if the interaction is flash matched and the time is valid.
     */
     template<class T>
-        bool valid_flashmatch(const T & interaction) { return !std::isnan(interaction.flash_time) && interaction.fmatched == 1; }
+        bool valid_flashmatch(const T & interaction) { return !std::isnan(interaction.flash_time) && interaction.is_flash_matched == 1; }
 
     /**
      * Count the primaries of the interaction with cuts applied to each particle.

@@ -103,7 +103,7 @@ namespace vars
         double category_topology(const T & interaction)
         {
             uint16_t cat(6);
-            if(interaction.is_neutrino)
+            if(interaction.nu_id >= 0)
             {
                 std::vector<uint32_t> counts(cuts::count_primaries(interaction));
                 if(counts[0] == 0 && counts[1] == 1 && counts[2] == 0)
@@ -137,7 +137,7 @@ namespace vars
         {
             double cat(7);
 
-            if(interaction.is_neutrino)
+            if(interaction.nu_id >= 0)
             {
                 if(interaction.nu_current_type == 0)
                 {
