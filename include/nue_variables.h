@@ -29,7 +29,7 @@ namespace vars
         double momentum(const T & particle)
         {
             if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
-                return std::sqrt(std::pow(particle.truth_momentum[0], 2) + std::pow(particle.truth_momentum[1], 2) + std::pow(particle.truth_momentum[2], 2));
+                return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2) + std::pow(particle.momentum[2], 2));
             else
                 return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2) + std::pow(particle.momentum[2], 2));
         }
@@ -44,7 +44,7 @@ namespace vars
         double polar_angle(const T & particle)
         {
             if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
-                return std::acos(particle.truth_start_dir[2]);
+                return std::acos(particle.start_dir[2]);
             else
                 return std::acos(particle.start_dir[2]);
         }
@@ -59,7 +59,7 @@ namespace vars
         double azimuthal_angle(const T & particle)
         {
             if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
-                return std::acos(particle.truth_start_dir[0] / std::sqrt(std::pow(particle.truth_start_dir[0], 2) + std::pow(particle.truth_start_dir[1], 2)));
+                return std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
             else
                 return std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
         }
@@ -86,7 +86,7 @@ namespace vars
                 x = x/r;
                 y = y/r;
                 z = z/r;
-                return std::acos(x *particle.truth_start_dir[0] + y *particle.truth_start_dir[1]+z *particle.truth_start_dir[2]);
+                return std::acos(x *particle.start_dir[0] + y *particle.start_dir[1]+z *particle.start_dir[2]);
             }
             else{
                 x = (31512.0380) - particle.start_point[0];
