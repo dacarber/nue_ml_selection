@@ -143,7 +143,7 @@ namespace vars
                 {
                     if(abs(interaction.pdg_code) == 12 )
                     {
-                        if(interaction.nu_interaction_mode == 0) cat = 0;
+                        if(interaction.interaction_mode == 0) cat = 0;
                         else if(interaction.interaction_mode == 1) cat = 1;
                         else if(interaction.interaction_mode == 10) cat = 2;
                         else if(interaction.interaction_mode == 2) cat = 3;
