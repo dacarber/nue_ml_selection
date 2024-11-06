@@ -143,16 +143,17 @@ namespace cuts
      */
     template<class T>
         bool containment_cut(const T & interaction) { 
-
-            bool passes(false);
-            if(p.is_primary)
-            {
-                if((p.pid > 1 && p.is_contained))
-                    passes = true;
+            for(const auto & p : interaction.particles){
+                bool passes(true);
+                if(p.is_primary)
+                {
+                    if((p.pid > 1 && p.is_contained))
+                        passes = false;
+                }
+                
+                //return interaction.is_contained; 
             }
             return passes;
-            //return interaction.is_contained; 
-
         }
 
     /**
