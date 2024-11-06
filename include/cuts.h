@@ -147,7 +147,7 @@ namespace cuts
             for(const auto & p : interaction.particles){
                 if(p.is_primary)
                 {
-                    if((p.pid > 1 && p.is_contained))
+                    if((p.pid > 1 && p.is_contained == false))
                         passes = false;
                 }
                 
