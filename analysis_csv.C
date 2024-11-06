@@ -17,7 +17,7 @@ using namespace ana;
  * the selection.
  * @return none.
 */
-void analysis()
+void analysis_csv()
 {
     /**
      * 1. NuMI Nu neutrino (full flux) + out-of-time cosmics collection charge only(v09_89_01p01).
