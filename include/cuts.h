@@ -142,9 +142,9 @@ namespace cuts
      * @return true if the vertex is contained.
      */
     template<class T>
-        bool containment_cut(const T & interaction) { 
+        bool containment_cut(const T & interaction) {
+            bool passes(true); 
             for(const auto & p : interaction.particles){
-                bool passes(true);
                 if(p.is_primary)
                 {
                     if((p.pid > 1 && p.is_contained))
