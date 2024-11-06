@@ -60,9 +60,9 @@ namespace cuts
                     double energy(p.pid > 1 ? p.csda_ke : p.calo_ke);
                     if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                         energy = p.energy_deposit;
-                    if(p.pid == 2 && energy > 143.425) // Muon greater than 50 cm.
+                    if(p.pid == 2 && energy > 25) // Muon greater than 50 cm.
                         ++counts[p.pid];
-                    else if((p.pid != 2 && p.pid < 2 && energy > 10) || (p.pid == 4 && energy > 40) || (p.pid == 3)) //
+                    else if((p.pid == 1 && energy >= 70) || (p.pid == 4 && energy > 40) || (p.pid == 3 && energy >25) || (p.pid == 0 && energy >25)) //
                         ++counts[p.pid];
                 }
             }
@@ -89,7 +89,7 @@ namespace cuts
                 if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
                     energy = p.energy_deposit;
 
-                if((p.pid == 2 && energy > 143.425) || (p.pid != 2 && p.pid < 4 && energy > 10) || (p.pid == 4 && energy > 40))
+                if((p.pid == 1 && energy > 70) || (p.pid != 1 && p.pid < 4 && energy > 25) || (p.pid == 4 && energy > 40))
                     passes = true;
             }
             return passes;
@@ -142,7 +142,18 @@ namespace cuts
      * @return true if the vertex is contained.
      */
     template<class T>
-        bool containment_cut(const T & interaction) { return interaction.is_contained; }
+        bool containment_cut(const T & interaction) { 
+
+            bool passes(false);
+            if(p.is_primary)
+            {
+                if((p.pid > 1 && p.is_contained))
+                    passes = true;
+            }
+            return passes;
+            //return interaction.is_contained; 
+
+        }
 
     /**
      * Apply a 1mu1p topological cut. The interaction must have a topology
@@ -289,7 +300,7 @@ namespace cuts
      * topological, and flash time cut.
      */
     template<class T>
-        bool all_1eX_cut(const T & interaction) { return topological_1eX_cut<T>(interaction) && fiducial_cut<T>(interaction) && flash_cut<T>(interaction) && containment_cut<T>(interaction); }
+        bool all_1eX_cut(const T & interaction) { return topological_1eX_cut<T>(interaction)  && flash_cut<T>(interaction) && containment_cut<T>(interaction); } //&& fiducial_cut<T>(interaction)
 
     /**
      * Defined the true neutrino interaction classification.
