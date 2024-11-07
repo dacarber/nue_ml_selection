@@ -35,7 +35,7 @@ std::ofstream output("output.log");
 */
 void write_pair(const caf::SRSpillProxy* sr, const caf::SRInteractionTruthDLPProxy& i, const caf::SRInteractionDLPProxy& j)
 {
-    output  << CSV(sr->hdr.run) << CSV(sr->hdr.evt) << CSV(sr->hdr.subrun) << CSV(hdr.src)
+    output  << CSV(sr->hdr.run) << CSV(sr->hdr.evt) << CSV(sr->hdr.subrun) << CSV(std::string(sr->hdr.sourceName))
             << CSV(i.nu_id) << CSV(vars::image_id(i)) << CSV(vars::id(i))
             << CSV(vars::category(i))
             << CSV(vars::category_topology(i))
