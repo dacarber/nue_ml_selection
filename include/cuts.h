@@ -225,7 +225,7 @@ namespace cuts
             if(!valid_flashmatch(interaction))
                 return false;
             else
-                return (interaction.flash_time >= -0.5) && (interaction.flash_time <= 10.0);
+                return (interaction.flash_time >= 0) && (interaction.flash_time <= 9.6);
         }
 
     /**
