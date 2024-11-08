@@ -53,7 +53,7 @@ void write_reco(const caf::SRSpillProxy* sr, const caf::SRInteractionDLPProxy& j
             << CSV(cuts::all_1eNp_cut(j))
             << CSV(cuts::all_1eX_cut(j))
             //<< CSV(cuts::crtpmt_veto_data(sr))
-            << CSV(j.volume_id)
+            //<< CSV(j.volume_id)
             << std::endl;
 }
 
