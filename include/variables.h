@@ -50,7 +50,7 @@ namespace vars
      * @return the cryostat of the interaction/particle.
     */
     template<class T>
-        double cryostat(const T & obj) { return 1//obj.volume_id; }
+        double cryostat(const T & obj) { return 1;//obj.volume_id; }
 
     /**
      * Variable for enumerating interaction categories. This is a basic
