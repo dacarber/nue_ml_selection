@@ -393,7 +393,7 @@ namespace vars
         double leading_electron_ke(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
-            double energy(calo_ke(interaction.particles[i]));
+            double energy(calo_ke(interaction.particles[i])/77.0777/0.81*81.3955);
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
             return energy;
