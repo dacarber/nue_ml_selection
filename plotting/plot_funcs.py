@@ -2,7 +2,7 @@ import numpy as np
 import uproot
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
-
+import matplotlib.colors as clr
 class PlotDescription:
     def __init__(self, k, cfg, output):
         plt.style.use('plot_style.mplstyle')
@@ -227,7 +227,8 @@ def plot_histogram_2d(rf, desc):
     contents, xedges, yedges = load_histograms(rf, desc.vars)
     x, y = np.meshgrid(xedges, yedges)
     pc = ax.pcolormesh(x, y, contents.transpose(), cmap='Blues')
-
+    ax.plot([50,1000],[50,1000], marker = 'o',ls = '-')
+    figure.colorbar(pc, ax=ax)
     ax.set_xlabel(desc.xlabel)
     ax.set_ylabel(desc.ylabel)
     figure.suptitle(desc.title)

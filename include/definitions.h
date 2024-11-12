@@ -77,8 +77,8 @@
         std::vector<double> var;                                         \
         for(auto const& i : sr->dlp_true)                                \
         {                                                                \
-            if(CAT(i) && i.match.size() > 0 && SEL(sr->dlp[i.match[0]])) \
-                var.push_back(VAR(sr->dlp[i.match[0]]));                 \
+            if(CAT(i) && i.match_ids.size() > 0 && SEL(sr->dlp[i.match_ids[0]])) \
+                var.push_back(VAR(sr->dlp[i.match_ids[0]]));                 \
         }                                                                \
         return var;                                                      \
     })
@@ -102,7 +102,7 @@
         std::vector<double> var;                                              \
         for(auto const& i : sr->dlp)                                          \
         {                                                                     \
-            if(SEL(i) && i.match.size() > 0 && CAT(sr->dlp_true[i.match[0]])) \
+            if(SEL(i) && i.match_ids.size() > 0 && CAT(sr->dlp_true[i.match_ids[0]])) \
                 var.push_back(VAR(i));                                        \
         }                                                                     \
         return var;                                                           \
@@ -129,8 +129,8 @@
         std::vector<double> var;                                                \
         for(auto const& i : sr->dlp_true)                                       \
         {                                                                       \
-            if(CAT(i) && i.match.size() > 0 && SEL(sr->dlp[i.match[0]]))        \
-                var.push_back((RVAR(sr->dlp[i.match[0]]) - TVAR(i)) / TVAR(i)); \
+            if(CAT(i) && i.match_ids.size() > 0 && SEL(sr->dlp[i.match_ids[0]]))        \
+                var.push_back((RVAR(sr->dlp[i.match_ids[0]]) - TVAR(i)) / TVAR(i)); \
         }                                                                       \
         return var;                                                             \
     })
@@ -165,8 +165,8 @@
         {                                                                                        \
             for(auto const& p : i.particles)                                                     \
             {                                                                                    \
-                if(ICAT(i) && PCAT(p) && p.match.size() > 0 && SEL(*reco_particles[p.match[0]])) \
-                    var.push_back((RVAR(*reco_particles[p.match[0]]) - TVAR(p)) / TVAR(p));      \
+                if(ICAT(i) && PCAT(p) && p.match_ids.size() > 0 && SEL(*reco_particles[p.match_ids[0]])) \
+                    var.push_back((RVAR(*reco_particles[p.match_ids[0]]) - TVAR(p)) / TVAR(p));      \
             }                                                                                    \
         }                                                                                        \
         return var;                                                                              \
@@ -253,8 +253,8 @@
         {                                                                                        \
             for(auto const& p : i.particles)                                                     \
             {                                                                                    \
-                if(ICAT(i) && PCAT(p) && p.match.size() > 0 && SEL(*reco_particles[p.match[0]])) \
-                    var.push_back(VAR(*reco_particles[p.match[0]]));                             \
+                if(ICAT(i) && PCAT(p) && p.match_ids.size() > 0 && SEL(*reco_particles[p.match_ids[0]])) \
+                    var.push_back(VAR(*reco_particles[p.match_ids[0]]));                             \
             }                                                                                    \
         }                                                                                        \
         return var;                                                                              \
@@ -277,7 +277,7 @@
         std::vector<double> var;                               \
         for(auto const& i : sr->dlp_true)                      \
         {                                                      \
-            if(i.match.size() > 0 && SEL(sr->dlp[i.match[0]])) \
+            if(i.match_ids.size() > 0 && SEL(sr->dlp[i.match_ids[0]])) \
                 var.push_back(VAR(i));                         \
         }                                                      \
         return var;                                            \
@@ -300,8 +300,8 @@
         std::vector<double> var;                                                   \
         for(auto const& i : sr->dlp)                                               \
         {                                                                          \
-            if(SEL(i) && i.match.size() > 0)                                       \
-                var.push_back(VAR(sr->dlp_true[i.match[0]]));                      \
+            if(SEL(i) && i.match_ids.size() > 0)                                       \
+                var.push_back(VAR(sr->dlp_true[i.match_ids[0]]));                      \
         }                                                                          \
         return var;                                                                \
     })
@@ -313,28 +313,36 @@
     VARDLP_TCAT(kCategoryTTP_NoCut,vars::category,cuts::no_cut);                                                \
     VARDLP_TCAT(kCategoryTTP_FVCut,vars::category,cuts::fiducial_cut);                                          \
     VARDLP_TCAT(kCategoryTTP_FVConCut,vars::category,cuts::fiducial_containment_cut);                           \
-    VARDLP_TCAT(kCategoryTTP_FVConTop1mu1pCut,vars::category,cuts::fiducial_containment_topological_1mu1p_cut); \
-    VARDLP_TCAT(kCategoryTTP_FVConTop1muNpCut,vars::category,cuts::fiducial_containment_topological_1muNp_cut); \
-    VARDLP_TCAT(kCategoryTTP_FVConTop1muXCut,vars::category,cuts::fiducial_containment_topological_1muX_cut);   \
-    VARDLP_TCAT(kCategoryTTP_All1mu1pCut,vars::category,cuts::all_1mu1p_cut);                                   \
-    VARDLP_TCAT(kCategoryTTP_All1muNpCut,vars::category,cuts::all_1muNp_cut);                                   \
-    VARDLP_TCAT(kCategoryTTP_All1muXCut,vars::category,cuts::all_1muX_cut);                                     \
+    VARDLP_TCAT(kCategoryTTP_FVConTop1e1pCut,vars::category,cuts::fiducial_containment_topological_1e1p_cut); \
+    VARDLP_TCAT(kCategoryTTP_FVConTop1eNpCut,vars::category,cuts::fiducial_containment_topological_1eNp_cut); \
+    VARDLP_TCAT(kCategoryTTP_FVConTop1eXCut,vars::category,cuts::fiducial_containment_topological_1eX_cut);   \
+    VARDLP_TCAT(kCategoryTTP_All1e1pCut,vars::category,cuts::all_1e1p_cut);                                   \
+    VARDLP_TCAT(kCategoryTTP_All1eNpCut,vars::category,cuts::all_1eNp_cut);                                   \
+    VARDLP_TCAT(kCategoryTTP_All1eXCut,vars::category,cuts::all_1eX_cut);                                     \
     VARDLP_RCAT(kCategoryPTT_NoCut,vars::category,cuts::no_cut);                                                \
     VARDLP_RCAT(kCategoryPTT_FVCut,vars::category,cuts::fiducial_cut);                                          \
     VARDLP_RCAT(kCategoryPTT_FVConCut,vars::category,cuts::fiducial_containment_cut);                           \
-    VARDLP_RCAT(kCategoryPTT_FVConTop1mu1pCut,vars::category,cuts::fiducial_containment_topological_1mu1p_cut); \
-    VARDLP_RCAT(kCategoryPTT_FVConTop1muNpCut,vars::category,cuts::fiducial_containment_topological_1muNp_cut); \
-    VARDLP_RCAT(kCategoryPTT_FVConTop1muXCut,vars::category,cuts::fiducial_containment_topological_1muX_cut);   \
-    VARDLP_RCAT(kCategoryPTT_All1mu1pCut,vars::category,cuts::all_1mu1p_cut);                                   \
-    VARDLP_RCAT(kCategoryPTT_All1muNpCut,vars::category,cuts::all_1muNp_cut);                                   \
-    VARDLP_RCAT(kCategoryPTT_All1muXCut,vars::category,cuts::all_1muX_cut);                                     \
+    VARDLP_RCAT(kCategoryPTT_FVConTop1e1pCut,vars::category,cuts::fiducial_containment_topological_1e1p_cut); \
+    VARDLP_RCAT(kCategoryPTT_FVConTop1eNpCut,vars::category,cuts::fiducial_containment_topological_1eNp_cut); \
+    VARDLP_RCAT(kCategoryPTT_FVConTop1eXCut,vars::category,cuts::fiducial_containment_topological_1eX_cut);   \
+    VARDLP_RCAT(kCategoryPTT_All1e1pCut,vars::category,cuts::all_1e1p_cut);                                   \
+    VARDLP_RCAT(kCategoryPTT_All1eNpCut,vars::category,cuts::all_1eNp_cut);                                   \
+    VARDLP_RCAT(kCategoryPTT_All1eXCut,vars::category,cuts::all_1eX_cut);                                     \
     VARDLP_RCAT(kCategoryTopologyPTT_NoCut,vars::category_topology,cuts::no_cut);                               \
-    VARDLP_RCAT(kCategoryTopologyPTT_All1mu1pCut,vars::category_topology,cuts::all_1mu1p_cut);                  \
-    VARDLP_RCAT(kCategoryTopologyPTT_All1muNpCut,vars::category_topology,cuts::all_1muNp_cut);                  \
-    VARDLP_RCAT(kCategoryTopologyPTT_All1muXCut,vars::category_topology,cuts::all_1muX_cut);                    \
-    VARDLP_RCAT(kCategoryInteractionModePTT_All1mu1pCut,vars::category_interaction_mode,cuts::all_1mu1p_cut);   \
-    VARDLP_RCAT(kCategoryInteractionModePTT_All1muNpCut,vars::category_interaction_mode,cuts::all_1muNp_cut);   \
-    VARDLP_RCAT(kCategoryInteractionModePTT_All1muXCut,vars::category_interaction_mode,cuts::all_1muX_cut);
+    VARDLP_RCAT(kCategoryTopologyPTT_All1e1pCut,vars::category_topology,cuts::all_1e1p_cut);                  \
+    VARDLP_RCAT(kCategoryTopologyPTT_All1eNpCut,vars::category_topology,cuts::all_1eNp_cut);                  \
+    VARDLP_RCAT(kCategoryTopologyPTT_All1eXCut,vars::category_topology,cuts::all_1eX_cut);                    \
+    VARDLP_RCAT(kCategoryInteractionModePTT_All1e1pCut,vars::category_interaction_mode,cuts::all_1e1p_cut);   \
+    VARDLP_RCAT(kCategoryInteractionModePTT_All1eNpCut,vars::category_interaction_mode,cuts::all_1eNp_cut);   \
+    VARDLP_RCAT(kCategoryInteractionModePTT_All1eXCut,vars::category_interaction_mode,cuts::all_1eX_cut);      \
+    VARDLP_TCAT(kCategoryTopologyTTP_NoCut,vars::category_topology,cuts::no_cut);                               \
+    VARDLP_TCAT(kCategoryTopologyTTP_All1e1pCut,vars::category_topology,cuts::all_1e1p_cut);                  \
+    VARDLP_TCAT(kCategoryTopologyTTP_All1eNpCut,vars::category_topology,cuts::all_1eNp_cut);                  \
+    VARDLP_TCAT(kCategoryTopologyTTP_All1eXCut,vars::category_topology,cuts::all_1eX_cut);                    \
+    VARDLP_TCAT(kCategoryInteractionModeTTP_All1e1pCut,vars::category_interaction_mode,cuts::all_1e1p_cut);   \
+    VARDLP_TCAT(kCategoryInteractionModeTTP_All1eNpCut,vars::category_interaction_mode,cuts::all_1eNp_cut);   \
+    VARDLP_TCAT(kCategoryInteractionModeTTP_All1eXCut,vars::category_interaction_mode,cuts::all_1eX_cut);      \
+    //VARDLP_RCAT(kCategoryTopologyPTT_All1e1pCut,vars::category_topology,cuts::all_1e1p_cut); 
 
 
 /**
@@ -347,12 +355,12 @@
     VARDLP_TCAT(NAME ## _NoCut,vars::VAR,cuts::no_cut);                                                         \
     VARDLP_TCAT(NAME ## _FVCut,vars::VAR,cuts::fiducial_cut);                                                   \
     VARDLP_TCAT(NAME ## _FVConCut,vars::VAR,cuts::fiducial_containment_cut);                                    \
-    VARDLP_TCAT(NAME ## _FVConTop1mu1pCut,vars::VAR,cuts::fiducial_containment_topological_1mu1p_cut);          \
-    VARDLP_TCAT(NAME ## _FVConTop1muNpCut,vars::VAR,cuts::fiducial_containment_topological_1muNp_cut);          \
-    VARDLP_TCAT(NAME ## _FVConTop1muXCut,vars::VAR,cuts::fiducial_containment_topological_1muX_cut);            \
-    VARDLP_TCAT(NAME ## _All1mu1pCut,vars::VAR,cuts::all_1mu1p_cut);                                            \
-    VARDLP_TCAT(NAME ## _All1muNpCut,vars::VAR,cuts::all_1muNp_cut);                                            \
-    VARDLP_TCAT(NAME ## _All1muXCut,vars::VAR,cuts::all_1muX_cut);
+    VARDLP_TCAT(NAME ## _FVConTop1e1pCut,vars::VAR,cuts::fiducial_containment_topological_1e1p_cut);          \
+    VARDLP_TCAT(NAME ## _FVConTop1eNpCut,vars::VAR,cuts::fiducial_containment_topological_1eNp_cut);          \
+    VARDLP_TCAT(NAME ## _FVConTop1eXCut,vars::VAR,cuts::fiducial_containment_topological_1eX_cut);            \
+    VARDLP_TCAT(NAME ## _All1e1pCut,vars::VAR,cuts::all_1e1p_cut);                                            \
+    VARDLP_TCAT(NAME ## _All1eNpCut,vars::VAR,cuts::all_1eNp_cut);                                            \
+    VARDLP_TCAT(NAME ## _All1eXCut,vars::VAR,cuts::all_1eX_cut);
 
 
 /**
@@ -365,11 +373,11 @@
     VARDLP_PTT(NAME ## _NoCut,vars::VAR,cuts::no_cut,cuts::no_cut);                                                \
     VARDLP_PTT(NAME ## _FVCut,vars::VAR,cuts::no_cut,cuts::fiducial_cut);                                          \
     VARDLP_PTT(NAME ## _FVConCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_cut);                           \
-    VARDLP_PTT(NAME ## _FVConTop1mu1pCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_topological_1mu1p_cut); \
-    VARDLP_PTT(NAME ## _FVConTop1muNpCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_topological_1muNp_cut); \
-    VARDLP_PTT(NAME ## _FVConTop1muXCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_topological_1muX_cut);   \
-    VARDLP_PTT(NAME ## _All1mu1pCut,vars::VAR,cuts::no_cut,cuts::all_1mu1p_cut);                                   \
-    VARDLP_PTT(NAME ## _All1muNpCut,vars::VAR,cuts::no_cut,cuts::all_1muNp_cut);                                   \
-    VARDLP_PTT(NAME ## _All1muXCut,vars::VAR,cuts::no_cut,cuts::all_1muX_cut);
+    VARDLP_PTT(NAME ## _FVConTop1e1pCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_topological_1e1p_cut); \
+    VARDLP_PTT(NAME ## _FVConTop1eNpCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_topological_1eNp_cut); \
+    VARDLP_PTT(NAME ## _FVConTop1eXCut,vars::VAR,cuts::no_cut,cuts::fiducial_containment_topological_1eX_cut);   \
+    VARDLP_PTT(NAME ## _All1e1pCut,vars::VAR,cuts::no_cut,cuts::all_1e1p_cut);                                   \
+    VARDLP_PTT(NAME ## _All1eNpCut,vars::VAR,cuts::no_cut,cuts::all_1eNp_cut);                                   \
+    VARDLP_PTT(NAME ## _All1eXCut,vars::VAR,cuts::no_cut,cuts::all_1eX_cut);
 
 #endif

@@ -32,7 +32,7 @@ namespace vars
      * @return the image_id of the interaction/particle.
     */
     template<class T>
-        double image_id(const T & obj) { return obj.image_id; }
+        double image_id(const T & obj) { return 1; }
 
     /**
      * Variable for id (unique identifier for the object).
@@ -50,7 +50,7 @@ namespace vars
      * @return the cryostat of the interaction/particle.
     */
     template<class T>
-        double cryostat(const T & obj) { return obj.volume_id; }
+        double cryostat(const T & obj) { return 1;}//obj.volume_id; }
 
     /**
      * Variable for enumerating interaction categories. This is a basic
@@ -72,29 +72,29 @@ namespace vars
         double category(const T & interaction)
         {
             double cat(7);
-            if(cuts::signal_1mu1p(interaction))
+            if(cuts::signal_1e1p(interaction))
             {
-                if(cuts::fiducial_containment_cut(interaction)) cat = 0;
+                if(cuts::containment_cut(interaction)) cat = 0;
                 else cat = 1;
             }
-            else if(cuts::signal_1muNp(interaction))
+            else if(cuts::signal_1eNp(interaction))
             {
-                if(cuts::fiducial_containment_cut(interaction)) cat = 2;
+                if(cuts::containment_cut(interaction)) cat = 2;
                 else cat = 3;
             }
-            else if(cuts::signal_1muX(interaction))
+            else if(cuts::signal_1eX(interaction))
             {
-                if(cuts::fiducial_containment_cut(interaction)) cat = 4;
+                if(cuts::containment_cut(interaction)) cat = 4;
                 else cat = 5;
             }
-            else if(cuts::other_nu_1muX(interaction)) cat = 6;
+            else if(cuts::other_nu_1eX(interaction)) cat = 6;
             return cat;
         }
 
     /**
      * Variable for enumerating interaction categories. This classifies the
      * interactions based on the visible final states.
-     * 0: 1mu1p, 1: 1mu0h, 2: 1muNp (N>1), 3: 1mu1p1pi, 4: nu_mu CC Other, 5: NC, 6: Cosmic
+     * 0: 1e1p, 1: 1e, 2: 1eNp (N>1), 3: 1e1p1pi, 4: nu_e CC Other, 5: NC, 6: Cosmic 7: Numu
      * @tparam T the type of interaction (true or reco).
      * @param interaction to apply the variable on.
      * @return the enumerated category of the interaction.
@@ -103,21 +103,23 @@ namespace vars
         double category_topology(const T & interaction)
         {
             uint16_t cat(6);
-            if(interaction.is_neutrino)
+            if(interaction.nu_id >= 0)
             {
                 std::vector<uint32_t> counts(cuts::count_primaries(interaction));
-                if(counts[0] == 0 && counts[1] == 0 && counts[2] == 1)
+                if(counts[1] == 1 && counts[2] == 0)
                 {
-                    if(counts[3] == 0 && counts[4] == 1 && interaction.is_contained && interaction.is_fiducial) cat = 0;
-                    else if(counts[3] == 0 && counts[4] == 1) cat = 7;
-                    else if(counts[3] == 0 && counts[4] == 0) cat = 1;
-                    else if(counts[3] == 0 && counts[4] > 1 && interaction.is_contained && interaction.is_fiducial) cat = 2;
-                    else if(counts[3] == 0 && counts[4] > 1) cat = 7;
-                    else if(counts[3] == 1 && counts[4] == 1) cat = 3;
-                    else if(interaction.nu_current_type == 0) cat = 4;
+                    if(counts[0] == 0 && counts[3] == 0 && counts[4] == 1) cat = 0; //&& interaction.is_fiducial
+                    //else if(counts[0] == 0 && counts[3] == 0 && counts[4] == 1) cat = 7;
+                    else if(counts[0] == 0 && counts[3] == 0 && counts[4] == 0) cat = 1;
+                    else if(counts[0] == 0 && counts[3] == 0 && counts[4] > 1) cat = 2; //&& interaction.is_fiducial
+                    //else if(counts[0] == 0 && counts[3] == 0 && counts[4] > 1) cat = 7;
+                    else if(counts[0] == 0 && counts[3] == 1 && counts[4] == 1) cat = 3;
+                    else if(interaction.current_type == 0) cat = 4;
                 }
-                else if(interaction.nu_current_type == 0) cat = 4;
-                else if(interaction.nu_current_type == 1) cat = 5;
+                else if(interaction.current_type == 0 && counts[2] == 1) cat = 7;
+                else if(interaction.current_type == 0) cat = 4;
+                else if(interaction.current_type == 1) cat = 5;
+                
             }
             return cat;
         }
@@ -135,17 +137,17 @@ namespace vars
         {
             double cat(7);
 
-            if(interaction.is_neutrino)
+            if(interaction.nu_id >= 0)
             {
-                if(interaction.nu_current_type == 0)
+                if(interaction.current_type == 0)
                 {
-                    if(abs(interaction.nu_pdg_code) == 14)
+                    if(abs(interaction.pdg_code) == 12 )
                     {
-                        if(interaction.nu_interaction_mode == 0) cat = 0;
-                        else if(interaction.nu_interaction_mode == 1) cat = 1;
-                        else if(interaction.nu_interaction_mode == 10) cat = 2;
-                        else if(interaction.nu_interaction_mode == 2) cat = 3;
-                        else if(interaction.nu_interaction_mode == 3) cat = 4;
+                        if(interaction.interaction_mode == 0) cat = 0;
+                        else if(interaction.interaction_mode == 1) cat = 1;
+                        else if(interaction.interaction_mode == 10) cat = 2;
+                        else if(interaction.interaction_mode == 2) cat = 3;
+                        else if(interaction.interaction_mode == 3) cat = 4;
                         else cat = 8;
                     }
                     else cat = 5;
@@ -194,10 +196,10 @@ namespace vars
                     }
                     else
                     {
-                        if(p.pid < 2) energy += p.calo_ke;
+                        if(p.pid < 2) energy += p.calo_ke/77.0777/0.81*81.3955;
                         else energy += p.csda_ke;
                     }
-                    if(p.pid == 2) energy += MUON_MASS;
+                    if(p.pid == 1) energy += ELECTRON_MASS;
                     else if(p.pid == 3) energy += PION_MASS;
                 }
             }
@@ -210,7 +212,7 @@ namespace vars
      * @return the neutrino energy.
     */
     template<class T>
-        double neutrino_energy(const T & interaction) { return 1000*interaction.nu_energy_init; }
+        double neutrino_energy(const T & interaction) { return 1000*interaction.energy_init; }
 
     /**
      * Variable for matched interaction flash time.
@@ -270,7 +272,7 @@ namespace vars
      * @return the calo_ke of the particle.
     */
     template<class T>
-        double calo_ke(const T & particle) { return particle.calo_ke; }
+        double calo_ke(const T & particle) { return particle.calo_ke; }//*.87*1.48*350*(1/362.83)*1.1
 
     /**
      * Variable for particle csda_ke (muons only).
@@ -279,7 +281,16 @@ namespace vars
      * @return the csda_ke of the particle (if a muon).
     */
     template<class T>
-        double csda_ke_muon(const T & particle) { return (cuts::muon(particle)) ? csda_ke(particle) : -1; }
+        double csda_ke_proton(const T & particle) { return (cuts::proton(particle)) ? csda_ke(particle) : -1; }
+
+    /**
+     * Variable for particle calo_ke (electrons only).
+     * @tparam T the type of particle (true or reco).
+     * @param particle to apply the variable on.
+     * @return the calo_ke of the particle (if a electron).
+    */
+    template<class T>
+        double calo_ke_electron(const T & particle) { return (cuts::electron(particle)) ? calo_ke(particle) : -1; }
 
     /**
      * Variable for true particle energy deposited.
@@ -327,7 +338,7 @@ namespace vars
      * @return the particle overlap of the best match (IoU).
     */
     template<class T>
-        double overlap(const T & particle) { return particle.match.size() > 0 ? (double)particle.match_overlap[0] : 0.0; }
+        double overlap(const T & particle) { return particle.match_ids.size() > 0 ? (double)particle.match_overlaps[0] : 0.0; }
 
     /**
      * Variable for the particles lowest x-coordinate.
@@ -360,7 +371,7 @@ namespace vars
             for(size_t i(0); i < interaction.particles.size(); ++i)
             {
                 const auto & p = interaction.particles[i];
-                double energy(csda_ke(p));
+                double energy(calo_ke(p));
                 if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                     energy = ke_init(p);
                 if(p.pid == pid && energy > leading_ke)
@@ -371,7 +382,7 @@ namespace vars
             }
             return index;
         }
-    
+
     /**
      * Variable for finding the leading muon kinetic energy.
      * @tparam T the type of interaction (true or reco).
@@ -379,15 +390,33 @@ namespace vars
      * @return the kinetic energy of the leading muon.
     */
     template<class T>
-        double leading_muon_ke(const T & interaction)
+        double leading_electron_ke(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
-            double energy(csda_ke(interaction.particles[i]));
+            size_t i(leading_particle_index(interaction, 1));
+            double energy(calo_ke(interaction.particles[i])/77.0777/0.81*81.3955);
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
             return energy;
         }
-    
+    /**
+     * Variable for finding the leading muon kinetic energy.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the kinetic energy of the leading muon.
+    */
+    template<class T>
+        int leading_electron_pid(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 1));
+            int pid = -1;
+            
+            
+            if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
+                pid = interaction.particles[i].pid;
+            else
+                pid = interaction.particles[i].pid;
+            return pid;
+        }
     /**
      * Variable for finding the leading proton kinetic energy.
      * @tparam T the type of interaction (true or reco).
@@ -403,7 +432,25 @@ namespace vars
                 energy = ke_init(interaction.particles[i]);
             return energy;
         }
-
+    /**
+     * Variable for finding the leading muon kinetic energy.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the kinetic energy of the leading muon.
+    */
+    template<class T>
+        int leading_proton_pid(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 4));
+            int pid = -1;
+            
+            
+            if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
+                pid = interaction.particles[i].pid;
+            else
+                pid = interaction.particles[i].pid;
+            return pid;
+        }
     /**
      * Variable for the transverse momentum of a particle.
      * @tparam T the type of particle (true or reco).
@@ -414,7 +461,7 @@ namespace vars
         double transverse_momentum(const T & particle)
         {
             if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
-                return std::sqrt(std::pow(particle.truth_momentum[0], 2) + std::pow(particle.truth_momentum[1], 2));
+                return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2));
             else
                 return std::sqrt(std::pow(particle.momentum[0], 2) + std::pow(particle.momentum[1], 2));
         }
@@ -426,9 +473,9 @@ namespace vars
      * @return the transverse momentum of the leading muon.
     */
     template<class T>
-        double leading_muon_pt(const T & interaction)
+        double leading_electron_pt(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
+            size_t i(leading_particle_index(interaction, 1));
             return transverse_momentum(interaction.particles[i]);
         }
 
@@ -483,9 +530,9 @@ namespace vars
      * @return the cosine theta_xz of the leading muon.
     */
     template<class T>
-        double leading_muon_cosine_theta_xz(const T & interaction)
+        double leading_electron_cosine_theta_xz(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
+            size_t i(leading_particle_index(interaction, 1));
             return cosine_theta_xz(interaction.particles[i]);
         }
 
@@ -513,9 +560,9 @@ namespace vars
     template<class T>
         double cosine_opening_angle(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
-            double num(m.start_dir[0] * p.start_dir[0] + m.start_dir[1] * p.start_dir[1] + m.start_dir[2] * p.start_dir[2]);
+            double num(e.start_dir[0] * p.start_dir[0] + e.start_dir[1] * p.start_dir[1] + e.start_dir[2] * p.start_dir[2]);
             return num;
         }
 
@@ -530,13 +577,12 @@ namespace vars
     template<class T>
         double cosine_opening_angle_transverse(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
-            double num(m.start_dir[0] * p.start_dir[0] + m.start_dir[1] * p.start_dir[1]);
-            num /= std::sqrt((1-m.start_dir[2]*m.start_dir[2])*(1-p.start_dir[2]*p.start_dir[2]));
+            double num(e.start_dir[0] * p.start_dir[0] + e.start_dir[1] * p.start_dir[1]);
+            num /= std::sqrt((1-e.start_dir[2]*e.start_dir[2])*(1-p.start_dir[2]*p.start_dir[2]));
             return num;
         }
-
     /**
      * Variable for the softmax score of the leading muon.
      * @tparam T the type of interaction (true or reco).
@@ -544,10 +590,10 @@ namespace vars
      * @return the softmax score of the leading muon.
     */
     template<class T>
-        double leading_muon_softmax(const T & interaction)
+        double leading_electron_softmax(const T & interaction)
         {
-            auto & m(interaction.particles[leading_particle_index(interaction, 2)]);
-            return m.pid_scores[2];
+            auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
+            return e.pid_scores[2];
         }
     
     /**
@@ -590,9 +636,9 @@ namespace vars
                 {
                     if(part.pid == 4 && !part.is_primary && part.start_point[0] == p.end_point[0] && part.start_point[1] == p.end_point[1] && part.start_point[2] == p.end_point[2])
                     {
-                        double dot(p.truth_momentum[0] * part.truth_momentum[0] + p.truth_momentum[1] * part.truth_momentum[1] + p.truth_momentum[2] * part.truth_momentum[2]);
-                        double mag1(std::sqrt(std::pow(p.truth_momentum[0], 2) + std::pow(p.truth_momentum[1], 2) + std::pow(p.truth_momentum[2], 2)));
-                        double mag2(std::sqrt(std::pow(part.truth_momentum[0], 2) + std::pow(part.truth_momentum[1], 2) + std::pow(part.truth_momentum[2], 2)));
+                        double dot(p.momentum[0] * part.momentum[0] + p.momentum[1] * part.momentum[1] + p.momentum[2] * part.momentum[2]);
+                        double mag1(std::sqrt(std::pow(p.momentum[0], 2) + std::pow(p.momentum[1], 2) + std::pow(p.momentum[2], 2)));
+                        double mag2(std::sqrt(std::pow(part.momentum[0], 2) + std::pow(part.momentum[1], 2) + std::pow(part.momentum[2], 2)));
                         cos = dot / (mag1 * mag2);
                     }
                 }
