@@ -196,7 +196,7 @@ namespace vars
                     }
                     else
                     {
-                        if(p.pid < 2) energy += p.calo_ke/77.0777/0.81*81.3955;
+                        if(p.pid < 2) energy += p.calo_ke;
                         else energy += p.csda_ke;
                     }
                     if(p.pid == 1) energy += ELECTRON_MASS;
@@ -393,7 +393,7 @@ namespace vars
         double leading_electron_ke(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
-            double energy(calo_ke(interaction.particles[i])/77.0777/0.81*81.3955);
+            double energy(calo_ke(interaction.particles[i]));
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
             return energy;
