@@ -94,7 +94,7 @@ namespace vars
     /**
      * Variable for enumerating interaction categories. This classifies the
      * interactions based on the visible final states.
-     * 0: 1e1p, 1: 1e, 2: 1eNp (N>1), 3: 1e1p1pi, 4: nu_e CC Other, 5: NC, 6: Cosmic 7: Numu
+     * 0: 1e1p, 1: 1e, 2: 1eNp (N>1), 3: 1e1p1pi, 4: nu_e CC Other, 5: NC, 6: Cosmic 7: Numu 8: uncontained
      * @tparam T the type of interaction (true or reco).
      * @param interaction to apply the variable on.
      * @return the enumerated category of the interaction.
@@ -108,11 +108,11 @@ namespace vars
                 std::vector<uint32_t> counts(cuts::count_primaries(interaction));
                 if(counts[1] == 1 && counts[2] == 0)
                 {
-                    if(counts[0] == 0 && counts[3] == 0 && counts[4] == 1) cat = 0; //&& interaction.is_fiducial
-                    //else if(counts[0] == 0 && counts[3] == 0 && counts[4] == 1) cat = 7;
+                    if(counts[0] == 0 && counts[3] == 0 && counts[4] == 1 && cuts::containment_cut(interaction)) cat = 0; //&& interaction.is_fiducial
+                    else if(counts[0] == 0 && counts[3] == 0 && counts[4] == 1) cat = 8;
                     else if(counts[0] == 0 && counts[3] == 0 && counts[4] == 0) cat = 1;
-                    else if(counts[0] == 0 && counts[3] == 0 && counts[4] > 1) cat = 2; //&& interaction.is_fiducial
-                    //else if(counts[0] == 0 && counts[3] == 0 && counts[4] > 1) cat = 7;
+                    else if(counts[0] == 0 && counts[3] == 0 && counts[4] > 1 && cuts::containment_cut(interaction)) cat = 2; //&& interaction.is_fiducial
+                    else if(counts[0] == 0 && counts[3] == 0 && counts[4] > 1) cat = 8;
                     else if(counts[0] == 0 && counts[3] == 1 && counts[4] == 1) cat = 3;
                     else if(interaction.current_type == 0) cat = 4;
                 }

@@ -26,6 +26,8 @@ void analysis_csv()
 
     //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/NuMI_Nu/v09_89_01p01/merged_caf/*.flat.root", "spectra_nucosmics.root", -1, 9.36E19 ); //All plane charge
     SpecContainer spectra("/pnfs/icarus/persistent/users/dcarber/Nue_analysis/flat_cafs/collection_plane_v09_89_01p01/NuMI_nu_corsika_collection_part_*.root", "spectra_nucosmics.root", -1, -1 ); //Collection plane only charge
+    //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/trouble-shoot/collection/merged_cafs/*.flat.root", "spectra_nucosmics.root", -1, -1 ); //All plane charge
+    SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/trouble-shoot/all-planes/merged_cafs/*.flat.root", "spectra_nucosmics.root", -1, -1 ); //All plane charge
     spectra.add_spectrum1d("sSelected", Binning::Simple(1, 0, 2), kInfoVar);
 
     spectra.run();

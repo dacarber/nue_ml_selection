@@ -216,7 +216,7 @@ void numi_data()
 {
 
     SpecContainer spectra("/pnfs/icarus/persistent/users/lkashur/numi_run2_v09_89_01p01/output_flat/*.flat.root", "spectra_data_new_weights.root", -1, -1);
-
+    //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/Run2OnbeamNuMImajority/v09_89_01p01/all_planes/merged_files/*.flat.root", "spectra_data_new_weights.root", -1, -1);
 
 
     spectra.add_spectrum1d("sDataInfo", Binning::Simple(1, 0, 2), kDataInfo);
