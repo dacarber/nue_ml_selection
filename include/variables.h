@@ -364,10 +364,10 @@ namespace vars
      * @return the index of the leading particle (highest KE). 
     */
     template <class T>
-        size_t leading_particle_index(const T & interaction, uint16_t pid)
+        int leading_particle_index(const T & interaction, uint16_t pid)
         {
             double leading_ke(0);
-            size_t index(-1);
+            int index(-1);
             for(size_t i(0); i < interaction.particles.size(); ++i)
             {
                 const auto & p = interaction.particles[i];
@@ -392,7 +392,7 @@ namespace vars
     template<class T>
         double leading_electron_ke(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             if (i==-1){
                 return -1;
             }
@@ -410,7 +410,7 @@ namespace vars
     template<class T>
         int leading_electron_pid(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             if (i==-1){
                 return -1;
             }
@@ -432,7 +432,7 @@ namespace vars
     template<class T>
         double leading_proton_ke(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             if (i==-1){
                 return -1;
             }
@@ -450,7 +450,7 @@ namespace vars
     template<class T>
         int leading_proton_pid(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             if (i==-1){
                 return -1;
             }
@@ -487,7 +487,7 @@ namespace vars
     template<class T>
         double leading_electron_pt(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             if (i==-1){
                 return -1;
             }
@@ -503,7 +503,7 @@ namespace vars
     template<class T>
         double leading_proton_pt(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             if (i==-1){
                 return -1;
             }
@@ -550,7 +550,7 @@ namespace vars
     template<class T>
         double leading_electron_cosine_theta_xz(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             if (i==-1){
                 return -1;
             }
@@ -566,7 +566,7 @@ namespace vars
     template<class T>
         double leading_proton_cosine_theta_xz(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             if (i==-1){
                 return -1;
             }
@@ -652,7 +652,7 @@ namespace vars
         double proton_scattering_cosine(const T & interaction)
         {
             double cos(-2);
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             if(interaction.particles.size() <= i)
                 return cos;
             auto & p(interaction.particles[i]);
@@ -686,8 +686,8 @@ namespace vars
     template<class T>
         double leading_proton_overlap(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
-            if (i==-1){
+            int i(leading_particle_index(interaction, 4));
+            if (i == -1){
                 return -1;
             }
             /**

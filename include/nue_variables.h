@@ -142,7 +142,7 @@ namespace vars
     template<class T>
         double leading_muon_ke(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 2));
+            int i(leading_particle_index(interaction, 2));
             double energy(csda_ke(interaction.particles[i]));
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
@@ -216,7 +216,7 @@ namespace vars
     template<class T>
         double leading_proton_p(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             return momentum(interaction.particles[i]);
         }
     /**
@@ -229,7 +229,7 @@ namespace vars
     template<class T>
         double true_leading_proton_p(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             return momentum(interaction.truth_particles[i]);
         }
     
@@ -242,7 +242,7 @@ namespace vars
     template<class T>
         double electron_polar_angle(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             return polar_angle(interaction.particles[i]);
         }
 
@@ -255,7 +255,7 @@ namespace vars
     template<class T>
         double electron_azimuthal_angle(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             return azimuthal_angle(interaction.particles[i]);
         }
     /**
@@ -267,13 +267,13 @@ namespace vars
     template<class T>
         double electron_NuMI_angle(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             return NuMI_angle(interaction.particles[i]);
         }
     template<class T>
         double proton_polar_angle(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             return polar_angle(interaction.particles[i]);
         }
 
@@ -286,7 +286,7 @@ namespace vars
     template<class T>
         double proton_azimuthal_angle(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             return azimuthal_angle(interaction.particles[i]);
         }
     /**
@@ -430,7 +430,7 @@ namespace vars
     template<class T>
         double electron_softmax(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 1));
+            int i(leading_particle_index(interaction, 1));
             return interaction.particles[i].pid_scores[1];
         }
     
@@ -445,7 +445,7 @@ namespace vars
     template<class T>
         double proton_softmax(const T & interaction)
         {
-            size_t i(leading_particle_index(interaction, 4));
+            int i(leading_particle_index(interaction, 4));
             return interaction.particles[i].pid_scores[4];
         }
     
