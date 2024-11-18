@@ -49,6 +49,7 @@ void write_reco(const caf::SRSpillProxy* sr, const caf::SRInteractionDLPProxy& j
             << CSV(vars::alphaT(j))
             << CSV(vars::electron_softmax(j))
             << CSV(vars::proton_softmax(j))
+            << CSV(vars::non_primary_number(j))
             << CSV(cuts::all_1e1p_cut(j))
             << CSV(cuts::all_1eNp_cut(j))
             << CSV(cuts::all_1eX_cut(j))

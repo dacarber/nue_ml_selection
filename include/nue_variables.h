@@ -148,7 +148,33 @@ namespace vars
                 energy = ke_init(interaction.particles[i]);
             return energy;
         }
-    
+    /**
+     * Variable for finding the leading muon kinetic energy.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the kinetic energy of the leading muon.
+    */
+    template<class T>
+        int non_primary_number(const T & interaction)
+        {
+            int num_par(0);
+            for(const auto & p : interaction.particles)
+            {   double energy(p.pid > 1 ? p.csda_ke : p.calo_ke);
+                if(p.is_primary == false)
+                {
+                    num_par+=1;                    
+                }
+                else
+                {
+                    if (p.pid == 0 and energy <= 70) num_par+=1;
+                    else if (p.pid == 1 and energy <= 25) num_par+=1;
+                    else if (p.pid == 2 and energy <= 25) num_par+=1;
+                    else if (p.pid == 3 and energy <= 25) num_par+=1;
+                    else if (p.pid == 4 and energy <= 40) num_par+=1;
+                }
+            }
+            return num_par;
+        }
     /**
      * Variable for finding the leading proton kinetic energy.
      * @tparam T the type of interaction (true or reco).

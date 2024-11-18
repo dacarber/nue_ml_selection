@@ -367,7 +367,7 @@ namespace vars
         size_t leading_particle_index(const T & interaction, uint16_t pid)
         {
             double leading_ke(0);
-            size_t index(0);
+            size_t index(-1);
             for(size_t i(0); i < interaction.particles.size(); ++i)
             {
                 const auto & p = interaction.particles[i];
@@ -393,6 +393,9 @@ namespace vars
         double leading_electron_ke(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
+            if (i==-1){
+                return -1;
+            }
             double energy(calo_ke(interaction.particles[i]));
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
@@ -408,6 +411,9 @@ namespace vars
         int leading_electron_pid(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
+            if (i==-1){
+                return -1;
+            }
             int pid = -1;
             
             
@@ -427,6 +433,9 @@ namespace vars
         double leading_proton_ke(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
+            if (i==-1){
+                return -1;
+            }
             double energy(csda_ke(interaction.particles[i]));
             if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                 energy = ke_init(interaction.particles[i]);
@@ -442,6 +451,9 @@ namespace vars
         int leading_proton_pid(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
+            if (i==-1){
+                return -1;
+            }
             int pid = -1;
             
             
@@ -476,6 +488,9 @@ namespace vars
         double leading_electron_pt(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
+            if (i==-1){
+                return -1;
+            }
             return transverse_momentum(interaction.particles[i]);
         }
 
@@ -489,6 +504,9 @@ namespace vars
         double leading_proton_pt(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
+            if (i==-1){
+                return -1;
+            }
             return transverse_momentum(interaction.particles[i]);
         }
     
@@ -533,6 +551,9 @@ namespace vars
         double leading_electron_cosine_theta_xz(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 1));
+            if (i==-1){
+                return -1;
+            }
             return cosine_theta_xz(interaction.particles[i]);
         }
 
@@ -546,6 +567,9 @@ namespace vars
         double leading_proton_cosine_theta_xz(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
+            if (i==-1){
+                return -1;
+            }
             return cosine_theta_xz(interaction.particles[i]);
         }
     
@@ -593,6 +617,9 @@ namespace vars
         double leading_electron_softmax(const T & interaction)
         {
             auto & e(interaction.particles[leading_particle_index(interaction, 1)]);
+            if (e==-1){
+                return -1;
+            }
             return e.pid_scores[2];
         }
     
@@ -606,6 +633,9 @@ namespace vars
         double leading_proton_softmax(const T & interaction)
         {
             auto & p(interaction.particles[leading_particle_index(interaction, 4)]);
+               if (p==-1){
+                return -1;
+            }
             return p.pid_scores[4];
         }
 
@@ -657,6 +687,9 @@ namespace vars
         double leading_proton_overlap(const T & interaction)
         {
             size_t i(leading_particle_index(interaction, 4));
+            if (i==-1){
+                return -1;
+            }
             /**
              * Check that the leading particle is actually a proton.
             */
