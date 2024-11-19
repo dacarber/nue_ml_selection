@@ -117,8 +117,8 @@ namespace vars
                     else if(interaction.current_type == 0) cat = 4;
                 }
                 else if(interaction.current_type == 0 && counts[2] == 1) cat = 7;
-                else if(interaction.current_type == 0 && intercation.pdg_code == 12) cat = 4;
-                else if(interaction.current_type == 0 && intercation.pdg_code == 14) cat = 7;
+                else if(interaction.current_type == 0 && interaction.pdg_code == 12) cat = 4;
+                else if(interaction.current_type == 0 && interaction.pdg_code == 14) cat = 7;
                 else if(interaction.current_type == 1) cat = 5;
                 
             }
@@ -685,7 +685,7 @@ namespace vars
      * @return the transverse momentum of the primary particles.
     */
     template<class T>
-        double interaction_start_x(const T & interaction)
+        double interaction_start_y(const T & interaction)
         {
             double y(interaction.vertex[1]);
             return y;
@@ -697,7 +697,7 @@ namespace vars
      * @return the transverse momentum of the primary particles.
     */
     template<class T>
-        double interaction_start_x(const T & interaction)
+        double interaction_start_z(const T & interaction)
         {
             double z(interaction.vertex[2]);
             return z;
