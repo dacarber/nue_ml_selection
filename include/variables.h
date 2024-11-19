@@ -117,7 +117,8 @@ namespace vars
                     else if(interaction.current_type == 0) cat = 4;
                 }
                 else if(interaction.current_type == 0 && counts[2] == 1) cat = 7;
-                else if(interaction.current_type == 0) cat = 4;
+                else if(interaction.current_type == 0 && intercation.pdg_code == 12) cat = 4;
+                else if(interaction.current_type == 0 && intercation.pdg_code == 14) cat = 7;
                 else if(interaction.current_type == 1) cat = 5;
                 
             }
@@ -662,6 +663,60 @@ namespace vars
             */
             if(interaction.particles[i].pid == 4)
                 return overlap(interaction.particles[i]);
+            else
+                return -1;
+        }
+    /**
+     * Variable for the transverse momentum of the interaction.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the transverse momentum of the primary particles.
+    */
+    template<class T>
+        double interaction_start_x(const T & interaction)
+        {
+            double x(interaction.vertex[0]);
+            return x;
+        }
+        /**
+     * Variable for the transverse momentum of the interaction.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the transverse momentum of the primary particles.
+    */
+    template<class T>
+        double interaction_start_x(const T & interaction)
+        {
+            double y(interaction.vertex[1]);
+            return y;
+        }
+        /**
+     * Variable for the transverse momentum of the interaction.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the transverse momentum of the primary particles.
+    */
+    template<class T>
+        double interaction_start_x(const T & interaction)
+        {
+            double z(interaction.vertex[2]);
+            return z;
+        }
+    /**
+     * Variable for the overlap fraction of the leading proton.
+     * @tparam T the type of interaction (true or reco).
+     * @param interaction to apply the variable on.
+     * @return the overlap fraction of the leading proton.
+    */
+    template<class T>
+        double leading_electron_size(const T & interaction)
+        {
+            size_t i(leading_particle_index(interaction, 1));
+            /**
+             * Check that the leading particle is actually a electron.
+            */
+            if(interaction.particles[i].pid == 1)
+                return interaction.particles[i].size;
             else
                 return -1;
         }
