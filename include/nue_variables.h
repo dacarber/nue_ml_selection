@@ -135,7 +135,7 @@ namespace vars
             dir_vector[0] = dir_vector[0]/r;
             dir_vector[1] = dir_vector[1]/r;
             dir_vector[2] = dir_vector[2]/r;                                      
-            if(dir_vector[1] >0);
+            if(dir_vector[1] >0)
                 return std::acos(dir_vector[0] / std::sqrt(std::pow(dir_vector[0], 2) + std::pow(dir_vector[1], 2)));
             else
                 return -std::acos(dir_vector[0] / std::sqrt(std::pow(dir_vector[0], 2) + std::pow(dir_vector[1], 2)));
@@ -386,10 +386,6 @@ namespace vars
             pL = p.Dot(beamdir) * beamdir;
             pT = p - pL;
 
-            pT0 += pT[0];
-            pT1 += pT[1];
-            pT2 += pT[2];
-
                                                                                                                                                                                                                                           
         
         return pT;
@@ -448,7 +444,7 @@ namespace vars
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
             TVector3 delta_p = plT+ppT;
-            return delta_p.Mag;
+            return delta_p.Mag();
         }
     template<class T>
         double delta_alphaT(const T & interaction)
@@ -456,7 +452,7 @@ namespace vars
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
             TVector3 delta_p = plT+ppT;
-            double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag * delta_p.Mag));
+            double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag() * delta_p.Mag()));
             return delta_a;
         }
     template<class T>
@@ -464,7 +460,7 @@ namespace vars
         {
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
-            double delta_phi = std::acos(-plT.Dot(ppT)/(plT.Mag * ppT.Mag));
+            double delta_phi = std::acos(-plT.Dot(ppT)/(plT.Mag() * ppT.Mag()));
             return delta_phi;
         }
 
@@ -485,17 +481,6 @@ namespace vars
                     {
                         if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                         {
-                            std::vector<double> dir_vector(3,0);
-                            std::vector<double> z_axis = {0,0,1};
-                            dir_vector[0] = particle.start_point[0] - (31512.0380);
-                            dir_vector[1] = particle.start_point[1] - (3364.4912);
-                            dir_vector[2] = particle.start_point[2] - (73363.2532);
-                            r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
-                            dir_vector[0] = dir_vector[0]/r;
-                            dir_vector[1] = dir_vector[1]/r;
-                            dir_vector[2] = dir_vector[2]/r;
-
-                            std::vector<double> cross_product = {-dir_vector[1],-dir_vector[0],0}
 
 
                             hpx += p.momentum[0];
@@ -541,9 +526,7 @@ namespace vars
                     {
                         if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                         {
-                            x = (31512.0380) - particle.start_point[0];
-                            y = (3364.4912) - particle.start_point[1];
-                            z = (73363.2532) - particle.start_point[2];
+                            
                             lpx += p.momentum[0];
                             lpy += p.momentum[1];
                         }
