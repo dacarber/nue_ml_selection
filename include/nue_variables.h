@@ -445,7 +445,7 @@ namespace vars
         {
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
-            TVector3 delta_p = plT+ppT;
+            TVector3 delta_p = abs(plT+ppT);
             return delta_p.Mag();
         }
     template<class T>
@@ -453,7 +453,7 @@ namespace vars
         {
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
-            TVector3 delta_p = plT+ppT;
+            TVector3 delta_p = abs(plT+ppT);
             double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag() * delta_p.Mag()));
             return delta_a;
         }
