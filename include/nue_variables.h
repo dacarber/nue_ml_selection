@@ -59,7 +59,7 @@ namespace vars
     template<class T>
         double azimuthal_angle(const T & particle)
         {
-            if(particle.start_dir[1] >0);
+            if(particle.start_dir[1] >0)
                 return std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
             else
                 return -std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
@@ -359,7 +359,7 @@ namespace vars
         dir_vector[0] = interaction.vertex[0] - (31512.0380);
         dir_vector[1] = interaction.vertex[1] - (3364.4912);
         dir_vector[2] = interaction.vertex[2] - (73363.2532);
-        r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+        double r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
         dir_vector[0] = dir_vector[0]/r;
         dir_vector[1] = dir_vector[1]/r;
         dir_vector[2] = dir_vector[2]/r;                                                                                                                                                                                              
@@ -379,9 +379,9 @@ namespace vars
 
             
 
-            p.SetX(part.momentum[0]);
-            p.SetY(part.momentum[1]);
-            p.SetZ(part.momentum[2]);
+            p.SetX(particle.momentum[0]);
+            p.SetY(particle.momentum[1]);
+            p.SetZ(particle.momentum[2]);
 
             pL = p.Dot(beamdir) * beamdir;
             pT = p - pL;
@@ -403,14 +403,14 @@ namespace vars
         dir_vector[0] = interaction.vertex[0] - (31512.0380);
         dir_vector[1] = interaction.vertex[1] - (3364.4912);
         dir_vector[2] = interaction.vertex[2] - (73363.2532);
-        r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+        double r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
         dir_vector[0] = dir_vector[0]/r;
         dir_vector[1] = dir_vector[1]/r;
         dir_vector[2] = dir_vector[2]/r;                                                                                                                                                                                              
         TVector3 beamdir(dir_vector[0], dir_vector[1], dir_vector[2]); // NuMI                                                                                                                                                                                                 
 
         // Output                                                                                                                                                                                                                                                     
-        double pT0(0);
+        double pT0(0), pT1(0), pT2(0);
 
         // Loop over particles                                                                                                                                                                                                                                        
         for(auto & part : interaction.particles)
@@ -426,13 +426,16 @@ namespace vars
 
             
 
+
             p.SetX(part.momentum[0]);
             p.SetY(part.momentum[1]);
             p.SetZ(part.momentum[2]);
 
             pL = p.Dot(beamdir) * beamdir;
             pT = p - pL;
-            pT0 += pT[coord];
+            pT0 += pT[0];
+            pT1 += pT[1];
+            pT2 += pT[2];
                                                                                                                                                                                                                                           
         }
         return pT;
