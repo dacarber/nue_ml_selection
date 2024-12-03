@@ -375,7 +375,7 @@ namespace vars
                 double energy(calo_ke(p));
                 if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                     energy = ke_init(p);
-                if(p.pid == pid && energy > leading_ke)
+                if(p.pid == pid && energy > leading_ke and p.is_primary)
                 {
                     leading_ke = energy;
                     index = i;

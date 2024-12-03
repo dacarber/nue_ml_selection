@@ -58,10 +58,10 @@ namespace vars
     template<class T>
         double azimuthal_angle(const T & particle)
         {
-            if constexpr (std::is_same_v<T, caf::SRParticleTruthDLPProxy>)
+            if(particle.start_dir[1] >0);
                 return std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
             else
-                return std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
+                return -std::acos(particle.start_dir[0] / std::sqrt(std::pow(particle.start_dir[0], 2) + std::pow(particle.start_dir[1], 2)));
         }
 
 
@@ -98,6 +98,47 @@ namespace vars
                 z = z/r;
                 return std::acos(x *particle.start_dir[0] + y *particle.start_dir[1]+z *particle.start_dir[2]);
             }
+        }
+    /**
+     * Variable for the azimuthal angle (w.r.t the z-axis) of the particle.
+     * @tparam T the type of particle (true or reco).
+     * @param particle to apply the variable on.
+     * @return the azimuthal angle of the particle.
+    */
+    template<class T>
+        double NuMI_nu_theta(const T & interaction)
+        {   
+            double r;
+            std::vector<double> dir_vector(3,0);
+               
+            dir_vector[0] = interaction.vertex[0] - (31512.0380);
+            dir_vector[1] = interaction.vertex[1] - (3364.4912);
+            dir_vector[2] = interaction.vertex[2] - (73363.2532);
+            r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+            dir_vector[0] = dir_vector[0]/r;
+            dir_vector[1] = dir_vector[1]/r;
+            dir_vector[2] = dir_vector[2]/r;                                      
+            return std::acos(dir_vector[2]);
+            
+        }
+        template<class T>
+        double NuMI_nu_phi(const T & interaction)
+        {   
+            double r;
+            std::vector<double> dir_vector(3,0);
+               
+            dir_vector[0] = interaction.vertex[0] - (31512.0380);
+            dir_vector[1] = interaction.vertex[1] - (3364.4912);
+            dir_vector[2] = interaction.vertex[2] - (73363.2532);
+            r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+            dir_vector[0] = dir_vector[0]/r;
+            dir_vector[1] = dir_vector[1]/r;
+            dir_vector[2] = dir_vector[2]/r;                                      
+            if(dir_vector[1] >0);
+                return std::acos(dir_vector[0] / std::sqrt(std::pow(dir_vector[0], 2) + std::pow(dir_vector[1], 2)));
+            else
+                return -std::acos(dir_vector[0] / std::sqrt(std::pow(dir_vector[0], 2) + std::pow(dir_vector[1], 2)));
+            
         }
     /**
      * Methods for calculating the reconstructed variables for the numu analyses.
@@ -307,35 +348,122 @@ namespace vars
             else
                 return std::acos(e.start_dir[0] * p.start_dir[0] + e.start_dir[1] * p.start_dir[1] + e.start_dir[2] * p.start_dir[2]);
         }
-    
-    /**
-     * Variable for the transverse momentum of the interaction.
-     * @tparam T the type of interaction (true or reco).
-     * @param interaction to apply the variable on.
-     * @return the transverse momentum of the primary particles.
-    */
-    /*
-    template<class T>
-        double interaction_pt(const T & interaction)
-        {
-            double px(0), py(0);
-            for(const auto & p : interaction.particles)
-                if(p.is_primary)
-                {
-                    if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
-                    {
-                        px += p.truth_momentum[0];
-                        py += p.truth_momentum[1];
-                    }
-                    else
-                    {
-                        px += p.momentum[0];
-                        py += p.momentum[1];
-                    }
-                }
-            return std::sqrt(std::pow(px, 2) + std::pow(py, 2));
+
+
+    template <class T> 
+        TVector3  electron_transverse_momentum(const T & interaction)
+      {
+        //TVector3 beamdir(0, 0, 1); // BNB
+        std::vector<double> dir_vector(3,0);                    
+        dir_vector[0] = interaction.vertex[0] - (31512.0380);
+        dir_vector[1] = interaction.vertex[1] - (3364.4912);
+        dir_vector[2] = interaction.vertex[2] - (73363.2532);
+        r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+        dir_vector[0] = dir_vector[0]/r;
+        dir_vector[1] = dir_vector[1]/r;
+        dir_vector[2] = dir_vector[2]/r;                                                                                                                                                                                              
+        TVector3 beamdir(dir_vector[0], dir_vector[1], dir_vector[2]); // NuMI                                                                                                                                                                                                 
+
+        // Loop over particles                                                                                                                                                                                                                                        
+        
+        size_t i(leading_particle_index(interaction, 1));
+        auto & particle = interaction.particles[i];
+            //if(!particle.is_primary) continue;
+
+            // pT = p - pL                                                                                                                                                                                                                                            
+            //    = p-(p dot beamdir) * beamdir                                                                                                                                                                                                                         
+            TVector3 p;
+            TVector3 pL;
+            TVector3 pT;
+
+            
+
+            p.SetX(part.momentum[0]);
+            p.SetY(part.momentum[1]);
+            p.SetZ(part.momentum[2]);
+
+            pL = p.Dot(beamdir) * beamdir;
+            pT = p - pL;
+
+            pT0 += pT[0];
+            pT1 += pT[1];
+            pT2 += pT[2];
+
+                                                                                                                                                                                                                                          
+        
+        return pT;
+      }
+
+    template <class T> 
+        TVector3 proton_transverse_momentum(const T & interaction)
+      {
+        //TVector3 beamdir(0, 0, 1); // BNB
+        std::vector<double> dir_vector(3,0);                    
+        dir_vector[0] = interaction.vertex[0] - (31512.0380);
+        dir_vector[1] = interaction.vertex[1] - (3364.4912);
+        dir_vector[2] = interaction.vertex[2] - (73363.2532);
+        r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+        dir_vector[0] = dir_vector[0]/r;
+        dir_vector[1] = dir_vector[1]/r;
+        dir_vector[2] = dir_vector[2]/r;                                                                                                                                                                                              
+        TVector3 beamdir(dir_vector[0], dir_vector[1], dir_vector[2]); // NuMI                                                                                                                                                                                                 
+
+        // Output                                                                                                                                                                                                                                                     
+        double pT0(0);
+
+        // Loop over particles                                                                                                                                                                                                                                        
+        for(auto & part : interaction.particles)
+          {
+
+            if(!part.is_primary or part.pid != 4 ) continue;
+
+            // pT = p - pL                                                                                                                                                                                                                                            
+            //    = p-(p dot beamdir) * beamdir                                                                                                                                                                                                                         
+            TVector3 p;
+            TVector3 pL;
+            TVector3 pT;
+
+            
+
+            p.SetX(part.momentum[0]);
+            p.SetY(part.momentum[1]);
+            p.SetZ(part.momentum[2]);
+
+            pL = p.Dot(beamdir) * beamdir;
+            pT = p - pL;
+            pT0 += pT[coord];
+                                                                                                                                                                                                                                          
         }
-    */
+        return pT;
+      }
+
+
+    template<class T>
+        double delta_pt(const T & interaction)
+        {
+            TVector3 plT(electron_transverse_momentum(interaction));
+            TVector3 ppT(proton_transverse_momentum(interaction));
+            TVector3 delta_p = plT+ppT;
+            return delta_p.Mag;
+        }
+    template<class T>
+        double delta_alphaT(const T & interaction)
+        {
+            TVector3 plT(electron_transverse_momentum(interaction));
+            TVector3 ppT(proton_transverse_momentum(interaction));
+            TVector3 delta_p = plT+ppT;
+            double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag * delta_p.Mag));
+            return delta_a;
+        }
+    template<class T>
+        double delta_phiT(const T & interaction)
+        {
+            TVector3 plT(electron_transverse_momentum(interaction));
+            TVector3 ppT(proton_transverse_momentum(interaction));
+            double delta_phi = std::acos(-plT.Dot(ppT)/(plT.Mag * ppT.Mag));
+            return delta_phi;
+        }
+
     /**
      * Variable for phi_T of the interaction.
      * @tparam T the type of interaction (true or reco).
@@ -353,6 +481,19 @@ namespace vars
                     {
                         if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                         {
+                            std::vector<double> dir_vector(3,0);
+                            std::vector<double> z_axis = {0,0,1};
+                            dir_vector[0] = particle.start_point[0] - (31512.0380);
+                            dir_vector[1] = particle.start_point[1] - (3364.4912);
+                            dir_vector[2] = particle.start_point[2] - (73363.2532);
+                            r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
+                            dir_vector[0] = dir_vector[0]/r;
+                            dir_vector[1] = dir_vector[1]/r;
+                            dir_vector[2] = dir_vector[2]/r;
+
+                            std::vector<double> cross_product = {-dir_vector[1],-dir_vector[0],0}
+
+
                             hpx += p.momentum[0];
                             hpy += p.momentum[1];
                         }
@@ -392,10 +533,13 @@ namespace vars
             for(const auto & p : interaction.particles)
                 if(cuts::final_state_signal(p))
                 {
-                    if(p.pid <= 2)
+                    if(p.pid == 1)
                     {
                         if constexpr (std::is_same_v<T, caf::SRInteractionTruthDLPProxy>)
                         {
+                            x = (31512.0380) - particle.start_point[0];
+                            y = (3364.4912) - particle.start_point[1];
+                            z = (73363.2532) - particle.start_point[2];
                             lpx += p.momentum[0];
                             lpy += p.momentum[1];
                         }
