@@ -445,7 +445,10 @@ namespace vars
         {
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
-            TVector3 delta_p = abs(plT+ppT);
+            TVector3 delta_p;
+            delta_p.SetX(abs(plT[0])+abs(ppT[0]));
+            delta_p.SetY(abs(plT[1])+abs(ppT[1]));
+            delta_p.SetZ(abs(plT[2])+abs(ppT[2]));
             return delta_p.Mag();
         }
     template<class T>
@@ -453,7 +456,10 @@ namespace vars
         {
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
-            TVector3 delta_p = abs(plT+ppT);
+            TVector3 delta_p;
+            delta_p.SetX(abs(plT[0])+abs(ppT[0]));
+            delta_p.SetY(abs(plT[1])+abs(ppT[1]));
+            delta_p.SetZ(abs(plT[2])+abs(ppT[2]));
             double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag() * delta_p.Mag()));
             return delta_a;
         }
