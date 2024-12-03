@@ -11,6 +11,7 @@
 #include "cuts.h"
 #include <algorithm>
 #include <cmath>
+#include <TVector3.h>
 
 namespace vars
 {

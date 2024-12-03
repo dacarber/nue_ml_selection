@@ -12,6 +12,7 @@
 #define PROTON_MASS 938.2720813
 
 #include <algorithm>
+#include <TVector3.h>
 
 namespace vars
 {
