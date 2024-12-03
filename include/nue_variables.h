@@ -432,9 +432,10 @@ namespace vars
             pT0 += pT[0];
             pT1 += pT[1];
             pT2 += pT[2];
+
                                                                                                                                                                                                                                           
         }
-        return pT;
+        return TVector3 ppT(pT0,pT1,pT2);
       }
 
 

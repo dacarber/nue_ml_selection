@@ -29,8 +29,7 @@ void analysis_csv()
 
     //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/trouble-shoot/collection/merged_cafs/*.flat.root", "spectra_nucosmics.root", -1, -1 ); //All plane charge
     //SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/trouble-shoot/all-planes/merged_cafs/*.flat.root", "spectra_nucosmics.root", -1, -1 ); //All plane charge
-    SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/NuMI_Nu/v09_89_01p01_collection/merged_cafs/part_*/*.flat..root", "spectra_nucosmics.root", -1, -1 ); //Collection plane only charge wi
-th conversion distance
+    SpecContainer spectra("/pnfs/icarus/scratch/users/dcarber/hdf5_files/NuMI_Nu/v09_89_01p01_collection/merged_cafs/part_*/*.flat..root", "spectra_nucosmics.root", -1, -1 ); //Collection plane only charge with conversion distance
 
     spectra.add_spectrum1d("sSelected", Binning::Simple(1, 0, 2), kInfoVar);
 
