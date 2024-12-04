@@ -112,9 +112,9 @@ namespace vars
             double r;
             std::vector<double> dir_vector(3,0);
                
-            dir_vector[0] = (31512.0380) - interaction.vertex[0];
-            dir_vector[1] = (3364.4912) - interaction.vertex[1];
-            dir_vector[2] = (73363.2532) - interaction.vertex[2];
+            dir_vector[0] = (31512.0380) + interaction.vertex[0];
+            dir_vector[1] = (3364.4912) + interaction.vertex[1];
+            dir_vector[2] = (73363.2532) + interaction.vertex[2];
             r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
             dir_vector[0] = dir_vector[0]/r;
             dir_vector[1] = dir_vector[1]/r;
@@ -128,9 +128,9 @@ namespace vars
             double r;
             std::vector<double> dir_vector(3,0);
                
-            dir_vector[0] = (31512.0380) - interaction.vertex[0];
-            dir_vector[1] = (3364.4912) - interaction.vertex[1];
-            dir_vector[2] = (73363.2532) - interaction.vertex[2];
+            dir_vector[0] = (31512.0380) + interaction.vertex[0];
+            dir_vector[1] = (3364.4912) + interaction.vertex[1];
+            dir_vector[2] = (73363.2532) + interaction.vertex[2];
             r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
             dir_vector[0] = dir_vector[0]/r;
             dir_vector[1] = dir_vector[1]/r;
@@ -356,9 +356,9 @@ namespace vars
       {
         //TVector3 beamdir(0, 0, 1); // BNB
         std::vector<double> dir_vector(3,0);                    
-        dir_vector[0] = (31512.0380) - interaction.vertex[0];
-        dir_vector[1] = (3364.4912) - interaction.vertex[1];
-        dir_vector[2] = (73363.2532) - interaction.vertex[2];
+        dir_vector[0] = (31512.0380) + interaction.vertex[0];
+        dir_vector[1] = (3364.4912) + interaction.vertex[1];
+        dir_vector[2] = (73363.2532) + interaction.vertex[2];
         double r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
         dir_vector[0] = dir_vector[0]/r;
         dir_vector[1] = dir_vector[1]/r;
@@ -396,9 +396,9 @@ namespace vars
       {
         //TVector3 beamdir(0, 0, 1); // BNB
         std::vector<double> dir_vector(3,0);                    
-        dir_vector[0] = (31512.0380) - interaction.vertex[0];
-        dir_vector[1] = (3364.4912) - interaction.vertex[1];
-        dir_vector[2] = (73363.2532) - interaction.vertex[2];
+        dir_vector[0] = (31512.0380) + interaction.vertex[0];
+        dir_vector[1] = (3364.4912) + interaction.vertex[1];
+        dir_vector[2] = (73363.2532) + interaction.vertex[2];
         double r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
         dir_vector[0] = dir_vector[0]/r;
         dir_vector[1] = dir_vector[1]/r;
@@ -446,9 +446,9 @@ namespace vars
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
             TVector3 delta_p;
-            delta_p.SetX(abs(plT[0]+ppT[0]));
-            delta_p.SetY(abs(plT[1]+ppT[1]));
-            delta_p.SetZ(abs(plT[2]+ppT[2]));
+            delta_p.SetX(abs(plT[0]-ppT[0]));
+            delta_p.SetY(abs(plT[1]-ppT[1]));
+            delta_p.SetZ(abs(plT[2]-ppT[2]));
             return delta_p.Mag();
         }
     template<class T>
@@ -457,9 +457,9 @@ namespace vars
             TVector3 plT(electron_transverse_momentum(interaction));
             TVector3 ppT(proton_transverse_momentum(interaction));
             TVector3 delta_p;
-            delta_p.SetX(abs(plT[0]+ppT[0]));
-            delta_p.SetY(abs(plT[1]+ppT[1]));
-            delta_p.SetZ(abs(plT[2]+ppT[2]));
+            delta_p.SetX(abs(plT[0]-ppT[0]));
+            delta_p.SetY(abs(plT[1]-ppT[1]));
+            delta_p.SetZ(abs(plT[2]-ppT[2]));
             double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag() * delta_p.Mag()));
             return delta_a;
         }
@@ -471,7 +471,22 @@ namespace vars
             double delta_phi = std::acos(-plT.Dot(ppT)/(plT.Mag() * ppT.Mag()));
             return delta_phi;
         }
+    template<class T>
+        double electron_transverse_momentum_mag(const T & interaction)
+        {
+            TVector3 plT(electron_transverse_momentum(interaction));
+            
 
+            return plT.Mag();
+        }
+    template<class T>
+        double proton_transverse_momentum_mag(const T & interaction)
+        {
+            
+            TVector3 ppT(proton_transverse_momentum(interaction));
+            
+            return ppT.Mag();
+        }
     /**
      * Variable for phi_T of the interaction.
      * @tparam T the type of interaction (true or reco).
