@@ -112,9 +112,9 @@ namespace vars
             double r;
             std::vector<double> dir_vector(3,0);
                
-            dir_vector[0] = interaction.vertex[0] - (31512.0380);
-            dir_vector[1] = interaction.vertex[1] - (3364.4912);
-            dir_vector[2] = interaction.vertex[2] - (73363.2532);
+            dir_vector[0] = (31512.0380) - interaction.vertex[0];
+            dir_vector[1] = (3364.4912) - interaction.vertex[1];
+            dir_vector[2] = (73363.2532) - interaction.vertex[2];
             r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
             dir_vector[0] = dir_vector[0]/r;
             dir_vector[1] = dir_vector[1]/r;
@@ -128,9 +128,9 @@ namespace vars
             double r;
             std::vector<double> dir_vector(3,0);
                
-            dir_vector[0] = interaction.vertex[0] - (31512.0380);
-            dir_vector[1] = interaction.vertex[1] - (3364.4912);
-            dir_vector[2] = interaction.vertex[2] - (73363.2532);
+            dir_vector[0] = (31512.0380) - interaction.vertex[0];
+            dir_vector[1] = (3364.4912) - interaction.vertex[1];
+            dir_vector[2] = (73363.2532) - interaction.vertex[2];
             r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
             dir_vector[0] = dir_vector[0]/r;
             dir_vector[1] = dir_vector[1]/r;
@@ -356,9 +356,9 @@ namespace vars
       {
         //TVector3 beamdir(0, 0, 1); // BNB
         std::vector<double> dir_vector(3,0);                    
-        dir_vector[0] = interaction.vertex[0] - (31512.0380);
-        dir_vector[1] = interaction.vertex[1] - (3364.4912);
-        dir_vector[2] = interaction.vertex[2] - (73363.2532);
+        dir_vector[0] = (31512.0380) - interaction.vertex[0];
+        dir_vector[1] = (3364.4912) - interaction.vertex[1];
+        dir_vector[2] = (73363.2532) - interaction.vertex[2];
         double r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
         dir_vector[0] = dir_vector[0]/r;
         dir_vector[1] = dir_vector[1]/r;
@@ -396,9 +396,9 @@ namespace vars
       {
         //TVector3 beamdir(0, 0, 1); // BNB
         std::vector<double> dir_vector(3,0);                    
-        dir_vector[0] = interaction.vertex[0] - (31512.0380);
-        dir_vector[1] = interaction.vertex[1] - (3364.4912);
-        dir_vector[2] = interaction.vertex[2] - (73363.2532);
+        dir_vector[0] = (31512.0380) - interaction.vertex[0];
+        dir_vector[1] = (3364.4912) - interaction.vertex[1];
+        dir_vector[2] = (73363.2532) - interaction.vertex[2];
         double r = std::sqrt(std::pow(dir_vector[0], 2)+std::pow(dir_vector[1], 2)+std::pow(dir_vector[2], 2));
         dir_vector[0] = dir_vector[0]/r;
         dir_vector[1] = dir_vector[1]/r;
