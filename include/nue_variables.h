@@ -460,7 +460,7 @@ namespace vars
             delta_p.SetX(plT[0]+ppT[0]);
             delta_p.SetY(plT[1]+ppT[1]);
             delta_p.SetZ(plT[2]+ppT[2]);
-            double delta_a = std::acos(-plT.Dot(delta_p)/(plT.Mag() * delta_p.Mag()));
+            double delta_a = std::acos(delta_p.Dot(-plT)/(plT.Mag() * delta_p.Mag()));
             return delta_a;
         }
     template<class T>
